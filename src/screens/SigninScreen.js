@@ -4,6 +4,10 @@ import { Text, TextInput } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import LoginButton from "../components/atoms/LoginButton";
 import { scale, verticalScale } from "react-native-size-matters";
+import { useForm, Controller } from "react-hook-form";
+import CustomInput from "../components/CustomInput/CustomInput"
+import CustomButton from "../components/CustomButton";
+
 
 export default function SigninScreen() {
   const [email, setEmail] = useState("");
@@ -11,6 +15,25 @@ export default function SigninScreen() {
   const [showPassword, setShowPassword] = useState(false);
 
   const navigation = useNavigation();
+
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm();
+
+const onSignInPressed = () => {
+  navigation.navigate('Home')
+};
+
+const onForgotPasswordPressed = () => {
+  //navigation.navigate('ForgotPassword')
+  console.warn('Forgot Password')
+};
+
+const onSignUpPress = () => {
+  navigation.navigate('SignUp')
+}
 
   return (
     <View style={styles.container}>
@@ -22,13 +45,28 @@ export default function SigninScreen() {
       </View>
       <View style={styles.signinContainer}>
         <Text style={styles.signinText}>Sign In</Text>
-        <TextInput
-          mode='outlined'
-          label='Email address'
-          value={email}
-          onChangeText={(email) => setEmail(email)}
+        <CustomInput
+          name="email"
+          placeholder="Email"
+          control={control}
           style={styles.textInput}
+          rules={{required: 'Email is required'}}
         />
+        <CustomInput
+          name="password"
+          placeholder="Password"
+          secureTextEntry
+          control={control}
+          style={styles.textInput}
+          rules={{
+            required: 'Password is required',
+            minLength:{
+              value: 8,
+              message: 'Password should be minimum 8 characters long'
+            }
+          }}
+        />
+        {/*
         <TextInput
           mode='outlined'
           label='Password'
@@ -44,22 +82,23 @@ export default function SigninScreen() {
           forceTextInputFocus={false}
           style={[styles.textInput, { marginTop: 15 }]}
         />
+        */}
         <View style={styles.buttonContainer}>
           <LoginButton
             title='Sign In'
             style={styles.button}
-            onPress={() => navigation.navigate("Home")}
+            //onPress={() => navigation.navigate("Home")}
+            onPress={handleSubmit(onSignInPressed)}
           />
-          <Text variant='bodyLarge' style={styles.forgotPasswordText}>
+          <Text variant='bodyLarge' style={styles.forgotPasswordText} onPress={handleSubmit(onForgotPasswordPressed)}>
             Forgot Password?
           </Text>
-
           <View style={{ flexDirection: "row", marginTop: 20 }}>
-            <Text variant='bodyLarge' style={styles.signUpText}>
+            <Text onPress = {onForgotPasswordPressed} variant='bodyLarge' style={styles.signUpText}>
               Don't have an account? {""}
             </Text>
             <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
-              <Text variant='bodyLarge' style={styles.signUpLink}>
+              <Text variant='bodyLarge' style={styles.signUpLink} onPress={handleSubmit(onSignUpPress)}>
                 Sign Up
               </Text>
             </TouchableOpacity>

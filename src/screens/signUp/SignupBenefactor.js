@@ -12,10 +12,32 @@ import { Text, TextInput } from "react-native-paper";
 import { scale, verticalScale } from "react-native-size-matters";
 import LoginButton from "../../components/atoms/LoginButton";
 import FooterAgreement from "../../components/molecules/FooterAgreement";
+import {useForm} from 'react-hook-form';
+import CustomInput from "../../components/CustomInput";
+import { useNavigation } from "@react-navigation/native";
 
 export default function SignupBenefactor() {
+  
+  const EMAIL_REGEX =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
+
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm();
+
+  const onRegisterPressed = () => {
+    navigation.navigate('ConfirmEmail');
+  }
+
+  const onSignInPress = () => {
+
+  }
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -35,11 +57,25 @@ export default function SignupBenefactor() {
               style={{
                 flexDirection: "row",
                 justifyContent: "space-between",
-
                 paddingBottom: 16,
-              }}
+                
+              }}              
             >
-              <TextInput
+              <CustomInput
+              placeholder="First Name"
+              name="firstName"
+              control={control}
+              rules={{required: 'First Name is required'}}
+              style={styles.textInput}
+            />
+            <CustomInput
+              placeholder="Last Name"
+              name="lastName"
+              control={control}
+              rules={{required: 'Last Name is required'}}
+              style={styles.textInput}
+            />
+            {/*  <TextInput
                 mode='outlined'
                 label='First Name'
                 style={styles.textInput}
@@ -49,7 +85,34 @@ export default function SignupBenefactor() {
                 label='Last Name'
                 style={styles.textInput}
               />
+            */}
             </View>
+
+            <CustomInput
+              placeholder="Email"
+              name="email"
+              control={control}
+              style={styles.textCredential}
+              rules={{
+                pattern: {value: EMAIL_REGEX, message: 'Email is invalid'},
+                required: 'Email is required'
+            }}
+            />
+            <CustomInput
+              placeholder="Password"
+              name="password"
+              control={control}
+              style={styles.textCredential, {marginTop: 15}}
+              forceTextInputFocus={false}
+              rules={{
+              required: 'Password is required',
+              minLength:{
+                value: 8,
+                message: 'Password should be minimum 8 characters long'
+              }}}
+              secureTextEntry={!showPassword}
+            />  
+            {/* 
             <TextInput
               mode='outlined'
               label='Email address'
@@ -70,11 +133,12 @@ export default function SignupBenefactor() {
               forceTextInputFocus={false}
               style={[styles.textCredential, { marginTop: 15 }]}
             />
+            */}
             <View style={styles.buttonContainer}>
               <LoginButton
                 title='Next'
                 style={styles.button}
-                onPress={() => navigation.navigate("#")}
+                onPress={handleSubmit(onRegisterPressed)}
               />
             </View>
 
