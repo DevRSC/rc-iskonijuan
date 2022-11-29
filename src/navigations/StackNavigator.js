@@ -16,7 +16,7 @@ export default function StackNavigator() {
   const isLoggedin = false;
   return (
     <AuthStack.Navigator
-      initialRouteName='Welcome'
+      initialRouteName='SignUpBenefactor'
       screenOptions={{
         headerShown: false,
       }}
