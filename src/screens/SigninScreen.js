@@ -5,8 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import LoginButton from "../components/atoms/LoginButton";
 import { scale, verticalScale } from "react-native-size-matters";
 import { useForm, Controller } from "react-hook-form";
-import CustomInput from "../components/CustomInput/CustomInput"
-
+import CustomInput from "../components/CustomInput/CustomInput";
 
 export default function SigninScreen() {
   const [email, setEmail] = useState("");
@@ -18,22 +17,22 @@ export default function SigninScreen() {
   const {
     control,
     handleSubmit,
-    formState: {errors},
+    formState: { errors },
   } = useForm();
 
-const onSignInPressed = () => {
-  navigation.navigate('Home')
-};
+  const onSignInPressed = () => {
+    navigation.navigate("Home");
+  };
 
-const onForgotPasswordPressed = () => {
-  //navigation.navigate('ForgotPassword')
-  console.warn('Forgot Password')
-};
+  const onForgotPasswordPressed = () => {
+    //navigation.navigate('ForgotPassword')
+    console.warn("Forgot Password");
+  };
 
-const onSignUpPress = () => {
-  console.warn('Signup')
-  navigation.navigate('SignUp')
-}
+  const onSignUpPress = () => {
+    console.warn("Signup");
+    navigation.navigate("SignUp");
+  };
 
   return (
     <View style={styles.container}>
@@ -46,24 +45,24 @@ const onSignUpPress = () => {
       <View style={styles.signinContainer}>
         <Text style={styles.signinText}>Sign In</Text>
         <CustomInput
-          name="email"
-          placeholder="Email"
+          name='email'
+          placeholder='Email'
           control={control}
           style={styles.textInput}
-          rules={{required: 'Email is required'}}
+          rules={{ required: "Email is required" }}
         />
         <CustomInput
-          name="password"
-          placeholder="Password"
+          name='password'
+          placeholder='Password'
           secureTextEntry
           control={control}
           style={styles.textInput}
           rules={{
-            required: 'Password is required',
-            minLength:{
+            required: "Password is required",
+            minLength: {
               value: 8,
-              message: 'Password should be minimum 8 characters long'
-            }
+              message: "Password should be minimum 8 characters long",
+            },
           }}
         />
         {/*
@@ -90,15 +89,27 @@ const onSignUpPress = () => {
             //onPress={() => navigation.navigate("Home")}
             onPress={handleSubmit(onSignInPressed)}
           />
-          <Text variant='bodyLarge' style={styles.forgotPasswordText} onPress={handleSubmit(onForgotPasswordPressed)}>
+          <Text
+            variant='bodyLarge'
+            style={styles.forgotPasswordText}
+            onPress={handleSubmit(onForgotPasswordPressed)}
+          >
             Forgot Password?
           </Text>
           <View style={{ flexDirection: "row", marginTop: 20 }}>
-            <Text onPress = {onForgotPasswordPressed} variant='bodyLarge' style={styles.signUpText}>
+            <Text
+              onPress={onForgotPasswordPressed}
+              variant='bodyLarge'
+              style={styles.signUpText}
+            >
               Don't have an account? {""}
             </Text>
             <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
-              <Text variant='bodyLarge' style={styles.signUpLink} onPress={handleSubmit(onSignUpPress)}>
+              <Text
+                variant='bodyLarge'
+                style={styles.signUpLink}
+                onPress={handleSubmit(onSignUpPress)}
+              >
                 Sign Up
               </Text>
             </TouchableOpacity>
