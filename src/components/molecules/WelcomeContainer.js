@@ -1,5 +1,4 @@
 import React from "react";
-
 import { StyleSheet, View } from "react-native";
 import LoginButton from "../atoms/LoginButton";
 import { Text } from "react-native-paper";

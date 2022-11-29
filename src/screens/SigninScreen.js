@@ -6,7 +6,6 @@ import LoginButton from "../components/atoms/LoginButton";
 import { scale, verticalScale } from "react-native-size-matters";
 import { useForm, Controller } from "react-hook-form";
 import CustomInput from "../components/CustomInput/CustomInput"
-import CustomButton from "../components/CustomButton";
 
 
 export default function SigninScreen() {
@@ -32,6 +31,7 @@ const onForgotPasswordPressed = () => {
 };
 
 const onSignUpPress = () => {
+  console.warn('Signup')
   navigation.navigate('SignUp')
 }
 

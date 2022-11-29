@@ -6,6 +6,8 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
+  ScrollView,
+  Dimensions,
 } from "react-native";
 import React, { useState } from "react";
 import { Text, TextInput } from "react-native-paper";
@@ -15,11 +17,12 @@ import FooterAgreement from "../../components/molecules/FooterAgreement";
 import {useForm} from 'react-hook-form';
 import CustomInput from "../../components/CustomInput";
 import { useNavigation } from "@react-navigation/native";
+const { width, height } = Dimensions.get("window");
 
 export default function SignupBenefactor() {
   
   const EMAIL_REGEX =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-
+  
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
@@ -27,143 +30,156 @@ export default function SignupBenefactor() {
   const {
     control,
     handleSubmit,
+    watch,
     formState: {errors},
   } = useForm();
 
+  const pwd = watch('password');
   const onRegisterPressed = () => {
     navigation.navigate('ConfirmEmail');
   }
 
-  const onSignInPress = () => {
-
-  }
+  const onSignInPressed = () => {
+    navigation.navigate('SignIn')
+  };
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.container}
-    >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.inner}>
-          <View style={styles.imageContainer}>
-            <Image
-              source={require("../../../assets/images/logo-nobg.png")}
-              style={styles.imageIcon}
-            />
-          </View>
-          <View style={styles.signinContainer}>
-            <Text style={styles.signinText}>Sign Up</Text>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                paddingBottom: 16,
-                
-              }}              
-            >
-              <CustomInput
-              placeholder="First Name"
-              name="firstName"
-              control={control}
-              rules={{required: 'First Name is required'}}
-              style={styles.textInput}
-            />
-            <CustomInput
-              placeholder="Last Name"
-              name="lastName"
-              control={control}
-              rules={{required: 'Last Name is required'}}
-              style={styles.textInput}
-            />
-            {/*  <TextInput
-                mode='outlined'
-                label='First Name'
+    <View style={styles.container}>
+      <ScrollView>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={styles.inner}>
+            <View style={styles.imageContainer}>
+              <Image
+                source={require("../../../assets/images/logo-nobg.png")}
+                style={styles.imageIcon}
+              />
+            </View>
+            <View style={styles.signinContainer}>
+              <Text style={styles.signinText}>Sign Up</Text>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  paddingBottom: 16,
+                  
+                }}              
+              >
+                <CustomInput
+                placeholder="First Name"
+                name="firstName"
+                control={control}
+                rules={{required: 'First Name is required'}}
                 style={styles.textInput}
+              />
+              <CustomInput
+                placeholder="Last Name"
+                name="lastName"
+                control={control}
+                rules={{required: 'Last Name is required'}}
+                style={styles.textInput}
+              />
+              {/*  <TextInput
+                  mode='outlined'
+                  label='First Name'
+                  style={styles.textInput}
+                />
+                <TextInput
+                  mode='outlined'
+                  label='Last Name'
+                  style={styles.textInput}
+                />
+              */}
+              </View>
+
+              <CustomInput
+                placeholder="Email"
+                name="email"
+                control={control}
+                style={styles.textCredential}
+                rules={{
+                  pattern: {value: EMAIL_REGEX, message: 'Email is invalid'},
+                  required: 'Email is required'
+              }}
+              />
+              <CustomInput
+                placeholder="Password"
+                name="password"
+                control={control}
+                style={styles.textCredential, {marginTop: 15}}
+                forceTextInputFocus={false}
+                rules={{
+                required: 'Password is required',
+                minLength:{
+                  value: 8,
+                  message: 'Password should be minimum 8 characters long'
+                }}}
+                secureTextEntry={!showPassword}
+              />  
+              <CustomInput
+                placeholder="Repeat Password"
+                name="password-repeat"
+                control={control}
+                style={styles.textCredential, {marginTop: 15}}
+                secureTextEntry
+                rules={{
+                  validate: value => value == pwd || 'Password do not match',
+                }}
+                
+                secureTextEntry={!showPassword}
+              />  
+              {/* 
+              <TextInput
+                mode='outlined'
+                label='Email address'
+                style={styles.textCredential}
               />
               <TextInput
                 mode='outlined'
-                label='Last Name'
-                style={styles.textInput}
+                label='Password'
+                value={password}
+                secureTextEntry={!showPassword}
+                right={
+                  <TextInput.Icon
+                    icon={showPassword ? "eye" : "eye-off"}
+                    onPress={() => setShowPassword(!showPassword)}
+                  />
+                }
+                onChangeText={(password) => setPassword(password)}
+                forceTextInputFocus={false}
+                style={[styles.textCredential, { marginTop: 15 }]}
               />
-            */}
-            </View>
-
-            <CustomInput
-              placeholder="Email"
-              name="email"
-              control={control}
-              style={styles.textCredential}
-              rules={{
-                pattern: {value: EMAIL_REGEX, message: 'Email is invalid'},
-                required: 'Email is required'
-            }}
-            />
-            <CustomInput
-              placeholder="Password"
-              name="password"
-              control={control}
-              style={styles.textCredential, {marginTop: 15}}
-              forceTextInputFocus={false}
-              rules={{
-              required: 'Password is required',
-              minLength:{
-                value: 8,
-                message: 'Password should be minimum 8 characters long'
-              }}}
-              secureTextEntry={!showPassword}
-            />  
-            {/* 
-            <TextInput
-              mode='outlined'
-              label='Email address'
-              style={styles.textCredential}
-            />
-            <TextInput
-              mode='outlined'
-              label='Password'
-              value={password}
-              secureTextEntry={!showPassword}
-              right={
-                <TextInput.Icon
-                  icon={showPassword ? "eye" : "eye-off"}
-                  onPress={() => setShowPassword(!showPassword)}
+              */}
+              <View style={styles.buttonContainer}>
+                <LoginButton
+                  title='Next'
+                  style={styles.button}
+                  onPress={handleSubmit(onRegisterPressed)}
                 />
-              }
-              onChangeText={(password) => setPassword(password)}
-              forceTextInputFocus={false}
-              style={[styles.textCredential, { marginTop: 15 }]}
-            />
-            */}
-            <View style={styles.buttonContainer}>
-              <LoginButton
-                title='Next'
-                style={styles.button}
-                onPress={handleSubmit(onRegisterPressed)}
-              />
-            </View>
+              </View>
 
-            <View
-              style={{
-                flexDirection: "row",
+              <View
+                style={{
+                  flexDirection: "row",
 
-                justifyContent: "center",
-                paddingTop: 20,
-              }}
-            >
-              <Text variant='bodyLarge' style={styles.signUpText}>
-                Don't have an account? {""}
-              </Text>
-              <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
-                <Text variant='bodyLarge' style={styles.signInLink}>
-                  Sign In
+                  justifyContent: "center",
+                  paddingTop: 20,
+                }}
+              >
+                <Text variant='bodyLarge' style={styles.signUpText}>
+                  Don't have an account? {""}
                 </Text>
-              </TouchableOpacity>
+                <TouchableOpacity onPress={(handleSubmit(onSignInPressed))}>
+                  <Text variant='bodyLarge' style={styles.signInLink}>
+                    Sign In
+                  </Text>
+                </TouchableOpacity>
+              </View>
+              <FooterAgreement />
             </View>
-            <FooterAgreement />
           </View>
-        </View>
-      </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+        </TouchableWithoutFeedback>
+      </ScrollView>
+    </View>
   );
 }
 
@@ -172,9 +188,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   inner: {
-    flex: 1,
     alignItems: "center",
     padding: 16,
+    height: height,
   },
   imageIcon: {
     width: scale(281),
@@ -182,7 +198,7 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   imageContainer: {
-    marginTop: verticalScale(60),
+    marginTop: verticalScale(40),
     alignItems: "center",
   },
   signinContainer: {

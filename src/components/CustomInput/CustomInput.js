@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
-import { Text, TextInput } from "react-native-paper";
+import { HelperText, Text, TextInput } from "react-native-paper";
 import { scale, verticalScale } from "react-native-size-matters";
 import {Controller} from 'react-hook-form';
 import LoginButton from "../atoms/LoginButton";
@@ -26,14 +26,19 @@ const CustomInput = ({control, name, placeholder, rules = {}, secureTextEntry, s
                   style={style}
                   secureTextEntry={secureTextEntry}
                 />
+                {error && ( 
+                  <HelperText
+                    style={{ alignItems: "flex-start"}}
+                    type='error'
+                    visible={true}
+                  >
+                    {error.message || "Error"}
+                  </HelperText>
+                )}
               </View>
-              {error && (
-              <Text style={{color: 'red', alignSelf: 'stretch'}}>{error.message || 'Error'}</Text>
-              )}
               </>
           )}
       />
-
     );
 };
 

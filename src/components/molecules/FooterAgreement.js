@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
 import React from "react";
 import { scale, verticalScale } from "react-native-size-matters";
@@ -16,6 +16,7 @@ export default function FooterAgreement() {
         </Text>
       </Text>
     </View>
+
   );
 }
 
