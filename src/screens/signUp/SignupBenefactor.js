@@ -3,7 +3,6 @@ import {
   View,
   Image,
   TouchableOpacity,
-  KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
   ScrollView,
@@ -20,12 +19,8 @@ import { useNavigation } from "@react-navigation/native";
 const { width, height } = Dimensions.get("window");
 
 export default function SignupBenefactor() {
-  const EMAIL_REGEX =
-    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
-  const [password, setPassword] = useState("");
+  const navigation = useNavigation();
   const [showPassword, setShowPassword] = useState(false);
-
   const {
     control,
     handleSubmit,
@@ -35,24 +30,27 @@ export default function SignupBenefactor() {
 
   const pwd = watch("password");
   const onRegisterPressed = () => {
-    navigation.navigate("ConfirmEmail");
+    navigation.navigate("SignUpContacts");
   };
 
   const onSignInPressed = () => {
     navigation.navigate("SignIn");
   };
 
+  const EMAIL_REGEX =
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
   return (
     <View style={styles.container}>
       <ScrollView>
+        <View style={styles.imageContainer}>
+          <Image
+            source={require("../../../assets/images/logo-nobg.png")}
+            style={styles.imageIcon}
+          />
+        </View>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.inner}>
-            <View style={styles.imageContainer}>
-              <Image
-                source={require("../../../assets/images/logo-nobg.png")}
-                style={styles.imageIcon}
-              />
-            </View>
             <View style={styles.signinContainer}>
               <Text style={styles.signinText}>Sign Up</Text>
               <View
@@ -76,17 +74,6 @@ export default function SignupBenefactor() {
                   rules={{ required: "Last Name is required" }}
                   style={styles.textInput}
                 />
-                {/*  <TextInput
-                  mode='outlined'
-                  label='First Name'
-                  style={styles.textInput}
-                />
-                <TextInput
-                  mode='outlined'
-                  label='Last Name'
-                  style={styles.textInput}
-                />
-              */}
               </View>
 
               <CustomInput
@@ -119,7 +106,6 @@ export default function SignupBenefactor() {
                 name='password-repeat'
                 control={control}
                 style={(styles.textCredential, { marginTop: 15 })}
-                secureTextEntry
                 rules={{
                   validate: (value) => value == pwd || "Password do not match",
                 }}
