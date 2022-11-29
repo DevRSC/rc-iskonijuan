@@ -1,8 +1,7 @@
 import { StyleSheet, View } from "react-native";
-import React, { useState } from "react";
-import { Text } from "react-native-paper";
+import React, { useState, useCallback } from "react";
+import { Text, Card } from "react-native-paper";
 import { scale, moderateVerticalScale } from "react-native-size-matters";
-import { Card } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 
 // Imported icons
@@ -15,18 +14,19 @@ import Animated, { BounceIn } from "react-native-reanimated";
 export default function SignupScreen() {
   const navigation = useNavigation();
   const [selected, setSelected] = useState(null);
+  console.log("Rerendered");
 
-  const handleSelected = (selected) => {
+  const handleSelected = useCallback((selected) => {
     setSelected(selected);
-  };
+  }, []);
 
   const handleNavigation = (selected) => {
     if (selected === "first") {
-      navigation.navigate("SignUpStudent");
+      navigation.navigate("SignUpBenefactor");
     } else if (selected === "second") {
       navigation.navigate("SignUpBenefactor");
     } else if (selected === "third") {
-      navigation.navigate("SignUpOrganization");
+      navigation.navigate("SignUpBenefactor");
     }
   };
 

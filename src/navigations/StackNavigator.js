@@ -13,10 +13,11 @@ import BottomNavigator from "./BottomNavigator";
 const AuthStack = createNativeStackNavigator();
 
 export default function StackNavigator() {
-  const isLoggedin = true;
+  const isLoggedin = false;
+
   return (
     <AuthStack.Navigator
-      initialRouteName='Welcome'
+      initialRouteName='SignIn'
       screenOptions={{
         headerShown: false,
       }}

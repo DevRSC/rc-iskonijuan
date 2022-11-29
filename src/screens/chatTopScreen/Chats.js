@@ -2,6 +2,7 @@ import { StyleSheet, View, FlatList } from "react-native";
 import React from "react";
 import { Avatar, List, Text } from "react-native-paper";
 import { scale } from "react-native-size-matters";
+import ChatItem from "../../components/molecules/ChatItem";
 
 const persons = [
   {
@@ -112,46 +113,15 @@ const persons = [
   },
 ];
 
-const renderItem = ({ item }) => (
-  <List.Item
-    title={
-      <View style={styles.listTitle}>
-        <Text style={styles.name}>{item.name}</Text>
-
-        <List.Icon
-          icon={
-            item.verified
-              ? "md-checkmark-circle-outline"
-              : "ellipsis-horizontal-circle-outline"
-          }
-          color={item.verified ? "#F55A5A" : "#2B283A"}
-        />
-      </View>
-    }
-    description={item.status}
-    left={(props) => (
-      <Avatar.Image
-        {...props}
-        size={45}
-        source={{
-          uri: item.imageUri,
-        }}
-      />
-    )}
-    right={(props) => (
-      <List.Icon {...props} icon='checkmark-done' color='#F55A5A' size={5} />
-    )}
-  />
-);
-
 export default function Chats() {
+  console.log("ChatScreen Rerendered");
   return (
     <View style={styles.container}>
       <FlatList
         style={styles.flatList}
         data={persons}
         keyExtractor={(item) => item.id}
-        renderItem={renderItem}
+        renderItem={({ item }) => <ChatItem item={item} />}
         getItemLayout={(data, index) => ({
           length: 80,
           offset: 80 * index,
@@ -169,18 +139,6 @@ const styles = StyleSheet.create({
   },
   flatList: {
     borderRadius: 20,
-  },
-  listTitle: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  name: {
-    fontSize: scale(16),
-    paddingRight: 10,
-  },
-  verifiedStatus: {
-    fontSize: scale(12),
   },
   separator: {
     height: 1,
