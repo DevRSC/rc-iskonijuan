@@ -29,13 +29,17 @@ export default function SignupBenefactor() {
   const {
     control,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
 
-  const navigation = useNavigation();
-
+  const pwd = watch("password");
   const onRegisterPressed = () => {
-    navigation.navigate("SignUpContacts");
+    navigation.navigate("ConfirmEmail");
+  };
+
+  const onSignInPressed = () => {
+    navigation.navigate("SignIn");
   };
 
   return (
@@ -72,6 +76,17 @@ export default function SignupBenefactor() {
                   rules={{ required: "Last Name is required" }}
                   style={styles.textInput}
                 />
+                {/*  <TextInput
+                  mode='outlined'
+                  label='First Name'
+                  style={styles.textInput}
+                />
+                <TextInput
+                  mode='outlined'
+                  label='Last Name'
+                  style={styles.textInput}
+                />
+              */}
               </View>
 
               <CustomInput
@@ -100,21 +115,38 @@ export default function SignupBenefactor() {
                 secureTextEntry={!showPassword}
               />
               <CustomInput
-                placeholder='Confirm Password'
-                name='password'
+                placeholder='Repeat Password'
+                name='password-repeat'
                 control={control}
                 style={(styles.textCredential, { marginTop: 15 })}
-                forceTextInputFocus={false}
+                secureTextEntry
                 rules={{
-                  required: "Password is required",
-                  minLength: {
-                    value: 8,
-                    message: "Password should be minimum 8 characters long",
-                  },
+                  validate: (value) => value == pwd || "Password do not match",
                 }}
                 secureTextEntry={!showPassword}
               />
-
+              {/*
+              <TextInput
+                mode='outlined'
+                label='Email address'
+                style={styles.textCredential}
+              />
+              <TextInput
+                mode='outlined'
+                label='Password'
+                value={password}
+                secureTextEntry={!showPassword}
+                right={
+                  <TextInput.Icon
+                    icon={showPassword ? "eye" : "eye-off"}
+                    onPress={() => setShowPassword(!showPassword)}
+                  />
+                }
+                onChangeText={(password) => setPassword(password)}
+                forceTextInputFocus={false}
+                style={[styles.textCredential, { marginTop: 15 }]}
+              />
+              */}
               <View style={styles.buttonContainer}>
                 <LoginButton
                   title='Next'
@@ -134,7 +166,7 @@ export default function SignupBenefactor() {
                 <Text variant='bodyLarge' style={styles.signUpText}>
                   Don't have an account? {""}
                 </Text>
-                <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+                <TouchableOpacity onPress={handleSubmit(onSignInPressed)}>
                   <Text variant='bodyLarge' style={styles.signInLink}>
                     Sign In
                   </Text>
