@@ -4,8 +4,9 @@ import { Text, TextInput } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import LoginButton from "../components/atoms/LoginButton";
 import { scale, verticalScale } from "react-native-size-matters";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import CustomInput from "../components/CustomInput/CustomInput";
+import SigninHeader from "../components/molecules/SigninHeader";
 
 export default function SigninScreen() {
   const [email, setEmail] = useState("");
@@ -22,28 +23,21 @@ export default function SigninScreen() {
 
   const onSignInPressed = () => {
     navigation.navigate("Home");
+    console.log("Sign in pressed");
   };
 
   const onForgotPasswordPressed = () => {
-    //navigation.navigate('ForgotPassword')
-    console.warn("Forgot Password");
+    navigation.navigate("ForgotPassword");
   };
 
   const onSignUpPress = () => {
-    console.warn("Signup");
     navigation.navigate("SignUp");
   };
 
   return (
     <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Image
-          source={require("../../assets/images/logo-nobg.png")}
-          style={styles.imageIcon}
-        />
-      </View>
       <View style={styles.signinContainer}>
-        <Text style={styles.signinText}>Sign In</Text>
+        <SigninHeader text='Sign In' />
         <CustomInput
           name='email'
           placeholder='Email'
@@ -83,27 +77,19 @@ export default function SigninScreen() {
             //onPress={() => navigation.navigate("Home")}
             onPress={handleSubmit(onSignInPressed)}
           />
-          <Text
-            variant='bodyLarge'
-            style={styles.forgotPasswordText}
-            onPress={handleSubmit(onForgotPasswordPressed)}
-          >
-            Forgot Password?
-          </Text>
+
+          <TouchableOpacity onPress={onForgotPasswordPressed}>
+            <Text variant='bodyLarge' style={styles.forgotPasswordText}>
+              Forgot Password?
+            </Text>
+          </TouchableOpacity>
+
           <View style={{ flexDirection: "row", marginTop: 20 }}>
-            <Text
-              onPress={onForgotPasswordPressed}
-              variant='bodyLarge'
-              style={styles.signUpText}
-            >
+            <Text variant='bodyLarge' style={styles.signUpText}>
               Don't have an account? {""}
             </Text>
-            <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
-              <Text
-                variant='bodyLarge'
-                style={styles.signUpLink}
-                onPress={onSignUpPress}
-              >
+            <TouchableOpacity onPress={onSignUpPress}>
+              <Text variant='bodyLarge' style={styles.signUpLink}>
                 Sign Up
               </Text>
             </TouchableOpacity>
@@ -119,11 +105,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#FDFCFB",
     alignItems: "center",
-    padding: 40,
+    padding: 16,
   },
   imageIcon: {
-    width: scale(300),
-    height: verticalScale(130),
+    width: scale(281),
+    height: verticalScale(96),
     resizeMode: "contain",
   },
   imageContainer: {
@@ -131,18 +117,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   signinContainer: {
-    borderBottomStartRadius: 0,
-    borderBottomEndRadius: 0,
     width: "100%",
     height: verticalScale(200),
   },
-  signinText: {
-    color: "#2B283A",
-    fontSize: scale(24),
-    fontWeight: "700",
-    marginTop: verticalScale(24),
-    paddingBottom: verticalScale(24),
-  },
+
   textInput: {
     fontSize: scale(16),
     fontWeight: "600",
@@ -152,13 +130,14 @@ const styles = StyleSheet.create({
     margin: 4,
     width: "100%",
     padding: 4,
+    borderRadius: 8,
   },
   buttonContainer: {
     marginTop: 22,
     alignItems: "center",
   },
   forgotPasswordText: {
-    color: "#2B283A",
+    color: "#918E9B",
     fontSize: scale(16),
     fontWeight: "600",
     marginTop: 22,

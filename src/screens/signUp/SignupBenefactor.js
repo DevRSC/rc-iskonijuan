@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
   },
   textCredential: {
     fontSize: scale(16),
-    fontWeight: "600",
+    fontFamily: "Inter-Medium",
   },
   buttonContainer: {
     paddingTop: verticalScale(31),

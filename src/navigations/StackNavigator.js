@@ -3,6 +3,10 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import WelcomeScreen from "../screens/WelcomeScreen";
 import SigninScreen from "../screens/SigninScreen";
+import ForgotPassword from "../screens/ForgotPassword";
+import RequestPassword from "../screens/RequestPassword";
+import CreateNewPassword from "../screens/CreateNewPassword";
+
 import SignupScreen from "../screens/signUp/SignupScreen";
 import SignupBenefactor from "../screens/signUp/SignupBenefactor";
 import SignupStudent from "../screens/signUp/SignupStudent";
@@ -16,10 +20,10 @@ import BottomNavigator from "./BottomNavigator";
 const AuthStack = createNativeStackNavigator();
 
 export default function StackNavigator() {
-  const isLoggedin = true;
+  const isLoggedin = false;
   return (
     <AuthStack.Navigator
-      initialRouteName='Welcome'
+      initialRouteName='CreateNewPassword'
       screenOptions={{
         headerShown: false,
       }}
@@ -30,6 +34,12 @@ export default function StackNavigator() {
         <>
           <AuthStack.Screen name='Welcome' component={WelcomeScreen} />
           <AuthStack.Screen name='SignIn' component={SigninScreen} />
+          <AuthStack.Screen name='ForgotPassword' component={ForgotPassword} />
+          <AuthStack.Screen name='Request' component={RequestPassword} />
+          <AuthStack.Screen
+            name='CreateNewPassword'
+            component={CreateNewPassword}
+          />
 
           {/* Sign Up Screen Navigation flow /> */}
           <AuthStack.Group>

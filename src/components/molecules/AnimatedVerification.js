@@ -54,7 +54,9 @@ export default function AnimatedVerification({ inputValue }) {
     } else {
       setValue(inputValue);
       console.log("submitted");
-      navigation.navigate("Modal");
+      navigation.navigate("Modal", {
+        modalMessage: "Your number has been verified",
+      });
     }
   };
 

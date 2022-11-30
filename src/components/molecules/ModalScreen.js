@@ -4,11 +4,13 @@ import Animated, { BounceIn } from "react-native-reanimated";
 import { Text } from "react-native-paper";
 import Fontawesome from "react-native-vector-icons/FontAwesome";
 import { verticalScale } from "react-native-size-matters";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import LoginButton from "../atoms/LoginButton";
 
 export default function ModalScreen() {
   const navigation = useNavigation();
+  const route = useRoute();
+  const { modalMessage } = route.params;
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.inner}>
@@ -20,7 +22,7 @@ export default function ModalScreen() {
             marginTop: verticalScale(194),
           }}
         >
-          Your number has been verified
+          {modalMessage}
         </Text>
         <Animated.View entering={BounceIn}>
           <Fontawesome
