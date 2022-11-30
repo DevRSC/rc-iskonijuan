@@ -7,6 +7,9 @@ import SignupScreen from "../screens/signUp/SignupScreen";
 import SignupBenefactor from "../screens/signUp/SignupBenefactor";
 import SignupStudent from "../screens/signUp/SignupStudent";
 import SignupOrganization from "../screens/signUp/SignupOrganization";
+import SignupContacts from "../screens/signUp/SignupContacts";
+import SignupVerify from "../screens/signUp/SignupVerify";
+import ModalScreen from "../components/molecules/ModalScreen";
 
 import BottomNavigator from "./BottomNavigator";
 
@@ -16,7 +19,7 @@ export default function StackNavigator() {
   const isLoggedin = false;
   return (
     <AuthStack.Navigator
-      initialRouteName='SignUpBenefactor'
+      initialRouteName='SignUpVerify'
       screenOptions={{
         headerShown: false,
       }}
@@ -27,16 +30,23 @@ export default function StackNavigator() {
         <>
           <AuthStack.Screen name='Welcome' component={WelcomeScreen} />
           <AuthStack.Screen name='SignIn' component={SigninScreen} />
+
+          {/* Sign Up Screen Navigation flow /> */}
           <AuthStack.Screen name='SignUp' component={SignupScreen} />
+          <AuthStack.Screen name='SignUpStudent' component={SignupStudent} />
           <AuthStack.Screen
             name='SignUpBenefactor'
             component={SignupBenefactor}
           />
-          <AuthStack.Screen name='SignUpStudent' component={SignupStudent} />
           <AuthStack.Screen
             name='SignUpOrganization'
             component={SignupOrganization}
           />
+          <AuthStack.Screen name='SignUpContacts' component={SignupContacts} />
+          <AuthStack.Screen name='SignUpVerify' component={SignupVerify} />
+          <AuthStack.Group screenOptions={{ presentation: "modal" }}>
+            <AuthStack.Screen name='Modal' component={ModalScreen} />
+          </AuthStack.Group>
         </>
       )}
     </AuthStack.Navigator>

@@ -150,9 +150,9 @@ export default function SignupBenefactor() {
                 }}
               >
                 <Text variant='bodyLarge' style={styles.signUpText}>
-                  Don't have an account? {""}
+                  Already have an account? {""}
                 </Text>
-                <TouchableOpacity onPress={handleSubmit(onSignInPressed)}>
+                <TouchableOpacity onPress={onSignInPressed}>
                   <Text variant='bodyLarge' style={styles.signInLink}>
                     Sign In
                   </Text>

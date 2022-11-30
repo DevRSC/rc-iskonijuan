@@ -108,7 +108,7 @@ export default function SigninScreen() {
               <Text
                 variant='bodyLarge'
                 style={styles.signUpLink}
-                onPress={handleSubmit(onSignUpPress)}
+                onPress={onSignUpPress}
               >
                 Sign Up
               </Text>
