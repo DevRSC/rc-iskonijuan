@@ -14,7 +14,7 @@ const CELL_SIZE = 42;
 const CELL_BORDER_RADIUS = 8;
 const DEFAULT_CELL_BG_COLOR = "#fff";
 const NOT_EMPTY_CELL_BG_COLOR = "#F55A5A";
-const ACTIVE_CELL_BG_COLOR = "#f7fafe";
+const ACTIVE_CELL_BG_COLOR = "#fff";
 
 const { Value, Text: AnimatedText } = Animated;
 
