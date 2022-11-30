@@ -4,8 +4,11 @@ import Animated, { BounceIn } from "react-native-reanimated";
 import { Text } from "react-native-paper";
 import Fontawesome from "react-native-vector-icons/FontAwesome";
 import { verticalScale } from "react-native-size-matters";
+import { useNavigation } from "@react-navigation/native";
+import LoginButton from "../atoms/LoginButton";
 
 export default function ModalScreen() {
+  const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.inner}>
@@ -27,6 +30,11 @@ export default function ModalScreen() {
             style={{ marginTop: verticalScale(70) }}
           />
         </Animated.View>
+        <LoginButton
+          title='Proceed to Login'
+          onPress={() => navigation.navigate("SignIn")}
+          style={{ marginTop: verticalScale(70) }}
+        />
       </View>
     </SafeAreaView>
   );
