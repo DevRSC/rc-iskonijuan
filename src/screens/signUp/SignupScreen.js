@@ -1,7 +1,11 @@
 import { StyleSheet, View } from "react-native";
 import React, { useState } from "react";
 import { Text } from "react-native-paper";
-import { scale, moderateVerticalScale } from "react-native-size-matters";
+import {
+  scale,
+  moderateVerticalScale,
+  verticalScale,
+} from "react-native-size-matters";
 import { Card } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 
@@ -139,7 +143,7 @@ const styles = StyleSheet.create({
   },
   Title: {
     position: "absolute",
-    top: scale(149),
+    top: verticalScale(149),
     fontSize: scale(30),
     fontFamily: "Inter-Medium",
     fontWeight: "bold",
@@ -151,9 +155,9 @@ const styles = StyleSheet.create({
     padding: scale(16),
   },
   card: {
-    width: scale(90),
-    height: scale(100),
-    borderRadius: scale(8),
+    width: scale(95),
+    height: verticalScale(100),
+    borderRadius: 8,
     backgroundColor: "#FDFCFB",
     elevation: 5,
     alignItems: "center",

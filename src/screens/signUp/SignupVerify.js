@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
   },
   contactHeader: {
     marginTop: verticalScale(40),
+    padding: 16,
   },
   greyText: {
     color: "#918E9B",
