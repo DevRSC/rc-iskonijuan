@@ -16,7 +16,7 @@ import BottomNavigator from "./BottomNavigator";
 const AuthStack = createNativeStackNavigator();
 
 export default function StackNavigator() {
-  const isLoggedin = false;
+  const isLoggedin = true;
   return (
     <AuthStack.Navigator
       initialRouteName='Welcome'
@@ -32,18 +32,25 @@ export default function StackNavigator() {
           <AuthStack.Screen name='SignIn' component={SigninScreen} />
 
           {/* Sign Up Screen Navigation flow /> */}
-          <AuthStack.Screen name='SignUp' component={SignupScreen} />
-          <AuthStack.Screen name='SignUpStudent' component={SignupStudent} />
-          <AuthStack.Screen
-            name='SignUpBenefactor'
-            component={SignupBenefactor}
-          />
-          <AuthStack.Screen
-            name='SignUpOrganization'
-            component={SignupOrganization}
-          />
-          <AuthStack.Screen name='SignUpContacts' component={SignupContacts} />
-          <AuthStack.Screen name='SignUpVerify' component={SignupVerify} />
+          <AuthStack.Group>
+            <AuthStack.Screen name='SignUp' component={SignupScreen} />
+            <AuthStack.Screen name='SignUpStudent' component={SignupStudent} />
+            <AuthStack.Screen
+              name='SignUpBenefactor'
+              component={SignupBenefactor}
+            />
+            <AuthStack.Screen
+              name='SignUpOrganization'
+              component={SignupOrganization}
+            />
+            <AuthStack.Screen
+              name='SignUpContacts'
+              component={SignupContacts}
+            />
+            <AuthStack.Screen name='SignUpVerify' component={SignupVerify} />
+          </AuthStack.Group>
+
+          {/* Modal Screen Navigation flow /> */}
           <AuthStack.Group screenOptions={{ presentation: "modal" }}>
             <AuthStack.Screen name='Modal' component={ModalScreen} />
           </AuthStack.Group>

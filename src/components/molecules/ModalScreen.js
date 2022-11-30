@@ -20,7 +20,7 @@ export default function ModalScreen() {
             marginTop: verticalScale(194),
           }}
         >
-          Your number has been verfied
+          Your number has been verified
         </Text>
         <Animated.View entering={BounceIn}>
           <Fontawesome
