@@ -54,7 +54,6 @@ export default function SigninScreen() {
         <CustomInput
           name='password'
           placeholder='Password'
-          secureTextEntry
           control={control}
           style={styles.textInput}
           rules={{
@@ -64,24 +63,19 @@ export default function SigninScreen() {
               message: "Password should be minimum 8 characters long",
             },
           }}
-        />
-        {/*
-        <TextInput
-          mode='outlined'
-          label='Password'
-          value={password}
+          props={{
+            right: (
+              <TextInput.Icon
+                icon={showPassword ? "eye" : "eye-off"}
+                onPress={() => {
+                  setShowPassword(!showPassword);
+                  return false;
+                }}
+              />
+            ),
+          }}
           secureTextEntry={!showPassword}
-          right={
-            <TextInput.Icon
-              icon={showPassword ? "eye" : "eye-off"}
-              onPress={() => setShowPassword(!showPassword)}
-            />
-          }
-          onChangeText={(password) => setPassword(password)}
-          forceTextInputFocus={false}
-          style={[styles.textInput, { marginTop: 15 }]}
         />
-        */}
         <View style={styles.buttonContainer}>
           <LoginButton
             title='Sign In'
@@ -137,7 +131,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   signinContainer: {
-    marginTop: verticalScale(20),
     borderBottomStartRadius: 0,
     borderBottomEndRadius: 0,
     width: "100%",
@@ -153,6 +146,7 @@ const styles = StyleSheet.create({
   textInput: {
     fontSize: scale(16),
     fontWeight: "600",
+    marginTop: verticalScale(16),
   },
   button: {
     margin: 4,

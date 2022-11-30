@@ -21,6 +21,7 @@ const { width, height } = Dimensions.get("window");
 export default function SignupBenefactor() {
   const navigation = useNavigation();
   const [showPassword, setShowPassword] = useState(false);
+  const [showRPassword, setShorRPassword] = useState(false);
   const {
     control,
     handleSubmit,
@@ -42,7 +43,7 @@ export default function SignupBenefactor() {
 
   return (
     <View style={styles.container}>
-      <ScrollView>
+      <ScrollView keyboardShouldPersistTaps='handled'>
         <View style={styles.imageContainer}>
           <Image
             source={require("../../../assets/images/logo-nobg.png")}
@@ -99,7 +100,18 @@ export default function SignupBenefactor() {
                     message: "Password should be minimum 8 characters long",
                   },
                 }}
-                secureTextEntry={!showPassword}
+                props={{
+                  right: (
+                    <TextInput.Icon
+                      icon={showRPassword ? "eye" : "eye-off"}
+                      onPress={() => {
+                        setShorRPassword(!showRPassword);
+                        return false;
+                      }}
+                    />
+                  ),
+                }}
+                secureTextEntry={!showRPassword}
               />
               <CustomInput
                 placeholder='Repeat Password'
@@ -108,31 +120,25 @@ export default function SignupBenefactor() {
                 style={(styles.textCredential, { marginTop: 15 })}
                 rules={{
                   validate: (value) => value == pwd || "Password do not match",
+                  required: "Password is required",
+                  minLength: {
+                    value: 8,
+                    message: "Password should be minimum 8 characters long",
+                  },
+                }}
+                props={{
+                  right: (
+                    <TextInput.Icon
+                      icon={showPassword ? "eye" : "eye-off"}
+                      onPress={() => {
+                        setShowPassword(!showPassword);
+                        return false;
+                      }}
+                    />
+                  ),
                 }}
                 secureTextEntry={!showPassword}
               />
-              {/*
-              <TextInput
-                mode='outlined'
-                label='Email address'
-                style={styles.textCredential}
-              />
-              <TextInput
-                mode='outlined'
-                label='Password'
-                value={password}
-                secureTextEntry={!showPassword}
-                right={
-                  <TextInput.Icon
-                    icon={showPassword ? "eye" : "eye-off"}
-                    onPress={() => setShowPassword(!showPassword)}
-                  />
-                }
-                onChangeText={(password) => setPassword(password)}
-                forceTextInputFocus={false}
-                style={[styles.textCredential, { marginTop: 15 }]}
-              />
-              */}
               <View style={styles.buttonContainer}>
                 <LoginButton
                   title='Next'
