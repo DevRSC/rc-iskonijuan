@@ -19,7 +19,7 @@ export default function StackNavigator() {
   const isLoggedin = false;
   return (
     <AuthStack.Navigator
-      initialRouteName='SignUpVerify'
+      initialRouteName='Welcome'
       screenOptions={{
         headerShown: false,
       }}

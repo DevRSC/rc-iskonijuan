@@ -7,13 +7,11 @@ import { DefaultTheme as NavigationDefaultTheme } from "@react-navigation/native
 import Ionicon from "react-native-vector-icons/Ionicons";
 
 //import amplify
-import { Amplify } from 'aws-amplify';
-import awsconfig from './src/aws-exports';
+// import { Amplify } from 'aws-amplify';
+// import awsconfig from './src/aws-exports';
 
 //import authenticator
 //import { withAuthenticator, AmplifyTheme } from "aws-amplify-react-native";
-
-
 
 //import Themes
 import {
@@ -66,7 +64,7 @@ const combinedDefaultTheme = {
 };
 
 //Configure amplify
-Amplify.configure(awsconfig);
+// Amplify.configure(awsconfig);
 
 function App() {
   const [fontsLoaded] = useFonts({
@@ -147,6 +145,6 @@ const signUpConfig = {
 };
 
 */
-//export default withAuthenticator (App, {signUpConfig, theme: customTheme}); 
+//export default withAuthenticator (App, {signUpConfig, theme: customTheme});
 
 export default App;
