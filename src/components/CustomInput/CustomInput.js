@@ -12,6 +12,7 @@ const CustomInput = ({
   rules = {},
   secureTextEntry,
   style,
+  type = "string",
   props,
 }) => {
   return (

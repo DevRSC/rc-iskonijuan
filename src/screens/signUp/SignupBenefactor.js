@@ -7,6 +7,7 @@ import {
   Keyboard,
   ScrollView,
   Dimensions,
+  Alert,
 } from "react-native";
 import React, { useState } from "react";
 import { Text, TextInput } from "react-native-paper";
@@ -16,6 +17,7 @@ import FooterAgreement from "../../components/molecules/FooterAgreement";
 import { useForm } from "react-hook-form";
 import CustomInput from "../../components/CustomInput";
 import { useNavigation } from "@react-navigation/native";
+import { Auth } from "aws-amplify";
 const { width, height } = Dimensions.get("window");
 
 export default function SignupBenefactor() {
@@ -29,9 +31,15 @@ export default function SignupBenefactor() {
     formState: { errors },
   } = useForm();
 
-  const pwd = watch("password");
-  const onRegisterPressed = () => {
-    navigation.navigate("SignUpContacts");
+  const pwd = watch("password")
+  const onNextPressed = data => {
+    const {firstName, lastName, email, password, username} = data
+    try{
+      navigation.navigate("SignUpContacts", {password, firstName, lastName, email, username})
+    } catch (e) {
+      Alert.alert('Oops', e.message)
+    }
+    
   };
 
   const onSignInPressed = () => {
@@ -76,12 +84,29 @@ export default function SignupBenefactor() {
                   style={styles.textInput}
                 />
               </View>
-
+              
+              <CustomInput
+                placeholder='Username'
+                name='username'
+                control={control}
+                rules={{
+                  required: "Username is required",
+                  minLength: {
+                    value: 3,
+                    message: 'Username should be at least 3 characters long',
+                  },
+                  maxLength: {
+                    value: 24,
+                    message: 'Username should be max 24 characters long',
+                  }
+                }}
+              />
+              
               <CustomInput
                 placeholder='Email'
                 name='email'
                 control={control}
-                style={styles.textCredential}
+                style={(styles.textCredential)}
                 rules={{
                   pattern: { value: EMAIL_REGEX, message: "Email is invalid" },
                   required: "Email is required",
@@ -143,7 +168,7 @@ export default function SignupBenefactor() {
                 <LoginButton
                   title='Next'
                   style={styles.button}
-                  onPress={handleSubmit(onRegisterPressed)}
+                  onPress={handleSubmit(onNextPressed)}
                 />
               </View>
 
