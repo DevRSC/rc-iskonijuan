@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView, Animated } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, Animated, Alert } from "react-native";
 import React, { useState } from "react";
 import {
   CodeField,
@@ -9,7 +9,7 @@ import {
 import LoginButton from "../atoms/LoginButton";
 import { scale, verticalScale } from "react-native-size-matters";
 import { useNavigation } from "@react-navigation/native";
-
+import { Auth } from 'aws-amplify';
 const CELL_SIZE = 42;
 const CELL_BORDER_RADIUS = 8;
 const DEFAULT_CELL_BG_COLOR = "#fff";
@@ -40,7 +40,6 @@ const animateCell = ({ hasValue, index, isFocused }) => {
 export default function AnimatedVerification({ inputValue }) {
   const [value, setValue] = useState("");
   const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
-
   const navigation = useNavigation();
 
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
@@ -48,13 +47,20 @@ export default function AnimatedVerification({ inputValue }) {
     setValue,
   });
 
-  const submitHandler = () => {
-    if (value?.length !== 6) {
+  const submitHandler = async() => {
+    if (value?.length !==6) {
       console.warn("Input value is not 6 digits");
     } else {
-      setValue(inputValue);
-      console.log("submitted");
-      navigation.navigate("Modal");
+      setValue(inputValue.toString());
+      try{
+        console.warn(value)
+        await Auth.confirmSignUp({
+          confirmationCode:value,
+        })
+        navigation.navigate("Modal");
+      }catch (e) {
+        Alert.alert('Oops', e.message)
+      }
     }
   };
 

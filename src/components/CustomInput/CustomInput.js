@@ -11,6 +11,7 @@ const CustomInput = ({
   rules = {},
   secureTextEntry,
   style,
+  type = "string",
   props,
 }) => {
   return (
@@ -28,12 +29,11 @@ const CustomInput = ({
             mode='outlined'
             label={placeholder}
             value={value}
-            onChangeText={onChange /*=> setEmail(onChange)*/}
+            onChangeText={onChange}
             onBlur={onBlur}
             style={style}
             secureTextEntry={secureTextEntry}
           />
-
           {error && (
             <HelperText type='error' visible={true}>
               {error.message || "Error"}
