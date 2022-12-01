@@ -6,11 +6,19 @@ import { NavigationContainer } from "@react-navigation/native";
 import { DefaultTheme as NavigationDefaultTheme } from "@react-navigation/native";
 import Ionicon from "react-native-vector-icons/Ionicons";
 
+//import amplify
+// import { Amplify } from 'aws-amplify';
+// import awsconfig from './src/aws-exports';
+
+//import authenticator
+//import { withAuthenticator, AmplifyTheme } from "aws-amplify-react-native";
+
 //import Themes
 import {
   adaptNavigationTheme,
   MD3LightTheme,
   Provider as PaperProvider,
+  useTheme,
 } from "react-native-paper";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
@@ -55,10 +63,14 @@ const combinedDefaultTheme = {
   },
 };
 
-export default function App() {
+//Configure amplify
+// Amplify.configure(awsconfig);
+
+function App() {
   const [fontsLoaded] = useFonts({
     "Inter-Regular": require("./assets/fonts/Inter-Regular.otf"),
     "Inter-Bold": require("./assets/fonts/Inter-Bold.otf"),
+    "Inter-SemiBold": require("./assets/fonts/Inter-SemiBold.otf"),
     "Inter-Medium": require("./assets/fonts/Inter-Medium.otf"),
   });
 
@@ -97,3 +109,43 @@ export default function App() {
     </PaperProvider>
   );
 }
+/*
+const signUpConfig = {
+  header: 'My Customized Sign up',
+  hideAllDefaults: true,
+  signUpFields: [
+    {
+      label: 'Full name',
+      key: 'name',
+      required: true,
+      displayOrder: 1,
+      type: 'string',
+    },
+    {
+      label: 'Email',
+      key: 'email',
+      required: true,
+      displayOrder: 2,
+      type: 'string',
+    },
+    {
+      label: 'Username',
+      key: 'preferred_username',
+      required: true,
+      displayOrder: 3,
+      type: 'string',
+    },
+    {
+      label: 'Password',
+      key: 'password',
+      required: true,
+      displayOrder: 4,
+      type: 'password',
+    },
+  ],
+};
+
+*/
+//export default withAuthenticator (App, {signUpConfig, theme: customTheme});
+
+export default App;

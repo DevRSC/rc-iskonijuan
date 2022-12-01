@@ -48,7 +48,7 @@ export default function BottomNavigator() {
       inactiveColor='#918E9B'
       barStyle={{
         position: "absolute",
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "#FDFCFB",
         height: verticalScale(45),
         bottom: 17,
       }}

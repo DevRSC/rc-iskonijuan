@@ -2,7 +2,7 @@ import { StyleSheet, View, FlatList } from "react-native";
 import React from "react";
 import { Avatar, List, Text } from "react-native-paper";
 import { scale } from "react-native-size-matters";
-import ChatItem from "../../components/molecules/ChatItem";
+import ChatListItem from "./ChatListItem";
 
 const persons = [
   {
@@ -121,7 +121,17 @@ export default function Chats() {
         style={styles.flatList}
         data={persons}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <ChatItem item={item} />}
+        renderItem={
+          ({ item }) => (
+            <ChatListItem
+              name={item.name}
+              imageUri={item.imageUri}
+              status={item.status}
+              verified={item.verified}
+            />
+          )
+          // <List.Item
+        }
         getItemLayout={(data, index) => ({
           length: 80,
           offset: 80 * index,
