@@ -18,35 +18,46 @@ import { Auth } from "aws-amplify";
 export default function SignupContacts() {
   const navigation = useNavigation();
   const route = useRoute();
-  
 
   const {
     control,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm({defaultValues: {email: route?.params?.email, firstName: route?.params?.firstName, lastName: route?.params?.lastName, password: route?.params?.password, username: route?.params?.username},
+  } = useForm({
+    defaultValues: {
+      email: route?.params?.email,
+      firstName: route?.params?.firstName,
+      lastName: route?.params?.lastName,
+      password: route?.params?.password,
+      username: route?.params?.username,
+    },
   });
 
-  const [phoneNumber, setPhoneNumber] = useState()
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   //setPhoneNumber((data) => (`+63${data.phone}`))
 
-  const onRegisterPressed = async(data) => {
-    const {firstName, lastName, email, password, phone, username} = data
-    setPhoneNumber(`+63${phone}`)
-    try{
-      const response = await Auth.signUp({
+  const onRegisterPressed = async (data) => {
+    const { firstName, lastName, email, password, phone, username } = data;
+
+    try {
+      Auth.signUp({
         username,
         password,
-        attributes: {email: email, given_name: firstName, family_name: lastName, phone_number: phoneNumber},
-      })
-      navigation.navigate('SignUpVerify', {email})
+        attributes: {
+          email: email,
+          given_name: firstName,
+          family_name: lastName,
+          phone_number: `+63${phone}`,
+        },
+      });
+      navigation.navigate("SignUpVerify", { email, username });
     } catch (e) {
-      Alert.alert('Oops', e.message)
+      Alert.alert("Oops", e.message);
     }
   };
-  
+
   return (
     <View style={styles.container}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -78,7 +89,7 @@ export default function SignupContacts() {
               placeholder='Phone Number'
               keyboardType='phone-pad'
               control={control}
-              type="number"
+              type='number'
               rules={{
                 required: "Phone Number is required",
                 minLength: {

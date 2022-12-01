@@ -23,7 +23,7 @@ export default function StackNavigator() {
   const isLoggedin = false;
   return (
     <AuthStack.Navigator
-      initialRouteName='CreateNewPassword'
+      initialRouteName='Welcome'
       screenOptions={{
         headerShown: false,
       }}

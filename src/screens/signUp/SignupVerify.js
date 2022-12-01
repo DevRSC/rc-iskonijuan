@@ -1,13 +1,28 @@
 import { StyleSheet, View, Image } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { scale, verticalScale } from "react-native-size-matters";
 import { Text } from "react-native-paper";
 import AnimatedVerification from "../../components/molecules/AnimatedVerification";
+import { Auth } from "aws-amplify";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 export default function SignupVerify() {
-  const [inputValue, setInputValue] = React.useState("");
+  const route = useRoute();
+  const navigation = useNavigation();
 
-  console.log("inputValue: ", inputValue);
+  const { username } = route.params;
+
+  const onVerify = async (code) => {
+    try {
+      await Auth.confirmSignUp(username, code);
+      navigation.navigate("Modal", {
+        modalMessage: "Account successfully created!",
+      });
+    } catch (e) {
+      console.log(code);
+      console.warn("Oops", e.message);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -25,7 +40,7 @@ export default function SignupVerify() {
             We’ve sent a verification code to your phone number. Change number
           </Text>
 
-          <AnimatedVerification inputValue={setInputValue} />
+          <AnimatedVerification onVerify={onVerify} />
         </View>
       </View>
     </View>

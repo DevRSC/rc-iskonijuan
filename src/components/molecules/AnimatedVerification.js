@@ -44,33 +44,36 @@ const animateCell = ({ hasValue, index, isFocused }) => {
   ]).start();
 };
 
-export default function AnimatedVerification({ inputValue }) {
-  const [value, setValue] = useState("");
+export default function AnimatedVerification(props) {
   const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
   const navigation = useNavigation();
 
-  const [props, getCellOnLayoutHandler] = useClearByFocusCell({
+  const [value, setValue] = useState("");
+  const [cellProps, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
     setValue,
   });
 
-  const submitHandler = async () => {
-    if (value?.length !== 6) {
-      console.warn("Input value is not 6 digits");
-    } else {
-      setValue(inputValue.toString());
-      try {
-        console.warn(value);
-        await Auth.confirmSignUp({
-          confirmationCode: value,
-        });
-        navigation.navigate("Modal", {
-          modalMessage: "Your number has been verified",
-        });
-      } catch (e) {
-        Alert.alert("Oops", e.message);
-      }
-    }
+  const submitHandler = () => {
+    //pass value to parent component
+    props.onVerify(value);
+
+    // if (value?.length !== 6) {
+    //   console.warn("Input value is not 6 digits");
+    // } else {
+    //   setValue(inputValue.toString());
+    //   try {
+    //     console.warn(value);
+    //     await Auth.confirmSignUp({
+    //       confirmationCode: value,
+    //     });
+    //     navigation.navigate("Modal", {
+    //       modalMessage: "Your number has been verified",
+    //     });
+    //   } catch (e) {
+    //     Alert.alert("Oops", e.message);
+    //   }
+    // }
   };
 
   const renderCell = ({ index, symbol, isFocused }) => {
@@ -119,7 +122,7 @@ export default function AnimatedVerification({ inputValue }) {
     <View>
       <CodeField
         ref={ref}
-        {...props}
+        {...cellProps}
         value={value}
         onChangeText={setValue}
         cellCount={CELL_COUNT}
