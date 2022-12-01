@@ -1,4 +1,4 @@
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, Image, Alert } from "react-native";
 import React, { useState } from "react";
 import { scale, verticalScale } from "react-native-size-matters";
 import { Text } from "react-native-paper";
@@ -24,6 +24,15 @@ export default function SignupVerify() {
     }
   };
 
+  const onResendPress = async() => {
+    try{ 
+      await Auth.resendSignUp(username)
+      Alert.alert('Success', 'Code was resent to your phone')
+    } catch (e) {
+      Alert.alert('Oops', e.message)
+    }
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.inner}>
@@ -40,7 +49,7 @@ export default function SignupVerify() {
             We’ve sent a verification code to your phone number. Change number
           </Text>
 
-          <AnimatedVerification onVerify={onVerify} />
+          <AnimatedVerification onVerify={onVerify} onResendPress={onResendPress}/>
         </View>
       </View>
     </View>

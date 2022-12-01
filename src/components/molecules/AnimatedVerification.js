@@ -132,7 +132,7 @@ export default function AnimatedVerification(props) {
         renderCell={renderCell}
       />
       <View style={styles.buttonContainer}>
-        <Text style={styles.sendNewCode}>Send new Code</Text>
+        <Text style={styles.sendNewCode} onPress={props.onResendPress}>Send new Code</Text>
         <LoginButton
           title='Verify'
           onPress={submitHandler}

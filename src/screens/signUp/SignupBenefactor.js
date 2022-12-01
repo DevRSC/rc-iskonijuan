@@ -106,7 +106,7 @@ export default function SignupBenefactor() {
                 placeholder='Email'
                 name='email'
                 control={control}
-                style={(styles.textCredential)}
+                style={(styles.textCredential, { marginTop: 15 })}
                 rules={{
                   pattern: { value: EMAIL_REGEX, message: "Email is invalid" },
                   required: "Email is required",
@@ -124,6 +124,7 @@ export default function SignupBenefactor() {
                     value: 8,
                     message: "Password should be minimum 8 characters long",
                   },
+                  pattern: {value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/, message: "Password should contain an Uppercase, Lowercase, and Number"},
                 }}
                 props={{
                   right: (
@@ -150,6 +151,7 @@ export default function SignupBenefactor() {
                     value: 8,
                     message: "Password should be minimum 8 characters long",
                   },
+                  pattern: {value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/, message: "Password should contain an Uppercase, Lowercase, and Number"},
                 }}
                 props={{
                   right: (
