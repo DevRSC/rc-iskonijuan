@@ -114,6 +114,7 @@ const persons = [
 ];
 
 export default function Chats() {
+  console.log("ChatScreen Rerendered");
   return (
     <View style={styles.container}>
       <FlatList
@@ -148,18 +149,6 @@ const styles = StyleSheet.create({
   },
   flatList: {
     borderRadius: 20,
-  },
-  listTitle: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  name: {
-    fontSize: scale(16),
-    paddingRight: 10,
-  },
-  verifiedStatus: {
-    fontSize: scale(12),
   },
   separator: {
     height: 1,

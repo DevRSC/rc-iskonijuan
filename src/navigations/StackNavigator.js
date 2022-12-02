@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { View, ActivityIndicator} from "react-native"
 import WelcomeScreen from "../screens/WelcomeScreen";
@@ -6,14 +7,13 @@ import SigninScreen from "../screens/SigninScreen";
 import ForgotPassword from "../screens/ForgotPassword";
 import RequestPassword from "../screens/RequestPassword";
 import CreateNewPassword from "../screens/CreateNewPassword";
-
+import ModalScreen from "../components/molecules/ModalScreen";
 import SignupScreen from "../screens/signUp/SignupScreen";
 import SignupBenefactor from "../screens/signUp/SignupBenefactor";
 import SignupStudent from "../screens/signUp/SignupStudent";
 import SignupOrganization from "../screens/signUp/SignupOrganization";
 import SignupContacts from "../screens/signUp/SignupContacts";
 import SignupVerify from "../screens/signUp/SignupVerify";
-import ModalScreen from "../components/molecules/ModalScreen"
 import BottomNavigator from "./BottomNavigator";
 import { Auth, Hub } from "aws-amplify"
 import HomeScreen from "../screens/bottomScreens/HomeScreen";
@@ -62,9 +62,8 @@ export default function StackNavigator() {
         headerShown: false,
       }}
     >
-
       {user ? (
-        <AuthStack.Screen name='Home' component={HomeScreen} />
+        <AuthStack.Screen name='BottomNavigator' component={BottomNavigator} />
       ) : (
         <>
           <AuthStack.Screen name='Welcome' component={WelcomeScreen} />

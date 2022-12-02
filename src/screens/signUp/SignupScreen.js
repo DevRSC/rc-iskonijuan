@@ -1,5 +1,5 @@
 import { StyleSheet, View } from "react-native";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Text } from "react-native-paper";
 import {
   scale,
@@ -19,18 +19,19 @@ import Animated, { BounceIn } from "react-native-reanimated";
 export default function SignupScreen() {
   const navigation = useNavigation();
   const [selected, setSelected] = useState(null);
+  console.log("Rerendered");
 
-  const handleSelected = (selected) => {
+  const handleSelected = useCallback((selected) => {
     setSelected(selected);
-  };
+  }, []);
 
   const handleNavigation = (selected) => {
     if (selected === "first") {
-      navigation.navigate("SignUpStudent");
+      navigation.navigate("SignUpBenefactor");
     } else if (selected === "second") {
       navigation.navigate("SignUpBenefactor");
     } else if (selected === "third") {
-      navigation.navigate("SignUpOrganization");
+      navigation.navigate("SignUpBenefactor");
     }
   };
 
