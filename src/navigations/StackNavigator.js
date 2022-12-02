@@ -21,17 +21,17 @@ import BottomNavigator from "./BottomNavigator";
 const AuthStack = createNativeStackNavigator();
 
 export default function StackNavigator() {
-  const [user, setUser] = useState(true);
+  const [user, setUser] = useState(false);
 
-  const checkUser = async () => {
-    const authUser = await Auth.currentAuthenticatedUser({ bypassCache: true });
-    setUser(authUser);
-    console.log("user", user);
-  };
+  // const checkUser = async () => {
+  //   const authUser = await Auth.currentAuthenticatedUser({ bypassCache: true });
+  //   setUser(authUser);
+  //   console.log("user", user);
+  // };
 
-  useEffect(() => {
-    checkUser();
-  }, []);
+  // useEffect(() => {
+  //   checkUser();
+  // }, []);
 
   return (
     <AuthStack.Navigator

@@ -14,10 +14,10 @@
     "categories": {
       "auth": {
         "iskonijuan": {
-          "userPoolId": "ap-southeast-1_d0jshgQ5M",
-          "userPoolName": "iskonijuan",
-          "webClientId": "4jbn5gfunk5t9t715nt9t8v87u",
-          "nativeClientId": "4jbn5gfunk5t9t715nt9t8v87u"
+          "userPoolId": "ap-southeast-1_AfL0orzXW",
+          "userPoolName": "iskonijuan-user",
+          "webClientId": "49d3p3lebcf3pv4n8irr8j6ev8",
+          "nativeClientId": "49d3p3lebcf3pv4n8irr8j6ev8"
         }
       }
     }
