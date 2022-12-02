@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import {
   StyleSheet,
   View,
@@ -6,17 +6,42 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Image,
+  TouchableOpacity,
 } from "react-native";
 import { scale, verticalScale } from "react-native-size-matters";
 import { Text, RadioButton, TextInput } from "react-native-paper";
 import DropDown from "react-native-paper-dropdown";
+import { useForm } from "react-hook-form";
 
 import CustomInput from "../../components/CustomInput";
+import RNDateTimePicker from "@react-native-community/datetimepicker";
+import LoginButton from "../../components/atoms/LoginButton";
+import { useNavigation } from "@react-navigation/native";
+import FooterAgreement from "../../components/molecules/FooterAgreement";
 
 export default function SignupAdditionalInfo() {
+  const navigation = useNavigation();
+
+  // Radio Button and Drop Down
   const [showDropDown, setShowDropDown] = useState(false);
   const [nationality, setNationality] = useState("");
   const [checked, setChecked] = useState("male");
+
+  //Source of Income
+  const [showDropDown2, setShowDropDown2] = useState(false);
+  const [sourceOfIncome, setSourceOfIncome] = useState("");
+
+  const occupationList = [
+    { label: "Student", value: "Student" },
+    { label: "Employed", value: "Employed" },
+    { label: "Unemployed", value: "Unemployed" },
+    { label: "Retired", value: "Retired" },
+    { label: "Self-Employed", value: "Self-Employed" },
+  ];
+
+  const onCheckedHandler = (value) => {
+    setChecked(value);
+  };
 
   const nationalityList = [
     { label: "Filipino", value: "Filipino" },
@@ -36,8 +61,51 @@ export default function SignupAdditionalInfo() {
     { label: "Russian", value: "Russian" },
   ];
 
-  const onCheckedHandler = (value) => {
-    setChecked(value);
+  // Date picker
+  const [date, setDate] = useState(new Date());
+  const [mode, setMode] = useState("date");
+  const [show, setShow] = useState(false);
+  const [dateOfBirth, setDateOfBirth] = useState("");
+
+  // Date picker functions
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(Platform.OS === "ios");
+    setDate(currentDate);
+    setDateOfBirth(
+      currentDate.getMonth() +
+        1 +
+        "/" +
+        currentDate.getDate() +
+        "/" +
+        currentDate.getFullYear()
+    );
+    console.log(currentDate.toDateString());
+  };
+
+  const showMode = (currentMode) => {
+    setShow(true);
+    setMode(currentMode);
+  };
+
+  const showDatepicker = () => {
+    showMode("date");
+  };
+
+  // Form
+  const {
+    control,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
+  const onSignInPressed = () => {
+    navigation.navigate("Login");
   };
 
   return (
@@ -73,7 +141,7 @@ export default function SignupAdditionalInfo() {
             </RadioButton.Group>
             <Text style={styles.smallGrayText}>Nationality</Text>
             <DropDown
-              placeholder='Select Nationality'
+              placeholder='---Select Nationality---'
               mode={"outlined"}
               visible={showDropDown}
               showDropDown={() => setShowDropDown(true)}
@@ -85,11 +153,133 @@ export default function SignupAdditionalInfo() {
                 backgroundColor: "#FDFCFB",
                 color: "#2B283A",
               }}
-              anchorStyle={{
+              inputProps={{
+                right: (
+                  <TextInput.Icon
+                    icon={showDropDown ? "caret-up-sharp" : "caret-down-sharp"}
+                  />
+                ),
+              }}
+            />
+            <Text style={styles.smallGrayText}>Birthdate</Text>
+
+            <TextInput
+              mode='outlined'
+              placeholder='mm/dd/yyyy'
+              value={dateOfBirth}
+              onFocus={showDatepicker}
+              showSoftInputOnFocus={false}
+              right={
+                <TextInput.Icon icon='calendar' onPress={showDatepicker} />
+              }
+            />
+
+            {show && (
+              <RNDateTimePicker
+                value={date}
+                mode={mode}
+                display='default'
+                onChange={onChange}
+                dateFormat='month day year'
+              />
+            )}
+
+            <Text style={styles.smallGrayText}>Place of Birth</Text>
+            <CustomInput
+              mode='outlined'
+              control={control}
+              name='placeOfBirth'
+              rules={{
+                required: "Place of Birth is required",
+              }}
+            />
+
+            <Text style={styles.subTitle}>Address</Text>
+            <Text style={styles.smallGrayText}>Street Address</Text>
+            <CustomInput
+              mode='outlined'
+              control={control}
+              name='streetAddress'
+              rules={{
+                required: "Street Address is required",
+              }}
+            />
+            <Text style={styles.smallGrayText}>City/Municipality</Text>
+            <CustomInput
+              mode='outlined'
+              control={control}
+              name='city'
+              rules={{
+                required: "City/Municipality is required",
+              }}
+            />
+            <Text style={styles.smallGrayText}>State/Province</Text>
+            <CustomInput
+              mode='outlined'
+              control={control}
+              name='state'
+              rules={{
+                required: "State/Province is required",
+              }}
+            />
+            <Text style={styles.smallGrayText}>Postal/Zip Code</Text>
+            <CustomInput
+              mode='outlined'
+              control={control}
+              name='postalCode'
+              rules={{
+                required: "Postal/Zip Code is required",
+              }}
+            />
+            <Text style={styles.subTitle}>Source of Income</Text>
+
+            <DropDown
+              placeholder='---Select Source of Income---'
+              mode={"outlined"}
+              visible={showDropDown2}
+              showDropDown={() => setShowDropDown2(true)}
+              onDismiss={() => setShowDropDown2(false)}
+              value={sourceOfIncome}
+              setValue={setSourceOfIncome}
+              list={occupationList}
+              dropDownItemStyle={{
                 backgroundColor: "#FDFCFB",
                 color: "#2B283A",
               }}
+              inputProps={{
+                right: (
+                  <TextInput.Icon
+                    icon={showDropDown2 ? "caret-up-sharp" : "caret-down-sharp"}
+                  />
+                ),
+              }}
             />
+
+            <LoginButton
+              title='Next'
+              onPress={handleSubmit(onSubmit)}
+              style={styles.button}
+            />
+
+            <View
+              style={{
+                flexDirection: "row",
+
+                justifyContent: "center",
+                paddingTop: 20,
+              }}
+            >
+              <Text variant='bodyLarge' style={styles.signUpText}>
+                Already have an account? {""}
+              </Text>
+              <TouchableOpacity onPress={onSignInPressed}>
+                <Text variant='bodyLarge' style={styles.signInLink}>
+                  Sign In
+                </Text>
+              </TouchableOpacity>
+            </View>
+
+            <FooterAgreement />
           </View>
         </TouchableWithoutFeedback>
       </ScrollView>
@@ -124,10 +314,41 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
+  subTitle: {
+    fontFamily: "Inter-Medium",
+    fontSize: scale(16),
+    color: "#2B283A",
+    marginTop: verticalScale(16),
+  },
   smallGrayText: {
     fontFamily: "Inter-Medium",
     fontSize: scale(12),
     color: "#918E9B",
     marginTop: verticalScale(15),
+  },
+  datePickerContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    borderWidth: 1,
+    borderColor: "#918E9B",
+    borderRadius: 5,
+    padding: scale(8),
+    marginTop: verticalScale(8),
+  },
+  button: {
+    marginTop: verticalScale(25),
+    borderRadius: 8,
+  },
+  signUpText: {
+    color: "#2B283A",
+    fontSize: scale(16),
+    fontWeight: "600",
+    bottom: 0,
+  },
+  signInLink: {
+    color: "#F55A5A",
+    fontSize: scale(16),
+    fontWeight: "600",
   },
 });
