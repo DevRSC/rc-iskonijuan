@@ -31,15 +31,20 @@ export default function SignupBenefactor() {
     formState: { errors },
   } = useForm();
 
-  const pwd = watch("password")
-  const onNextPressed = data => {
-    const {firstName, lastName, email, password, username} = data
-    try{
-      navigation.navigate("SignUpContacts", {password, firstName, lastName, email, username})
+  const pwd = watch("password");
+  const onNextPressed = (data) => {
+    const { firstName, lastName, email, password, username } = data;
+    try {
+      navigation.navigate("SignUpContacts", {
+        password,
+        firstName,
+        lastName,
+        email,
+        username,
+      });
     } catch (e) {
-      Alert.alert('Oops', e.message)
+      Alert.alert("Oops", e.message);
     }
-    
   };
 
   const onSignInPressed = () => {
@@ -66,7 +71,6 @@ export default function SignupBenefactor() {
                 style={{
                   flexDirection: "row",
                   justifyContent: "space-between",
-                  paddingBottom: 16,
                 }}
               >
                 <CustomInput
@@ -84,29 +88,30 @@ export default function SignupBenefactor() {
                   style={styles.textInput}
                 />
               </View>
-              
+
               <CustomInput
                 placeholder='Username'
                 name='username'
                 control={control}
+                style={styles.textCredential}
                 rules={{
                   required: "Username is required",
                   minLength: {
                     value: 3,
-                    message: 'Username should be at least 3 characters long',
+                    message: "Username should be at least 3 characters long",
                   },
                   maxLength: {
                     value: 24,
-                    message: 'Username should be max 24 characters long',
-                  }
+                    message: "Username should be max 24 characters long",
+                  },
                 }}
               />
-              
+
               <CustomInput
                 placeholder='Email'
                 name='email'
                 control={control}
-                style={(styles.textCredential, { marginTop: 15 })}
+                style={styles.textCredential}
                 rules={{
                   pattern: { value: EMAIL_REGEX, message: "Email is invalid" },
                   required: "Email is required",
@@ -116,7 +121,7 @@ export default function SignupBenefactor() {
                 placeholder='Password'
                 name='password'
                 control={control}
-                style={(styles.textCredential, { marginTop: 15 })}
+                style={styles.textCredential}
                 forceTextInputFocus={false}
                 rules={{
                   required: "Password is required",
@@ -124,7 +129,11 @@ export default function SignupBenefactor() {
                     value: 8,
                     message: "Password should be minimum 8 characters long",
                   },
-                  pattern: {value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/, message: "Password should contain an Uppercase, Lowercase, and Number"},
+                  pattern: {
+                    value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/,
+                    message:
+                      "Password should contain an Uppercase, Lowercase, and Number",
+                  },
                 }}
                 props={{
                   right: (
@@ -143,7 +152,7 @@ export default function SignupBenefactor() {
                 placeholder='Repeat Password'
                 name='password-repeat'
                 control={control}
-                style={(styles.textCredential, { marginTop: 15 })}
+                style={styles.textCredential}
                 rules={{
                   validate: (value) => value == pwd || "Password do not match",
                   required: "Password is required",
@@ -151,7 +160,11 @@ export default function SignupBenefactor() {
                     value: 8,
                     message: "Password should be minimum 8 characters long",
                   },
-                  pattern: {value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/, message: "Password should contain an Uppercase, Lowercase, and Number"},
+                  pattern: {
+                    value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/,
+                    message:
+                      "Password should contain an Uppercase, Lowercase, and Number",
+                  },
                 }}
                 props={{
                   right: (
@@ -237,6 +250,7 @@ const styles = StyleSheet.create({
   textCredential: {
     fontSize: scale(16),
     fontFamily: "Inter-Medium",
+    marginTop: verticalScale(16),
   },
   buttonContainer: {
     paddingTop: verticalScale(31),
