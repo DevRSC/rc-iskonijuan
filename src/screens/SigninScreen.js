@@ -23,17 +23,12 @@ export default function SigninScreen() {
   } = useForm();
 
   const onSignInPressed = async (data) => {
-    if (loading) {
-      return;
-    }
-    setLoading(true);
     try {
-      const response = await Auth.signIn(data.email, data.password);
-      console.warn(response);
+      const response = await Auth.signIn(data.username, data.password);
+      //navigation.navigate('Home')
     } catch (e) {
       Alert.alert("Oops", e.message);
     }
-    setLoading(false);
   };
 
   const onForgotPasswordPressed = () => {
@@ -49,11 +44,11 @@ export default function SigninScreen() {
       <View style={styles.signinContainer}>
         <SigninHeader text='Sign In' />
         <CustomInput
-          name='email'
-          placeholder='Email'
+          name='username'
+          placeholder='Username'
           control={control}
           style={styles.textInput}
-          rules={{ required: "Email is required" }}
+          rules={{ required: "Username is required" }}
         />
         <CustomInput
           name='password'
