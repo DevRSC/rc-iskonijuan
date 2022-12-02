@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import WelcomeScreen from "../screens/WelcomeScreen";
@@ -14,13 +14,25 @@ import SignupOrganization from "../screens/signUp/SignupOrganization";
 import SignupContacts from "../screens/signUp/SignupContacts";
 import SignupVerify from "../screens/signUp/SignupVerify";
 import ModalScreen from "../components/molecules/ModalScreen";
+import { Auth } from "aws-amplify";
 
 import BottomNavigator from "./BottomNavigator";
 
 const AuthStack = createNativeStackNavigator();
 
 export default function StackNavigator() {
-  const isLoggedin = false;
+  const [user, setUser] = useState(true);
+
+  const checkUser = async () => {
+    const authUser = await Auth.currentAuthenticatedUser({ bypassCache: true });
+    setUser(authUser);
+    console.log("user", user);
+  };
+
+  useEffect(() => {
+    checkUser();
+  }, []);
+
   return (
     <AuthStack.Navigator
       initialRouteName='Welcome'
@@ -28,7 +40,7 @@ export default function StackNavigator() {
         headerShown: false,
       }}
     >
-      {isLoggedin ? (
+      {user ? (
         <AuthStack.Screen name='BottomNavigator' component={BottomNavigator} />
       ) : (
         <>
