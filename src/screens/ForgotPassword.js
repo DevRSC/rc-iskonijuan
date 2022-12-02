@@ -5,6 +5,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import SigninHeader from "../components/molecules/SigninHeader";
 import { scale, verticalScale } from "react-native-size-matters";
@@ -13,6 +14,7 @@ import { useForm } from "react-hook-form";
 import CustomInput from "../components/CustomInput/CustomInput";
 import LoginButton from "../components/atoms/LoginButton";
 import { useNavigation } from "@react-navigation/native";
+import { Auth } from 'aws-amplify';
 
 export default function ForgotPassword() {
   const navigation = useNavigation();
@@ -22,9 +24,15 @@ export default function ForgotPassword() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = () => {
-    navigation.navigate("Request");
+  const onSubmit = async(data) => {
+    try{
+      await Auth.forgotPassword(data.username)
+      navigation.navigate("Request");
+    } catch (e){
+      Alert.alert('Oops', e.message)
+    }
   };
+
   const onSignUpPress = () => {
     navigation.navigate("SignUp");
   };
@@ -52,11 +60,11 @@ export default function ForgotPassword() {
           </View>
 
           <CustomInput
-            name='email'
-            placeholder='Email address'
+            name='username'
+            placeholder='Username'
             control={control}
             style={styles.textInput}
-            rules={{ required: "Email is required" }}
+            rules={{ required: "Username is required" }}
           />
           <View style={styles.buttonContainer}>
             <LoginButton

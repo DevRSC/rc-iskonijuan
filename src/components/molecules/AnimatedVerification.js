@@ -1,4 +1,11 @@
-import { StyleSheet, Text, View, SafeAreaView, Animated } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  Animated,
+  Alert,
+} from "react-native";
 import React, { useState } from "react";
 import {
   CodeField,
@@ -9,7 +16,7 @@ import {
 import LoginButton from "../atoms/LoginButton";
 import { scale, verticalScale } from "react-native-size-matters";
 import { useNavigation } from "@react-navigation/native";
-
+import { Auth } from "aws-amplify";
 const CELL_SIZE = 42;
 const CELL_BORDER_RADIUS = 8;
 const DEFAULT_CELL_BG_COLOR = "#fff";
@@ -37,27 +44,36 @@ const animateCell = ({ hasValue, index, isFocused }) => {
   ]).start();
 };
 
-export default function AnimatedVerification({ inputValue }) {
-  const [value, setValue] = useState("");
+export default function AnimatedVerification(props) {
   const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
-
   const navigation = useNavigation();
 
-  const [props, getCellOnLayoutHandler] = useClearByFocusCell({
+  const [value, setValue] = useState("");
+  const [cellProps, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
     setValue,
   });
 
   const submitHandler = () => {
-    if (value?.length !== 6) {
-      console.warn("Input value is not 6 digits");
-    } else {
-      setValue(inputValue);
-      console.log("submitted");
-      navigation.navigate("Modal", {
-        modalMessage: "Your number has been verified",
-      });
-    }
+    //pass value to parent component
+    props.onVerify(value);
+
+    // if (value?.length !== 6) {
+    //   console.warn("Input value is not 6 digits");
+    // } else {
+    //   setValue(inputValue.toString());
+    //   try {
+    //     console.warn(value);
+    //     await Auth.confirmSignUp({
+    //       confirmationCode: value,
+    //     });
+    //     navigation.navigate("Modal", {
+    //       modalMessage: "Your number has been verified",
+    //     });
+    //   } catch (e) {
+    //     Alert.alert("Oops", e.message);
+    //   }
+    // }
   };
 
   const renderCell = ({ index, symbol, isFocused }) => {
@@ -106,7 +122,7 @@ export default function AnimatedVerification({ inputValue }) {
     <View>
       <CodeField
         ref={ref}
-        {...props}
+        {...cellProps}
         value={value}
         onChangeText={setValue}
         cellCount={CELL_COUNT}
@@ -116,7 +132,7 @@ export default function AnimatedVerification({ inputValue }) {
         renderCell={renderCell}
       />
       <View style={styles.buttonContainer}>
-        <Text style={styles.sendNewCode}>Send new Code</Text>
+        <Text style={styles.sendNewCode} onPress={props.onResendPress}>Send new Code</Text>
         <LoginButton
           title='Verify'
           onPress={submitHandler}

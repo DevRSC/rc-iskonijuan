@@ -13,7 +13,12 @@
     },
     "categories": {
       "auth": {
-        "iskonijuan": {}
+        "iskonijuan": {
+          "userPoolId": "ap-southeast-1_d0jshgQ5M",
+          "userPoolName": "iskonijuan",
+          "webClientId": "4jbn5gfunk5t9t715nt9t8v87u",
+          "nativeClientId": "4jbn5gfunk5t9t715nt9t8v87u"
+        }
       }
     }
   }

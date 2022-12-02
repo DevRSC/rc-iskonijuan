@@ -4,27 +4,58 @@ import {
   Image,
   TouchableWithoutFeedback,
   Keyboard,
+  Alert,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { scale, verticalScale } from "react-native-size-matters";
 import { Text, TextInput } from "react-native-paper";
 import CustomInput from "../../components/CustomInput";
 import LoginButton from "../../components/atoms/LoginButton";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { Auth } from "aws-amplify";
 
 export default function SignupContacts() {
   const navigation = useNavigation();
+  const route = useRoute();
 
   const {
     control,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      email: route?.params?.email,
+      firstName: route?.params?.firstName,
+      lastName: route?.params?.lastName,
+      password: route?.params?.password,
+      username: route?.params?.username,
+    },
+  });
 
-  const onRegisterPressed = () => {
-    navigation.navigate("SignUpVerify");
+  const [phoneNumber, setPhoneNumber] = useState("");
+
+  //setPhoneNumber((data) => (`+63${data.phone}`))
+
+  const onRegisterPressed = async (data) => {
+    const { firstName, lastName, email, password, phone, username } = data;
+
+    try {
+      Auth.signUp({
+        username,
+        password,
+        attributes: {
+          email: email,
+          given_name: firstName,
+          family_name: lastName,
+          phone_number: `+63${phone}`,
+        },
+      });
+      navigation.navigate("SignUpVerify", { email, username });
+    } catch (e) {
+      Alert.alert("Oops", e.message);
+    }
   };
 
   return (
@@ -58,6 +89,7 @@ export default function SignupContacts() {
               placeholder='Phone Number'
               keyboardType='phone-pad'
               control={control}
+              type='number'
               rules={{
                 required: "Phone Number is required",
                 minLength: {

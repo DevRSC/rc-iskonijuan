@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Image, TouchableOpacity, Alert } from "react-native";
 import { Text, TextInput } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import LoginButton from "../components/atoms/LoginButton";
@@ -7,12 +7,13 @@ import { scale, verticalScale } from "react-native-size-matters";
 import { useForm } from "react-hook-form";
 import CustomInput from "../components/CustomInput/CustomInput";
 import SigninHeader from "../components/molecules/SigninHeader";
+import { Auth } from "aws-amplify";
 
 export default function SigninScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-
+  const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
 
   const {
@@ -21,9 +22,18 @@ export default function SigninScreen() {
     formState: { errors },
   } = useForm();
 
-  const onSignInPressed = () => {
-    navigation.navigate("Home");
-    console.log("Sign in pressed");
+  const onSignInPressed = async (data) => {
+    if (loading) {
+      return;
+    }
+    setLoading(true);
+    try {
+      const response = await Auth.signIn(data.email, data.password);
+      console.warn(response);
+    } catch (e) {
+      Alert.alert("Oops", e.message);
+    }
+    setLoading(false);
   };
 
   const onForgotPasswordPressed = () => {
@@ -72,7 +82,7 @@ export default function SigninScreen() {
         />
         <View style={styles.buttonContainer}>
           <LoginButton
-            title='Sign In'
+            title={loading ? "Signing In..." : "Sign In"}
             style={styles.button}
             //onPress={() => navigation.navigate("Home")}
             onPress={handleSubmit(onSignInPressed)}
