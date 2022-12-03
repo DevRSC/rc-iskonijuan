@@ -24,14 +24,14 @@ export default function SignupVerify() {
     }
   };
 
-  const onResendPress = async() => {
-    try{ 
-      await Auth.resendSignUp(username)
-      Alert.alert('Success', 'Code was resent to your phone')
+  const onResendPress = async () => {
+    try {
+      await Auth.resendSignUp(username);
+      Alert.alert("Success", "Code was resent to your phone");
     } catch (e) {
-      Alert.alert('Oops', e.message)
+      Alert.alert("Oops", e.message);
     }
-  }
+  };
 
   return (
     <View style={styles.container}>
@@ -49,7 +49,10 @@ export default function SignupVerify() {
             We’ve sent a verification code to your phone number. Change number
           </Text>
 
-          <AnimatedVerification onVerify={onVerify} onResendPress={onResendPress}/>
+          <AnimatedVerification
+            onVerify={onVerify}
+            onResendPress={onResendPress}
+          />
         </View>
       </View>
     </View>
