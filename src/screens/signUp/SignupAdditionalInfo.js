@@ -19,6 +19,34 @@ import LoginButton from "../../components/atoms/LoginButton";
 import { useNavigation } from "@react-navigation/native";
 import FooterAgreement from "../../components/molecules/FooterAgreement";
 
+import DatePicker from "../../components/molecules/DatePicker";
+
+const nationalityList = [
+  { label: "Filipino", value: "Filipino" },
+  { label: "American", value: "American" },
+  { label: "Chinese", value: "Chinese" },
+  { label: "Japanese", value: "Japanese" },
+  { label: "Korean", value: "Korean" },
+  { label: "Indian", value: "Indian" },
+  { label: "Indonesian", value: "Indonesian" },
+  { label: "Thai", value: "Thai" },
+  { label: "Vietnamese", value: "Vietnamese" },
+  { label: "Australian", value: "Australian" },
+  { label: "Canadian", value: "Canadian" },
+  { label: "British", value: "British" },
+  { label: "German", value: "German" },
+  { label: "French", value: "French" },
+  { label: "Russian", value: "Russian" },
+];
+
+const occupationList = [
+  { label: "Student", value: "Student" },
+  { label: "Employed", value: "Employed" },
+  { label: "Unemployed", value: "Unemployed" },
+  { label: "Retired", value: "Retired" },
+  { label: "Self-Employed", value: "Self-Employed" },
+];
+
 export default function SignupAdditionalInfo() {
   const navigation = useNavigation();
 
@@ -27,69 +55,16 @@ export default function SignupAdditionalInfo() {
   const [nationality, setNationality] = useState("");
   const [checked, setChecked] = useState("male");
 
+  //get age from child component
+  const [age, setAge] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
+
   //Source of Income
   const [showDropDown2, setShowDropDown2] = useState(false);
   const [sourceOfIncome, setSourceOfIncome] = useState("");
 
-  const occupationList = [
-    { label: "Student", value: "Student" },
-    { label: "Employed", value: "Employed" },
-    { label: "Unemployed", value: "Unemployed" },
-    { label: "Retired", value: "Retired" },
-    { label: "Self-Employed", value: "Self-Employed" },
-  ];
-
   const onCheckedHandler = (value) => {
     setChecked(value);
-  };
-
-  const nationalityList = [
-    { label: "Filipino", value: "Filipino" },
-    { label: "American", value: "American" },
-    { label: "Chinese", value: "Chinese" },
-    { label: "Japanese", value: "Japanese" },
-    { label: "Korean", value: "Korean" },
-    { label: "Indian", value: "Indian" },
-    { label: "Indonesian", value: "Indonesian" },
-    { label: "Thai", value: "Thai" },
-    { label: "Vietnamese", value: "Vietnamese" },
-    { label: "Australian", value: "Australian" },
-    { label: "Canadian", value: "Canadian" },
-    { label: "British", value: "British" },
-    { label: "German", value: "German" },
-    { label: "French", value: "French" },
-    { label: "Russian", value: "Russian" },
-  ];
-
-  // Date picker
-  const [date, setDate] = useState(new Date());
-  const [mode, setMode] = useState("date");
-  const [show, setShow] = useState(false);
-  const [dateOfBirth, setDateOfBirth] = useState("");
-
-  // Date picker functions
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShow(Platform.OS === "ios");
-    setDate(currentDate);
-    setDateOfBirth(
-      currentDate.getMonth() +
-        1 +
-        "/" +
-        currentDate.getDate() +
-        "/" +
-        currentDate.getFullYear()
-    );
-    console.log(currentDate.toDateString());
-  };
-
-  const showMode = (currentMode) => {
-    setShow(true);
-    setMode(currentMode);
-  };
-
-  const showDatepicker = () => {
-    showMode("date");
   };
 
   // Form
@@ -101,6 +76,11 @@ export default function SignupAdditionalInfo() {
   } = useForm();
 
   const onSubmit = (data) => {
+    data.age = age;
+    data.dateOfBirth = dateOfBirth;
+    data.nationality = nationality;
+    data.gender = checked;
+    data.income = sourceOfIncome;
     console.log(data);
   };
 
@@ -163,26 +143,7 @@ export default function SignupAdditionalInfo() {
             />
             <Text style={styles.smallGrayText}>Birthdate</Text>
 
-            <TextInput
-              mode='outlined'
-              placeholder='mm/dd/yyyy'
-              value={dateOfBirth}
-              onFocus={showDatepicker}
-              showSoftInputOnFocus={false}
-              right={
-                <TextInput.Icon icon='calendar' onPress={showDatepicker} />
-              }
-            />
-
-            {show && (
-              <RNDateTimePicker
-                value={date}
-                mode={mode}
-                display='default'
-                onChange={onChange}
-                dateFormat='month day year'
-              />
-            )}
+            <DatePicker getAge={setAge} getBirthDate={setDateOfBirth} />
 
             <Text style={styles.smallGrayText}>Place of Birth</Text>
             <CustomInput
