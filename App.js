@@ -7,8 +7,8 @@ import { DefaultTheme as NavigationDefaultTheme } from "@react-navigation/native
 import Ionicon from "react-native-vector-icons/Ionicons";
 
 //import amplify
-import { Amplify, Auth } from 'aws-amplify';
-import awsconfig from './src/aws-exports';
+import { Amplify, Auth } from "aws-amplify";
+import awsconfig from "./src/aws-exports";
 
 //import authenticator
 //import { withAuthenticator, AmplifyTheme } from "aws-amplify-react-native";
@@ -28,7 +28,9 @@ const customThemeFonts = Object.fromEntries(
     ([variantName, variantProperties]) => [
       variantName,
       { ...variantProperties, fontFamily: "Inter-Regular" },
+      { ...variantProperties, fontFamily: "Inter-Medium" },
       { ...variantProperties, fontFamily: "Inter-Bold" },
+      { ...variantProperties, fontFamily: "Inter-SemiBold" },
     ]
   )
 );
@@ -42,7 +44,7 @@ const { LightTheme } = adaptNavigationTheme({
 const theme = {
   ...MD3LightTheme,
   version: 3,
-  roundness: 6,
+  roundness: 8,
   fonts: customThemeFonts,
   myOwnProperty: true,
   colors: {
@@ -51,6 +53,8 @@ const theme = {
     secondary: "#2B283A",
     tertiary: "#918E9B",
     background: "#FDFCFB",
+    surface: "#FFFFFF",
+    text: "#2B283A",
   },
 };
 

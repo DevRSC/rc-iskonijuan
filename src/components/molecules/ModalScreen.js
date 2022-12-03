@@ -11,6 +11,7 @@ export default function ModalScreen() {
   const navigation = useNavigation();
   const route = useRoute();
   const { modalMessage } = route.params;
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.inner}>

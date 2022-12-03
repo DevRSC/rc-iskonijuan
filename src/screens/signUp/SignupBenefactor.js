@@ -6,7 +6,6 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   ScrollView,
-  Dimensions,
   Alert,
 } from "react-native";
 import React, { useState } from "react";
@@ -18,7 +17,6 @@ import { useForm } from "react-hook-form";
 import CustomInput from "../../components/CustomInput";
 import { useNavigation } from "@react-navigation/native";
 import { Auth } from "aws-amplify";
-const { width, height } = Dimensions.get("window");
 
 export default function SignupBenefactor() {
   const navigation = useNavigation();
@@ -220,7 +218,7 @@ const styles = StyleSheet.create({
   inner: {
     alignItems: "center",
     padding: 16,
-    height: height,
+    height: 735,
   },
   imageIcon: {
     width: scale(281),
