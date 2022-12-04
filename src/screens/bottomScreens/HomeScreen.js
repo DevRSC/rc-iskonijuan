@@ -5,8 +5,8 @@ import {
   TouchableOpacity,
   Dimensions,
 } from "react-native";
-import React, { useRef } from "react";
-import { useNavigation } from "@react-navigation/native";
+import React, { useRef, useState } from "react";
+
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ProgressBar, Text } from "react-native-paper";
 import HeaderContainer from "../../components/molecules/HeaderContainer";
@@ -87,12 +87,10 @@ const DummyData = [
 const { height, width } = Dimensions.get("window");
 
 export default function HomeScreen() {
-  const navigation = useNavigation();
-
   const swipeRef = useRef(null);
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#FDFCFB" }}>
       {/* Header */}
       <HeaderContainer />
       {/*Header End*/}

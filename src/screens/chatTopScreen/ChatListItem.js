@@ -4,7 +4,6 @@ import { Avatar, List, Text } from "react-native-paper";
 import { scale } from "react-native-size-matters";
 
 export default function ChatListItem(props) {
-  console.log(props);
   return (
     <List.Item
       title={

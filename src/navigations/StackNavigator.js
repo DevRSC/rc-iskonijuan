@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { View, ActivityIndicator } from "react-native";
 import WelcomeScreen from "../screens/WelcomeScreen";
 import SigninScreen from "../screens/SigninScreen";
-import Profile from "../screens/bottomScreens/Profile";
+import Profile from "../screens/bottomScreens/ProfileStackScreens/Profile";
 import ForgotPassword from "../screens/ForgotPassword";
 import RequestPassword from "../screens/RequestPassword";
 import CreateNewPassword from "../screens/CreateNewPassword";
