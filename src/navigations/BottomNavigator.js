@@ -5,11 +5,10 @@ import HomeScreen from "../screens/bottomScreens/HomeScreen";
 import ChatScreen from "../screens/bottomScreens/ChatScreen";
 import MatchScreen from "../screens/bottomScreens/MatchScreen";
 import NotificationScreen from "../screens/bottomScreens/NotificationScreen";
-import { verticalScale } from "react-native-size-matters";
+import { scale, verticalScale } from "react-native-size-matters";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 //Profile Navigation Flow
-import Profile from "../screens/bottomScreens/HomeStackScreens/Profile";
 
 //Create HomeStackNavigator
 const HomeStack = createNativeStackNavigator();
@@ -20,12 +19,6 @@ function HomeStackScreen() {
         name='HomeStackScreen'
         component={HomeScreen}
         options={{ headerShown: false }}
-      />
-
-      <HomeStack.Screen
-        name='Profile'
-        component={Profile}
-        options={{ headerShown: true }}
       />
     </HomeStack.Navigator>
   );
