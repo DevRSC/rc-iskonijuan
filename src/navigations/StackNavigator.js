@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
 import { View, ActivityIndicator } from "react-native";
 import WelcomeScreen from "../screens/WelcomeScreen";
 import SigninScreen from "../screens/SigninScreen";
+import Profile from "../screens/bottomScreens/Profile";
 import ForgotPassword from "../screens/ForgotPassword";
 import RequestPassword from "../screens/RequestPassword";
 import CreateNewPassword from "../screens/CreateNewPassword";
@@ -19,11 +21,37 @@ import SignupAdditionalInfo from "../screens/signUp/SignupAdditionalInfo";
 import BottomNavigator from "./BottomNavigator";
 
 import { Auth, Hub } from "aws-amplify";
-import HomeScreen from "../screens/bottomScreens/HomeScreen";
+import { scale } from "react-native-size-matters";
 const AuthStack = createNativeStackNavigator();
 
+const ProfileStack = createNativeStackNavigator();
+const ProfileStackScreen = () => {
+  return (
+    <ProfileStack.Navigator>
+      <ProfileStack.Screen
+        name='ProfileStackScreen'
+        component={Profile}
+        options={{
+          headerShadowVisible: false,
+          title: "Profile",
+          headerTitleStyle: {
+            fontFamily: "Inter-Medium",
+            fontSize: scale(20),
+          },
+          headerStyle: {
+            backgroundColor: "#FDFCFB",
+          },
+          headerTitleAlign: "center",
+        }}
+      />
+    </ProfileStack.Navigator>
+  );
+};
+
+//create stack screen for user profile
+
 export default function StackNavigator() {
-  const [user, setUser] = useState(false);
+  const [user, setUser] = useState(true);
 
   // const checkUser = async () => {
   //   try {
@@ -66,7 +94,14 @@ export default function StackNavigator() {
       }}
     >
       {user ? (
-        <AuthStack.Screen name='BottomNavigator' component={BottomNavigator} />
+        <>
+          <AuthStack.Screen
+            name='BottomNavigator'
+            component={BottomNavigator}
+          />
+
+          <AuthStack.Screen name='Profile' component={ProfileStackScreen} />
+        </>
       ) : (
         <>
           <AuthStack.Screen name='Welcome' component={WelcomeScreen} />
