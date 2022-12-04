@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: width,
     textAlign: "center",
+    backgroundColor: "#FDFCFB",
   },
   searchTitle: {
     fontSize: 23,

@@ -214,6 +214,7 @@ export default function SignupBenefactor() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#FDFCFB",
   },
   inner: {
     alignItems: "center",
