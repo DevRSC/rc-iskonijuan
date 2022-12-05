@@ -4,8 +4,13 @@ import { Avatar, Text, List } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { scale, verticalScale } from "react-native-size-matters";
 import LoginButton from "../../../components/atoms/LoginButton";
+import { Auth } from "aws-amplify";
 
 export default function Profile() {
+  const signOut = async () => {
+    Auth.signOut();
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.inner}>
@@ -90,9 +95,7 @@ export default function Profile() {
         <LoginButton
           title='Logout'
           style={{ width: scale(328), borderRadius: scale(8), marginTop: 10 }}
-          onPress={() => {
-            console.log("logout");
-          }}
+          onPress={signOut}
         />
 
         <Text style={styles.footer}>© Isko ni Juan 2023</Text>
