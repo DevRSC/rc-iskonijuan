@@ -31,7 +31,7 @@ const ProfileStackScreen = () => {
       screenOptions={{
         headerShadowVisible: false,
         contentStyle: {
-          marginTop: verticalScale(80),
+          marginTop: verticalScale(50),
         },
         headerTitleStyle: {
           fontFamily: "Inter-Medium",
@@ -117,9 +117,7 @@ export default function StackNavigator() {
             name='BottomNavigator'
             component={BottomNavigator}
           />
-          <AuthStack.Group screenOptions={{ presentation: "modal" }}>
-            <AuthStack.Screen name='Profile' component={ProfileStackScreen} />
-          </AuthStack.Group>
+          <AuthStack.Screen name='Profile' component={ProfileStackScreen} />
         </>
       ) : (
         <>
