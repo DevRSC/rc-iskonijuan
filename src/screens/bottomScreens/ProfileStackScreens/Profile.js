@@ -12,7 +12,7 @@ export default function Profile() {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.inner}>
         <Avatar.Image
           size={scale(80)}
@@ -100,7 +100,7 @@ export default function Profile() {
 
         <Text style={styles.footer}>© Isko ni Juan 2023</Text>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -110,6 +110,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FDFCFB",
   },
   inner: {
+    height: "100%",
     alignItems: "center",
     justifyContent: "center",
   },
