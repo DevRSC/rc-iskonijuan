@@ -62,6 +62,7 @@ export default function SignupVerify() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#FDFCFB",
   },
   inner: {
     flex: 1,

@@ -1,8 +1,7 @@
 import { StyleSheet, View, FlatList } from "react-native";
-import React from "react";
-import { Avatar, List, Text } from "react-native-paper";
-import { scale } from "react-native-size-matters";
+import React, { useRef } from "react";
 import ChatListItem from "./ChatListItem";
+import { useScrollToTop } from "@react-navigation/native";
 
 const persons = [
   {
@@ -114,10 +113,14 @@ const persons = [
 ];
 
 export default function Chats() {
+  const ref = useRef(null);
+  useScrollToTop(ref);
+
   console.log("ChatScreen Rerendered");
   return (
     <View style={styles.container}>
       <FlatList
+        ref={ref}
         style={styles.flatList}
         data={persons}
         keyExtractor={(item) => item.id}
@@ -146,6 +149,7 @@ export default function Chats() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#FDFCFB",
   },
   flatList: {
     borderRadius: 20,

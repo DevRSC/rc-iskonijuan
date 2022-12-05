@@ -53,7 +53,7 @@ const theme = {
     secondary: "#2B283A",
     tertiary: "#918E9B",
     background: "#FDFCFB",
-    surface: "#FFFFFF",
+
     text: "#2B283A",
   },
 };

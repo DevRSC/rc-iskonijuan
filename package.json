@@ -1,5 +1,6 @@
 {
   "name": "rc-iskonijuan",
+  "license": "MIT",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
@@ -21,6 +22,7 @@
     "amazon-cognito-identity-js": "^6.0.1",
     "aws-amplify": "^5.0.4",
     "aws-amplify-react-native": "^7.0.1",
+    "eslint": "^8.29.0",
     "expo": "~47.0.3",
     "expo-font": "~11.0.1",
     "expo-splash-screen": "~0.17.5",
@@ -46,7 +48,8 @@
     }
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
+    "@babel/core": "^7.12.9",
+    "eslint-plugin-react": "^7.31.11"
   },
   "private": true
 }
