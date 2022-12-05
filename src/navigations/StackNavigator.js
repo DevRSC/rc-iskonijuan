@@ -21,27 +21,33 @@ import SignupAdditionalInfo from "../screens/signUp/SignupAdditionalInfo";
 import BottomNavigator from "./BottomNavigator";
 
 import { Auth, Hub } from "aws-amplify";
-import { scale } from "react-native-size-matters";
+import { scale, verticalScale } from "react-native-size-matters";
 const AuthStack = createNativeStackNavigator();
 
 const ProfileStack = createNativeStackNavigator();
 const ProfileStackScreen = () => {
   return (
-    <ProfileStack.Navigator>
+    <ProfileStack.Navigator
+      screenOptions={{
+        headerShadowVisible: false,
+        contentStyle: {
+          marginTop: verticalScale(80),
+        },
+        headerTitleStyle: {
+          fontFamily: "Inter-Medium",
+          fontSize: scale(20),
+        },
+        headerStyle: {
+          backgroundColor: "#FDFCFB",
+        },
+        headerTitleAlign: "center",
+      }}
+    >
       <ProfileStack.Screen
         name='ProfileStackScreen'
         component={Profile}
         options={{
-          headerShadowVisible: false,
           title: "Profile",
-          headerTitleStyle: {
-            fontFamily: "Inter-Medium",
-            fontSize: scale(20),
-          },
-          headerStyle: {
-            backgroundColor: "#FDFCFB",
-          },
-          headerTitleAlign: "center",
         }}
       />
     </ProfileStack.Navigator>
@@ -51,44 +57,56 @@ const ProfileStackScreen = () => {
 //create stack screen for user profile
 
 export default function StackNavigator() {
-  const [user, setUser] = useState(true);
+  const [user, setUser] = useState(undefined);
 
-  // const checkUser = async () => {
-  //   try {
-  //     const authUser = await Auth.currentAuthenticatedUser({
-  //       bypassCache: true,
-  //     });
-  //     setUser(authUser);
-  //   } catch (e) {
-  //     setUser(null);
-  //   }
-  // };
+  const checkUser = async () => {
+    try {
+      const authUser = await Auth.currentAuthenticatedUser({
+        bypassCache: true,
+      });
+      setUser(authUser);
+    } catch (e) {
+      setUser(null);
+    }
+  };
 
-  // useEffect(() => {
-  //   checkUser();
-  // }, []);
+  useEffect(() => {
+    checkUser();
+  }, []);
 
-  // useEffect(() => {
-  //   const listener = (data) => {
-  //     if (data.payload.event === "signIn") {
-  //       checkUser();
-  //     }
-  //   };
-  //   Hub.listen("auth", listener);
-  //   return () => Hub.remove("auth", listener);
-  // }, []);
+  useEffect(() => {
+    const authListener = Hub.listen("auth", (data) => {
+      switch (data.payload.event) {
+        case "signIn":
+          return checkUser();
+        case "signOut":
+          return setUser(null);
+      }
+    });
+    return () => Hub.remove("auth", authListener);
+  }, []);
 
-  // if (user === undefined) {
-  //   return (
-  //     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-  //       <ActivityIndicator />
-  //     </View>
-  //   );
-  // }
+  useEffect(() => {
+    const listener = (data) => {
+      if (data.payload.event === "signIn") {
+        checkUser();
+      }
+    };
+    Hub.listen("auth", listener);
+    return () => Hub.remove("auth", listener);
+  }, []);
+
+  if (user === undefined) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator />
+      </View>
+    );
+  }
 
   return (
     <AuthStack.Navigator
-      initialRouteName='SignUpAdditionalInfo'
+      initialRouteName='Welcome'
       screenOptions={{
         headerShown: false,
       }}
@@ -99,8 +117,9 @@ export default function StackNavigator() {
             name='BottomNavigator'
             component={BottomNavigator}
           />
-
-          <AuthStack.Screen name='Profile' component={ProfileStackScreen} />
+          <AuthStack.Group screenOptions={{ presentation: "modal" }}>
+            <AuthStack.Screen name='Profile' component={ProfileStackScreen} />
+          </AuthStack.Group>
         </>
       ) : (
         <>
