@@ -5,16 +5,15 @@ import {
   TouchableOpacity,
   Dimensions,
 } from "react-native";
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ProgressBar, Text } from "react-native-paper";
 import HeaderContainer from "../../components/molecules/HeaderContainer";
 import { scale, verticalScale } from "react-native-size-matters";
-
 import Ionicons from "react-native-vector-icons/Ionicons";
-
 import Swiper from "react-native-deck-swiper";
+import { useNavigation } from "@react-navigation/native";
 
 const DummyData = [
   {
@@ -87,7 +86,21 @@ const DummyData = [
 const { height, width } = Dimensions.get("window");
 
 export default function HomeScreen() {
+  const navigation = useNavigation();
   const swipeRef = useRef(null);
+
+  const onPressHandler = (index) => {
+    console.log("onPressHandler", index);
+
+    //get card data
+    const cardData = DummyData[index];
+    console.log("cardData", cardData);
+    navigation.navigate("CardModalScreen", {
+      Name: cardData.firstName,
+      Title: cardData.campaignName,
+      Description: cardData.camapaignDescription,
+    });
+  };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#FDFCFB" }}>
@@ -98,14 +111,14 @@ export default function HomeScreen() {
       {/* Cards */}
       <View style={styles.cardsContainer}>
         <Swiper
-          ref={swipeRef}
-          containerStyle={{ backgroundColor: "transparent" }}
-          cards={DummyData}
+          infinite
           stackSize={3}
           cardIndex={0}
-          animateCardOpacity
-          infinite
+          ref={swipeRef}
+          cards={DummyData}
           verticalSwipe={false}
+          containerStyle={{ backgroundColor: "transparent" }}
+          onTapCard={(index) => onPressHandler(index)}
           onSwipedLeft={() => console.log("onSwipedLeft NOPE!")}
           onSwipedRight={() => console.log("onSwipedRight Match!")}
           overlayLabels={{
