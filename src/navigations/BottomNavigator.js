@@ -5,7 +5,7 @@ import HomeScreen from "../screens/bottomScreens/HomeScreen";
 import ChatScreen from "../screens/bottomScreens/ChatScreen";
 import MatchScreen from "../screens/bottomScreens/MatchScreen";
 import NotificationScreen from "../screens/bottomScreens/NotificationScreen";
-import { scale, verticalScale } from "react-native-size-matters";
+import { verticalScale } from "react-native-size-matters";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 //Profile Navigation Flow
