@@ -17,6 +17,7 @@ import SignupContacts from "../screens/signUp/SignupContacts";
 import SignupVerify from "../screens/signUp/SignupVerify";
 import ModalScreen from "../components/molecules/ModalScreen";
 import SignupAdditionalInfo from "../screens/signUp/SignupAdditionalInfo";
+import Test from "./Test";
 
 import BottomNavigator from "./BottomNavigator";
 
@@ -58,6 +59,7 @@ const ProfileStackScreen = () => {
 
 export default function StackNavigator() {
   const [user, setUser] = useState(undefined);
+  const [userType, setUserType] = useState(undefined);
 
   const checkUser = async () => {
     try {
@@ -65,6 +67,8 @@ export default function StackNavigator() {
         bypassCache: true,
       });
       setUser(authUser);
+      setUserType(authUser.attributes["custom:userType"]);
+      console.log("userType", userType);
     } catch (e) {
       setUser(null);
     }
@@ -113,10 +117,15 @@ export default function StackNavigator() {
     >
       {user ? (
         <>
-          <AuthStack.Screen
-            name='BottomNavigator'
-            component={BottomNavigator}
-          />
+          {userType === "Benefactor" ? (
+            <AuthStack.Screen
+              name='BottomNavigator'
+              component={BottomNavigator}
+            />
+          ) : (
+            <AuthStack.Screen name='Test' component={Test} />
+          )}
+
           <AuthStack.Screen name='Profile' component={ProfileStackScreen} />
         </>
       ) : (

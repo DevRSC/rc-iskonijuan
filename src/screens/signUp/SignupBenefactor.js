@@ -15,11 +15,14 @@ import LoginButton from "../../components/atoms/LoginButton";
 import FooterAgreement from "../../components/molecules/FooterAgreement";
 import { useForm } from "react-hook-form";
 import CustomInput from "../../components/CustomInput";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { Auth } from "aws-amplify";
 
 export default function SignupBenefactor() {
   const navigation = useNavigation();
+  const route = useRoute();
+  const { userType } = route.params;
+
   const [showPassword, setShowPassword] = useState(false);
   const [showRPassword, setShorRPassword] = useState(false);
   const {
@@ -34,11 +37,12 @@ export default function SignupBenefactor() {
     const { firstName, lastName, email, password, username } = data;
     try {
       navigation.navigate("SignUpContacts", {
-        password,
         firstName,
         lastName,
         email,
+        password,
         username,
+        userType,
       });
     } catch (e) {
       Alert.alert("Oops", e.message);
