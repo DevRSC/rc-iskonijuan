@@ -18,6 +18,7 @@ import SignupVerify from "../screens/signUp/SignupVerify";
 import ModalScreen from "../components/molecules/ModalScreen";
 import SignupAdditionalInfo from "../screens/signUp/SignupAdditionalInfo";
 import Test from "./Test";
+import CardModal from "../components/molecules/CardModal";
 
 import BottomNavigator from "./BottomNavigator";
 
@@ -58,55 +59,55 @@ const ProfileStackScreen = () => {
 //create stack screen for user profile
 
 export default function StackNavigator() {
-  const [user, setUser] = useState(undefined);
-  const [userType, setUserType] = useState(undefined);
+  const [user, setUser] = useState(true);
+  const [userType, setUserType] = useState("Benefactor");
 
-  const checkUser = async () => {
-    try {
-      const authUser = await Auth.currentAuthenticatedUser({
-        bypassCache: true,
-      });
-      setUser(authUser);
-      setUserType(authUser.attributes["custom:userType"]);
-      console.log("userType", userType);
-    } catch (e) {
-      setUser(null);
-    }
-  };
+  // const checkUser = async () => {
+  //   try {
+  //     const authUser = await Auth.currentAuthenticatedUser({
+  //       bypassCache: true,
+  //     });
+  //     setUser(authUser);
+  //     setUserType(authUser.attributes["custom:userType"]);
+  //     console.log("userType", userType);
+  //   } catch (e) {
+  //     setUser(null);
+  //   }
+  // };
 
-  useEffect(() => {
-    checkUser();
-  }, []);
+  // useEffect(() => {
+  //   checkUser().catch((e) => console.log(e));
+  // }, []);
 
-  useEffect(() => {
-    const authListener = Hub.listen("auth", (data) => {
-      switch (data.payload.event) {
-        case "signIn":
-          return checkUser();
-        case "signOut":
-          return setUser(null);
-      }
-    });
-    return () => Hub.remove("auth", authListener);
-  }, []);
+  // useEffect(() => {
+  //   const authListener = Hub.listen("auth", (data) => {
+  //     switch (data.payload.event) {
+  //       case "signIn":
+  //         return checkUser();
+  //       case "signOut":
+  //         return setUser(null);
+  //     }
+  //   });
+  //   return () => Hub.remove("auth", authListener);
+  // }, []);
 
-  useEffect(() => {
-    const listener = (data) => {
-      if (data.payload.event === "signIn") {
-        checkUser();
-      }
-    };
-    Hub.listen("auth", listener);
-    return () => Hub.remove("auth", listener);
-  }, []);
+  // useEffect(() => {
+  //   const listener = (data) => {
+  //     if (data.payload.event === "signIn") {
+  //       checkUser();
+  //     }
+  //   };
+  //   Hub.listen("auth", listener);
+  //   return () => Hub.remove("auth", listener);
+  // }, []);
 
-  if (user === undefined) {
-    return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <ActivityIndicator />
-      </View>
-    );
-  }
+  // if (user === undefined) {
+  //   return (
+  //     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+  //       <ActivityIndicator />
+  //     </View>
+  //   );
+  // }
 
   return (
     <AuthStack.Navigator
@@ -118,10 +119,20 @@ export default function StackNavigator() {
       {user ? (
         <>
           {userType === "Benefactor" ? (
-            <AuthStack.Screen
-              name='BottomNavigator'
-              component={BottomNavigator}
-            />
+            <>
+              <AuthStack.Screen
+                name='BottomNavigator'
+                component={BottomNavigator}
+              />
+              <AuthStack.Screen
+                name='CardModalScreen'
+                component={CardModal}
+                options={{
+                  headerShown: false,
+                  presentation: "transparentModal",
+                }}
+              />
+            </>
           ) : (
             <AuthStack.Screen name='Test' component={Test} />
           )}
