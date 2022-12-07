@@ -18,6 +18,7 @@ import { Auth } from "aws-amplify";
 export default function SignupContacts() {
   const navigation = useNavigation();
   const route = useRoute();
+  const { userType } = route.params;
 
   const {
     control,
@@ -31,6 +32,7 @@ export default function SignupContacts() {
       lastName: route?.params?.lastName,
       password: route?.params?.password,
       username: route?.params?.username,
+      userType: route?.params?.userType,
     },
   });
 
@@ -39,7 +41,8 @@ export default function SignupContacts() {
   //setPhoneNumber((data) => (`+63${data.phone}`))
 
   const onRegisterPressed = async (data) => {
-    const { firstName, lastName, email, password, phone, username } = data;
+    const { firstName, lastName, email, password, phone, username, userType } =
+      data;
 
     try {
       Auth.signUp({
@@ -50,6 +53,7 @@ export default function SignupContacts() {
           given_name: firstName,
           family_name: lastName,
           phone_number: `+63${phone}`,
+          "custom:userType": userType,
         },
       });
       navigation.navigate("SignUpVerify", { email, username });
