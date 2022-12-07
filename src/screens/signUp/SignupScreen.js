@@ -27,11 +27,13 @@ export default function SignupScreen() {
 
   const handleNavigation = (selected) => {
     if (selected === "first") {
-      navigation.navigate("SignUpBenefactor");
+      navigation.navigate("SignUpBenefactor", {
+        userType: "Student",
+      });
     } else if (selected === "second") {
-      navigation.navigate("SignUpBenefactor");
-    } else if (selected === "third") {
-      navigation.navigate("SignUpBenefactor");
+      navigation.navigate("SignUpBenefactor", {
+        userType: "Benefactor",
+      });
     }
   };
 
@@ -91,32 +93,6 @@ export default function SignupScreen() {
             <Text style={styles.cardTitle}>Benefactor</Text>
           </Card.Content>
         </Card>
-
-        <Card
-          onPress={() => handleSelected("third")}
-          value={selected}
-          style={[
-            styles.card,
-            { backgroundColor: selected === "third" ? "#F55A5A" : "#FFFFFF" },
-          ]}
-        >
-          <View
-            style={{
-              alignItems: "center",
-              paddingTop: scale(10),
-            }}
-          >
-            <FontAwesome
-              name='group'
-              color={selected === "third" ? "#FFFFFF" : "#F55A5A"}
-              size={scale(30)}
-            />
-          </View>
-
-          <Card.Content>
-            <Text style={styles.cardTitle}>Organization</Text>
-          </Card.Content>
-        </Card>
       </Animated.View>
       <View
         style={{
@@ -152,9 +128,9 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-evenly",
     width: "100%",
-    padding: scale(16),
+    padding: scale(20),
   },
   card: {
     width: scale(95),
