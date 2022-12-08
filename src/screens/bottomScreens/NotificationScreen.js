@@ -1,4 +1,4 @@
-import { FlatList, SectionList, StyleSheet, View } from "react-native";
+import { SectionList, StyleSheet, View } from "react-native";
 import React from "react";
 import { Text, List, Avatar } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
