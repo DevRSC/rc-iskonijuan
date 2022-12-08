@@ -13,46 +13,6 @@ const topTab = createMaterialTopTabNavigator();
 
 const { width } = Dimensions.get("window");
 
-const LikedStack = createNativeStackNavigator();
-const LikedStackScreen = () => {
-  return (
-    <LikedStack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <LikedStack.Screen name='LikedStackScreen' component={LikedCampaign} />
-
-      <LikedStack.Screen
-        name='Test'
-        component={Test}
-        options={{
-          title: "Test",
-        }}
-      />
-    </LikedStack.Navigator>
-  );
-};
-
-const SuccessStack = createNativeStackNavigator();
-const SuccessStackScreen = () => {
-  return (
-    <SuccessStack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <SuccessStack.Screen
-        name='SuccessStackScreen'
-        component={SuccessStories}
-        options={{
-          title: "Success Stories",
-        }}
-      />
-    </SuccessStack.Navigator>
-  );
-};
-
 export default function MatchTopNavigator() {
   return (
     <topTab.Navigator
@@ -75,8 +35,20 @@ export default function MatchTopNavigator() {
         },
       }}
     >
-      <topTab.Screen name='Liked Campaign' component={LikedStackScreen} />
-      <topTab.Screen name='Success Stories' component={SuccessStackScreen} />
+      <topTab.Screen
+        name='LikedTopTabScreen'
+        component={LikedCampaign}
+        options={{
+          title: "Liked Campaign",
+        }}
+      />
+      <topTab.Screen
+        name='SuccessTopTabScreen'
+        component={SuccessStories}
+        options={{
+          title: "Success Stories",
+        }}
+      />
       {/* <topTab.Screen name='Liked Campaign' component={Campaign} />
       <topTab.Screen name='Success Stories' component={Stories} /> */}
     </topTab.Navigator>
