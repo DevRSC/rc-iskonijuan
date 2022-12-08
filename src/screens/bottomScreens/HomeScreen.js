@@ -30,7 +30,7 @@ const DummyData = [
   },
   {
     id: 2,
-    firstName: "April Kate Pascual",
+    firstName: "Sheilane C. Nicolas",
     campaignName: "For Academic Books",
     camapaignDescription:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit vel quam vitae ultrices. Morbi tincidunt risus libero, eu feugiat nisi dictum eget. ",
