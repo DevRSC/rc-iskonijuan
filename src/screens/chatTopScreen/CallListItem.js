@@ -1,4 +1,4 @@
-import { StyleSheet, View, FlatList } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
 import { Avatar, List, Text } from "react-native-paper";
 import { scale } from "react-native-size-matters";
