@@ -1,4 +1,5 @@
-import { StyleSheet, View, FlatList } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { FlashList } from "@shopify/flash-list";
 import React, { useRef } from "react";
 import ChatListItem from "./ChatListItem";
 import { useScrollToTop } from "@react-navigation/native";
@@ -119,9 +120,9 @@ export default function Chats() {
   console.log("ChatScreen Rerendered");
   return (
     <View style={styles.container}>
-      <FlatList
+      <FlashList
         ref={ref}
-        style={styles.flatList}
+        estimatedItemSize={80}
         data={persons}
         keyExtractor={(item) => item.id}
         renderItem={
@@ -150,9 +151,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#FDFCFB",
-  },
-  flatList: {
-    borderRadius: 20,
   },
   separator: {
     height: 1,

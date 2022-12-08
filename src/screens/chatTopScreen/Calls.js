@@ -1,8 +1,9 @@
-import { StyleSheet, View, FlatList } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React, { useEffect } from "react";
 import { Avatar, List, Text } from "react-native-paper";
 import { scale } from "react-native-size-matters";
 import CallListItem from "./CallListItem";
+import { FlashList } from "@shopify/flash-list";
 
 const persons = [
   {
@@ -116,8 +117,9 @@ const persons = [
 export default function Calls() {
   return (
     <View style={styles.container}>
-      <FlatList
+      <FlashList
         data={persons}
+        estimatedItemSize={80}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <CallListItem
