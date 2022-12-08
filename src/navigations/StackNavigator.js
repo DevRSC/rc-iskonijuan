@@ -22,6 +22,10 @@ import CardModal from "../components/molecules/CardModal";
 
 import BottomNavigator from "./BottomNavigator";
 
+//Match Stack Sceens
+import LikedCampaignModal from "../screens/matchTopScreen/matchscreenStack/LikedCampaignModal";
+import SuccessStoryModal from "../screens/matchTopScreen/matchscreenStack/SuccessStoryModal";
+
 import { Auth, Hub } from "aws-amplify";
 import { scale, verticalScale } from "react-native-size-matters";
 const AuthStack = createNativeStackNavigator();
@@ -53,6 +57,45 @@ const ProfileStackScreen = () => {
         }}
       />
     </ProfileStack.Navigator>
+  );
+};
+
+const MatchStack = createNativeStackNavigator();
+const MatchStackScreen = () => {
+  return (
+    <MatchStack.Navigator
+      screenOptions={{
+        headerShadowVisible: false,
+        contentStyle: {
+          height: verticalScale(100),
+          marginTop: verticalScale(50),
+        },
+        headerTitleStyle: {
+          marginTop: verticalScale(50),
+          fontFamily: "Inter-Medium",
+          fontSize: scale(20),
+        },
+        headerStyle: {
+          backgroundColor: "#FDFCFB",
+        },
+        headerTitleAlign: "flex-start",
+      }}
+    >
+      <MatchStack.Screen
+        name='LikedCampaignModal'
+        component={LikedCampaignModal}
+        options={{
+          title: "Liked Campaign",
+        }}
+      />
+      <MatchStack.Screen
+        name='SuccessStoryModal'
+        component={SuccessStoryModal}
+        options={{
+          title: "Success Story",
+        }}
+      />
+    </MatchStack.Navigator>
   );
 };
 
@@ -132,15 +175,23 @@ export default function StackNavigator() {
                   presentation: "transparentModal",
                 }}
               />
+
+              <AuthStack.Screen
+                name='MatchStackScreen'
+                component={MatchStackScreen}
+              />
             </>
           ) : (
             <AuthStack.Screen name='Test' component={Test} />
           )}
 
+          {/* Profile Screen Navigation flow for both student and benefactor */}
           <AuthStack.Screen name='Profile' component={ProfileStackScreen} />
         </>
       ) : (
         <>
+          {/* Welcome Screen Navigation flow /> */}
+
           <AuthStack.Screen name='Welcome' component={WelcomeScreen} />
           <AuthStack.Screen name='SignIn' component={SigninScreen} />
           <AuthStack.Screen name='ForgotPassword' component={ForgotPassword} />
