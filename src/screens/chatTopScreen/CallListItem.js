@@ -2,14 +2,21 @@ import { StyleSheet, View } from "react-native";
 import React from "react";
 import { Avatar, List, Text } from "react-native-paper";
 import { scale } from "react-native-size-matters";
+import PropTypes from "prop-types";
+
+CallListItem.propTypes = {
+  name: PropTypes.string,
+  imageUri: PropTypes.string,
+  date: PropTypes.string,
+  verified: PropTypes.bool,
+};
 
 export default function CallListItem(props) {
   return (
     <List.Item
       title={
         <View style={styles.listTitle}>
-          <Text style={styles.name}>{props.name}</Text>
-
+          <Text style={styles.name}>{props?.name}</Text>
           <List.Icon
             icon={
               props.verified
@@ -20,13 +27,13 @@ export default function CallListItem(props) {
           />
         </View>
       }
-      description={props.date}
+      description={props?.date}
       left={(item) => (
         <Avatar.Image
           {...item}
           size={45}
           source={{
-            uri: props.imageUri,
+            uri: props?.imageUri,
           }}
         />
       )}

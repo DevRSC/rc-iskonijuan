@@ -1,7 +1,15 @@
-import { StyleSheet, View, FlatList } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
 import { Avatar, List, Text } from "react-native-paper";
 import { scale } from "react-native-size-matters";
+import PropTypes from "prop-types";
+
+ChatListItem.propTypes = {
+  name: PropTypes.string,
+  imageUri: PropTypes.string,
+  status: PropTypes.string,
+  verified: PropTypes.bool,
+};
 
 export default function ChatListItem(props) {
   return (
