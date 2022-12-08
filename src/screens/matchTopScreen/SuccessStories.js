@@ -21,7 +21,7 @@ const Dummy_Data = [
     id: 2,
     name: "Books for Kids",
     image: "https://picsum.photos/700",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
   },
   {
     id: 3,
@@ -63,7 +63,7 @@ export default function SuccessStories() {
           ListHeaderComponent={
             <>
               <Text style={styles.screenTitle}>Featured Story</Text>
-              <Card mode='elevated' elevation={2} style={styles.feauredCard}>
+              <Card mode='elevated' elevation={2} style={styles.featuredCard}>
                 <Card.Content style={styles.featuredcardContent}>
                   <Image
                     source={{ uri: "https://picsum.photos/700" }}
@@ -86,6 +86,9 @@ export default function SuccessStories() {
               name={item.name}
               image={item.image}
               description={item.description}
+              onPress={() => {
+                console.log("index", item.id);
+              }}
             />
           )}
           keyExtractor={(item) => item.id}
@@ -96,16 +99,21 @@ export default function SuccessStories() {
 }
 
 const styles = StyleSheet.create({
+  title: {
+    fontSize: 19,
+    fontFamily: "Inter-SemiBold",
+  },
   screenTitle: {
     fontSize: 19,
     fontWeight: "bold",
     marginLeft: 10,
     marginTop: 10,
   },
-  feauredCard: {
+  featuredCard: {
     height: height * 0.3,
     width: width - 20,
     margin: 10,
+    backgroundColor: "#FFFFFF",
   },
   featuredcardContent: {
     height: 140,
