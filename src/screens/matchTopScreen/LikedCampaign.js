@@ -51,7 +51,9 @@ export default function LikedCampaign() {
   const navigation = useNavigation();
 
   const handlePress = () => {
-    navigation.navigate("Test");
+    navigation.navigate("MatchStackScreen", {
+      screen: "LikedCampaignModal",
+    });
   };
   return (
     <View style={{ flex: 1 }}>

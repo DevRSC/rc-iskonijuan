@@ -1,9 +1,9 @@
 import React from "react";
 import { StyleSheet, View, Image } from "react-native";
 import { Card, Text } from "react-native-paper";
-import { scale } from "react-native-size-matters";
 import { FlashList } from "@shopify/flash-list";
 import SuccessStoriesItemList from "./SuccessStoriesItemList";
+import { useNavigation } from "@react-navigation/native";
 
 import { Dimensions } from "react-native";
 
@@ -50,6 +50,13 @@ const Dummy_Data = [
 ];
 
 export default function SuccessStories() {
+  const navigation = useNavigation();
+
+  const handlePress = () => {
+    navigation.navigate("MatchStackScreen", {
+      screen: "SuccessStoryModal",
+    });
+  };
   return (
     <View style={{ flex: 1, backgroundColor: "#FDFCFB" }}>
       <View
@@ -86,9 +93,7 @@ export default function SuccessStories() {
               name={item.name}
               image={item.image}
               description={item.description}
-              onPress={() => {
-                console.log("index", item.id);
-              }}
+              onPress={handlePress}
             />
           )}
           keyExtractor={(item) => item.id}
