@@ -60,7 +60,7 @@ export default function MatchTopNavigator() {
       initialLayout={width}
       screenOptions={{
         tabBarLabelStyle: {
-          fontSize: 16,
+          fontSize: scale(16),
           fontFamily: "Inter-Medium",
           textTransform: "none",
         },
