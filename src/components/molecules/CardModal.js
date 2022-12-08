@@ -1,4 +1,10 @@
-import { StyleSheet, View, SafeAreaView, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  View,
+  SafeAreaView,
+  ScrollView,
+  Pressable,
+} from "react-native";
 import React from "react";
 import Animated, { BounceIn } from "react-native-reanimated";
 import { Text } from "react-native-paper";
@@ -17,22 +23,34 @@ export default function CardModal() {
   return (
     //Create Modal Card
     <SafeAreaView style={styles.container}>
-      <Animated.View entering={BounceIn} style={styles.card}>
-        <View style={styles.cardHeader}>
-          <Text style={styles.cardHeaderText}>{Name}</Text>
-        </View>
-        <View style={styles.cardHeaderLeft}>
-          <Text style={styles.cardSubtitle}>{Title}</Text>
-        </View>
-        <View style={styles.cardBody}>
-          <ScrollView>
-            <Text style={styles.cardBodyText}>{Description}</Text>
-          </ScrollView>
-        </View>
-        <View style={styles.cardFooter}>
-          <LoginButton title='Close' onPress={() => navigation.goBack()} />
-        </View>
-      </Animated.View>
+      <Pressable
+        style={[
+          StyleSheet.absoluteFill,
+          {
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            justifyContent: "center",
+            alignItems: "center",
+          },
+        ]}
+        onPress={navigation.goBack}
+      >
+        <Animated.View entering={BounceIn} style={styles.card}>
+          <View style={styles.cardHeader}>
+            <Text style={styles.cardHeaderText}>{Name}</Text>
+          </View>
+          <View style={styles.cardHeaderLeft}>
+            <Text style={styles.cardSubtitle}>{Title}</Text>
+          </View>
+          <View style={styles.cardBody}>
+            <ScrollView>
+              <Text style={styles.cardBodyText}>{Description}</Text>
+            </ScrollView>
+          </View>
+          <View style={styles.cardFooter}>
+            <LoginButton title='Close' onPress={() => navigation.goBack()} />
+          </View>
+        </Animated.View>
+      </Pressable>
     </SafeAreaView>
   );
 }
@@ -42,7 +60,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(0,0,0,0.5)",
   },
   card: {
     width: "93%",
@@ -71,7 +88,7 @@ const styles = StyleSheet.create({
   },
 
   cardHeaderText: {
-    fontSize: scale(24),
+    fontSize: scale(20),
     fontFamily: "Inter-SemiBold",
   },
   cardBody: {
