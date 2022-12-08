@@ -8,12 +8,13 @@ import {
 import React, { useRef } from "react";
 
 import { SafeAreaView } from "react-native-safe-area-context";
-import { ProgressBar, Text } from "react-native-paper";
+import { Text } from "react-native-paper";
 import HeaderContainer from "../../components/molecules/HeaderContainer";
 import { scale, verticalScale } from "react-native-size-matters";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Swiper from "react-native-deck-swiper";
 import { useNavigation } from "@react-navigation/native";
+import CustomProgressBar from "../../components/atoms/CustomProgressBar";
 
 const DummyData = [
   {
@@ -69,7 +70,7 @@ const DummyData = [
     firstName: "Miguel Bracamonte",
     campaignName: "For Academic Books",
     camapaignDescription:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit vel quam vitae ultrices. Morbi tincidunt risus libero, eu feugiat nisi dictum eget. ",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit vel quam vitae ultrices. Morbi tincidunt risus libero, eu feugiat nisi dictum eget.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit vel quam vitae ultrices. Morbi tincidunt risus libero, eu feugiat nisi dictum eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. \n Duis hendrerit vel quam vitae ultrices. Morbi tincidunt risus libero, eu feugiat nisi dictum eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit vel quam vitae ultrices. Morbi tincidunt risus libero, eu feugiat nisi dictum eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit vel quam vitae ultrices. Morbi tincidunt risus libero, eu feugiat nisi dictum eget.  ",
     image: "https://picsum.photos/700",
     donationProgress: 0.9,
     verified: true,
@@ -94,6 +95,10 @@ export default function HomeScreen() {
       Name: cardData.firstName,
       Title: cardData.campaignName,
       Description: cardData.camapaignDescription,
+      verified: cardData.verified,
+      currentD: cardData.currentDonation,
+      targetD: cardData.targetDonation,
+      donationP: cardData.donationProgress,
     });
   };
 
@@ -175,17 +180,22 @@ export default function HomeScreen() {
                 </View>
                 <Image style={styles.image} source={{ uri: card.image }} />
                 <Text style={styles.cardTitle}>{card.campaignName}</Text>
-                <Text style={styles.cardDescription}>
+                <Text style={styles.cardDescription} numberOfLines={4}>
                   {card.camapaignDescription}
                 </Text>
 
-                <ProgressBar
+                {/* <ProgressBar
                   progress={card.donationProgress}
                   style={styles.progressBar}
                 />
                 <Text style={styles.cardDonationStatus}>
                   ₱{card.currentDonation} raised of ₱{card.targetDonation}
-                </Text>
+                </Text> */}
+                <CustomProgressBar
+                  targetDonation={card.targetDonation}
+                  currentDonation={card.currentDonation}
+                  donationProgress={card.donationProgress}
+                />
               </View>
             );
           }}
