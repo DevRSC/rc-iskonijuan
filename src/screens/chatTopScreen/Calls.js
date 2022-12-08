@@ -1,7 +1,5 @@
 import { StyleSheet, View } from "react-native";
-import React, { useEffect } from "react";
-import { Avatar, List, Text } from "react-native-paper";
-import { scale } from "react-native-size-matters";
+import React from "react";
 import CallListItem from "./CallListItem";
 import { FlashList } from "@shopify/flash-list";
 
