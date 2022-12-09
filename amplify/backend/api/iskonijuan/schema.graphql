@@ -73,7 +73,7 @@ type Swipes @model @auth(rules: [{allow: public}]) {
 type AdditionalInformation @model @auth(rules: [{allow: public}]) {
   id: ID!
   currentGeoLocation: String
-  interest: String
+  interest: [String]
   ethnicity: String
   fieldOfStudy: String
   typeOfScholarship: String
