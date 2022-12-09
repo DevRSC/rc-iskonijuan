@@ -6,7 +6,6 @@ import SigninScreen from "../screens/SigninScreen";
 import ForgotPassword from "../screens/ForgotPassword";
 import RequestPassword from "../screens/RequestPassword";
 import CreateNewPassword from "../screens/CreateNewPassword";
-import ModalScreen from "../components/molecules/ModalScreen";
 import SignupScreen from "../screens/signUp/SignupScreen";
 import SignupBenefactor from "../screens/signUp/SignupBenefactor";
 import SignupStudent from "../screens/signUp/SignupStudent";

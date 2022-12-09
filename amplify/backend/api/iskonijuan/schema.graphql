@@ -1,0 +1,103 @@
+type Organization @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  organizationMatches: [Matches] @hasMany(indexName: "byOrganization", fields: ["id"])
+  name: String
+  endDate: AWSDate
+  eligibilityLocation: String
+  availability: Boolean
+  typeOfScholarship: String
+  grant: String
+  website: AWSURL
+}
+
+type Matches @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  scholarinformationId: ID! @index(name: "byScholarInformation")
+  organizationId: ID! @index(name: "byOrganization")
+}
+
+type ScholarInformation @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  scholarId: ID! @index(name: "byScholar")
+  studentId: ID
+  currentGradeLevel: String
+  cumulativeGPA: Float
+  hsYearGraduated: AWSDate
+  upcomingCY: String
+  livingSituation: String
+  statusOfScholarshipApplication: String
+  scholarMatches: [Matches] @hasMany(indexName: "byScholarInformation", fields: ["id"])
+}
+
+type Campaign @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  campaignDonation: [Donation] @hasMany(indexName: "byCampaign", fields: ["id"])
+  scholarId: ID! @index(name: "byScholar")
+  campaignName: String
+  description: String
+  amountGoal: Int
+  startDate: AWSDate
+  endDate: AWSDate
+}
+
+type Donation @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  campaignId: ID! @index(name: "byCampaign")
+  benefactorId: ID! @index(name: "byBenefactor")
+  donatedOn: AWSTimestamp
+  amountDonated: Int
+}
+
+type Benefactor @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  #userId: ID! @index(name: "byUser")
+  userBenefactor: User @hasOne
+  benefactorDonation: [Donation] @hasMany(indexName: "byBenefactor", fields: ["id"])
+}
+
+type Scholar @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  #userId: ID! @index(name: "byUser")
+  userScholar: User @hasOne
+  scholarCampaign: [Campaign] @hasMany(indexName: "byScholar", fields: ["id"])
+  scholarScholarInformation: [ScholarInformation] @hasMany(indexName: "byScholar", fields: ["id"])
+}
+
+type Swipes @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  userId: ID! @index(name: "byUser")
+  targetd: ID
+  isLiked: Boolean
+}
+
+type AdditionalInformation @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  currentGeoLocation: String
+  interest: String
+  ethnicity: String
+  fieldOfStudy: String
+  typeOfScholarship: String
+  yearlyIncome: Int
+  employmentStatus: String
+}
+
+type User @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  username: String
+  email: AWSEmail
+  password: String
+  firstName: String
+  middleName: String
+  lastName: String
+  suffix: String
+  sex: String
+  address: String
+  placeOfBirth: String
+  birthDate: AWSDate
+  mobileNumber: AWSPhone
+  verified: Boolean
+  userAdditionalInformation: AdditionalInformation @hasOne
+  userSwipes: [Swipes] @hasMany(indexName: "byUser", fields: ["id"])
+  #userScholar: [Scholar] @hasMany(indexName: "byUser", fields: ["id"])
+  #userBenefactor: [Benefactor] @hasMany(indexName: "byUser", fields: ["id"])
+}
