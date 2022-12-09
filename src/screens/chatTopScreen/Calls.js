@@ -142,6 +142,7 @@ export default function Calls() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#FDFCFB",
   },
 
   separator: {

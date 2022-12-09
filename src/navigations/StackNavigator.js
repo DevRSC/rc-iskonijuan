@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
 import { View, ActivityIndicator } from "react-native";
 import WelcomeScreen from "../screens/WelcomeScreen";
 import SigninScreen from "../screens/SigninScreen";
+import Profile from "../screens/bottomScreens/ProfileStackScreens/Profile";
 import ForgotPassword from "../screens/ForgotPassword";
 import RequestPassword from "../screens/RequestPassword";
 import CreateNewPassword from "../screens/CreateNewPassword";
@@ -18,54 +20,104 @@ import SignupAdditionalInfo from "../screens/signUp/SignupAdditionalInfo";
 import BottomNavigator from "./BottomNavigator";
 
 import { Auth, Hub } from "aws-amplify";
-import HomeScreen from "../screens/bottomScreens/HomeScreen";
+import { scale, verticalScale } from "react-native-size-matters";
 const AuthStack = createNativeStackNavigator();
 
+const ProfileStack = createNativeStackNavigator();
+const ProfileStackScreen = () => {
+  return (
+    <ProfileStack.Navigator
+      screenOptions={{
+        headerShadowVisible: false,
+        contentStyle: {
+          marginTop: verticalScale(50),
+        },
+        headerTitleStyle: {
+          fontFamily: "Inter-Medium",
+          fontSize: scale(20),
+        },
+        headerStyle: {
+          backgroundColor: "#FDFCFB",
+        },
+        headerTitleAlign: "center",
+      }}
+    >
+      <ProfileStack.Screen
+        name='ProfileStackScreen'
+        component={Profile}
+        options={{
+          title: "Profile",
+        }}
+      />
+    </ProfileStack.Navigator>
+  );
+};
+
+//create stack screen for user profile
+
 export default function StackNavigator() {
-  const [user, setUser] = useState(false);
+  const [user, setUser] = useState(undefined);
 
-  // const checkUser = async () => {
-  //   try {
-  //     const authUser = await Auth.currentAuthenticatedUser({
-  //       bypassCache: true,
-  //     });
-  //     setUser(authUser);
-  //   } catch (e) {
-  //     setUser(null);
-  //   }
-  // };
+  const checkUser = async () => {
+    try {
+      const authUser = await Auth.currentAuthenticatedUser({
+        bypassCache: true,
+      });
+      setUser(authUser);
+    } catch (e) {
+      setUser(null);
+    }
+  };
 
-  // useEffect(() => {
-  //   checkUser();
-  // }, []);
+  useEffect(() => {
+    checkUser();
+  }, []);
 
-  // useEffect(() => {
-  //   const listener = (data) => {
-  //     if (data.payload.event === "signIn") {
-  //       checkUser();
-  //     }
-  //   };
-  //   Hub.listen("auth", listener);
-  //   return () => Hub.remove("auth", listener);
-  // }, []);
+  useEffect(() => {
+    const authListener = Hub.listen("auth", (data) => {
+      switch (data.payload.event) {
+        case "signIn":
+          return checkUser();
+        case "signOut":
+          return setUser(null);
+      }
+    });
+    return () => Hub.remove("auth", authListener);
+  }, []);
 
-  // if (user === undefined) {
-  //   return (
-  //     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-  //       <ActivityIndicator />
-  //     </View>
-  //   );
-  // }
+  useEffect(() => {
+    const listener = (data) => {
+      if (data.payload.event === "signIn") {
+        checkUser();
+      }
+    };
+    Hub.listen("auth", listener);
+    return () => Hub.remove("auth", listener);
+  }, []);
+
+  if (user === undefined) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator />
+      </View>
+    );
+  }
 
   return (
     <AuthStack.Navigator
-      initialRouteName='SignUpAdditionalInfo'
+      initialRouteName='Welcome'
       screenOptions={{
         headerShown: false,
       }}
     >
       {user ? (
-        <AuthStack.Screen name='BottomNavigator' component={BottomNavigator} />
+        <>
+          <AuthStack.Screen
+            name='BottomNavigator'
+            component={BottomNavigator}
+          />
+          <AuthStack.Screen name='Profile' component={ProfileStackScreen} />
+        </>
       ) : (
         <>
           <AuthStack.Screen name='Welcome' component={WelcomeScreen} />

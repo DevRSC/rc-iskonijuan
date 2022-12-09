@@ -1,8 +1,10 @@
 import { StyleSheet, TouchableOpacity, View, Image } from "react-native";
 import { Avatar } from "react-native-paper";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
 export default function HeaderContainer() {
+  const navigation = useNavigation();
   return (
     <View style={styles.HeaderContainer}>
       <TouchableOpacity>
@@ -11,7 +13,11 @@ export default function HeaderContainer() {
           source={require("../../../assets/images/logo-nobg.png")}
         />
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate("Profile");
+        }}
+      >
         <Avatar.Image
           size={35}
           source={{
@@ -29,6 +35,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     padding: 16,
+    backgroundColor: "#FDFCFB",
   },
   logoImage: {
     width: 125,

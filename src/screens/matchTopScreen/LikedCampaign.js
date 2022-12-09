@@ -49,25 +49,23 @@ const Dummy_Data = [
 
 const renderItem = ({ item }) => (
   <View>
-    <View>
-      <Card mode='elevated' elevation={2} style={styles.card}>
-        <Card.Content style={styles.cardContent}>
-          <Image source={{ uri: item.image }} style={styles.image} />
-          <View style={styles.cardText}>
-            <Text style={styles.title}>{item.name}</Text>
-            <Text style={styles.description} numberOfLines={3}>
-              {item.description}
-            </Text>
-          </View>
-        </Card.Content>
-      </Card>
-    </View>
+    <Card mode='elevated' elevation={2} style={styles.card}>
+      <Card.Content style={styles.cardContent}>
+        <Image source={{ uri: item.image }} style={styles.image} />
+        <View style={styles.cardText}>
+          <Text style={styles.title}>{item.name}</Text>
+          <Text style={styles.description} numberOfLines={3}>
+            {item.description}
+          </Text>
+        </View>
+      </Card.Content>
+    </Card>
   </View>
 );
 
 export default function LikedCampaign() {
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: "#FDFCFB" }}>
       <View
         style={{
           height: height * 0.7,
@@ -77,6 +75,7 @@ export default function LikedCampaign() {
           data={Dummy_Data}
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
+          style={{ backgroundColor: "#FFFFFF" }}
         />
       </View>
     </View>

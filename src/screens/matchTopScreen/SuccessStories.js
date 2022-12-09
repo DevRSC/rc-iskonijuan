@@ -67,7 +67,7 @@ const renderItem = ({ item }) => (
 
 export default function SuccessStories() {
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: "#FDFCFB" }}>
       <View
         style={{
           height: height * 0.7,
