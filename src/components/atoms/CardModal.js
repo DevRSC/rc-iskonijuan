@@ -4,11 +4,11 @@ import Animated, { BounceIn } from "react-native-reanimated";
 import { Text } from "react-native-paper";
 import { scale, verticalScale } from "react-native-size-matters";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import CustomProgressBar from "../atoms/CustomProgressBar";
+import CustomProgressBar from "./CustomProgressBar";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
 
-import LoginButton from "../atoms/LoginButton";
+import LoginButton from "./LoginButton";
 
 export default function CardModal() {
   const navigation = useNavigation();

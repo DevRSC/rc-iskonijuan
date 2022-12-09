@@ -6,12 +6,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { DefaultTheme as NavigationDefaultTheme } from "@react-navigation/native";
 import Ionicon from "react-native-vector-icons/Ionicons";
 
-//import amplify
-// import { Amplify, Auth } from "aws-amplify";
-// import awsconfig from "./src/aws-exports";
-
-//import authenticator
-//import { withAuthenticator, AmplifyTheme } from "aws-amplify-react-native";
+import { Amplify, Auth } from "aws-amplify";
+import awsconfig from "./src/aws-exports";
 
 //import Themes
 import {
@@ -67,9 +63,9 @@ const combinedDefaultTheme = {
   },
 };
 
-//Configure amplify
-// Amplify.configure(awsconfig);
-// Auth.configure(awsconfig);
+// Configure amplify
+Amplify.configure(awsconfig);
+Auth.configure(awsconfig);
 
 function App() {
   const [fontsLoaded] = useFonts({

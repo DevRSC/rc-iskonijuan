@@ -87,7 +87,7 @@ const DATA = [
 const renderItem = ({ item }) => (
   <List.Item
     onPress={() => {
-      console.log("Pressed");
+      console.log("Current Item: ", item);
     }}
     title={
       <View style={[styles.listTitle, item.viewed ? "#2B283A" : "#918E9B"]}>
@@ -118,6 +118,7 @@ export default function NotificationScreen() {
       <HeaderContainer />
       <SectionList
         sections={DATA}
+        keyExtractor={(item, index) => item + index}
         renderItem={renderItem}
         renderSectionHeader={({ section: { title } }) => (
           <Text style={styles.header}>{title}</Text>
