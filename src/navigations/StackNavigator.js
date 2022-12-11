@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { View, ActivityIndicator } from "react-native";
-import WelcomeScreen from "../screens/WelcomeScreen";
-import SigninScreen from "../screens/SigninScreen";
+import WelcomeScreen from "../screens/signIn/WelcomeScreen";
+import SigninScreen from "../screens/signIn/SigninScreen";
 import Profile from "../screens/bottomScreens/ProfileStackScreens/Profile";
-import ForgotPassword from "../screens/ForgotPassword";
-import RequestPassword from "../screens/RequestPassword";
-import CreateNewPassword from "../screens/CreateNewPassword";
+import ForgotPassword from "../screens/signIn/ForgotPassword";
+import RequestPassword from "../screens/signIn/RequestPassword";
+import CreateNewPassword from "../screens/signIn/CreateNewPassword";
 
 import SignupScreen from "../screens/signUp/SignupScreen";
 import SignupBenefactor from "../screens/signUp/SignupBenefactor";
@@ -20,10 +20,14 @@ import SignupAdditionalInfo from "../screens/signUp/SignupAdditionalInfo";
 import Test from "./Test";
 import CardModal from "../components/atoms/CardModal";
 
+import LikedCampaignModal from "../screens/matchTopScreen/matchscreenStack/LikedCampaignModal";
+import SuccessStoryModal from "../screens/matchTopScreen/matchscreenStack/SuccessStoryModal";
+
 import BottomNavigator from "./BottomNavigator";
 
 import { Auth, Hub } from "aws-amplify";
 import { scale, verticalScale } from "react-native-size-matters";
+
 const AuthStack = createNativeStackNavigator();
 
 const ProfileStack = createNativeStackNavigator();
@@ -33,7 +37,7 @@ const ProfileStackScreen = () => {
       screenOptions={{
         headerShadowVisible: false,
         contentStyle: {
-          marginTop: verticalScale(50),
+          // marginTop: verticalScale(50),
         },
         headerTitleStyle: {
           fontFamily: "Inter-Medium",
@@ -53,6 +57,44 @@ const ProfileStackScreen = () => {
         }}
       />
     </ProfileStack.Navigator>
+  );
+};
+
+const MatchStack = createNativeStackNavigator();
+const MatchStackScreen = () => {
+  return (
+    <MatchStack.Navigator
+      screenOptions={{
+        headerShadowVisible: false,
+        contentStyle: {
+          height: verticalScale(100),
+          marginTop: verticalScale(50),
+        },
+        headerTitleStyle: {
+          fontFamily: "Inter-Medium",
+          fontSize: scale(20),
+        },
+        headerStyle: {
+          backgroundColor: "#FDFCFB",
+        },
+        headerTitleAlign: "flex-start",
+      }}
+    >
+      <MatchStack.Screen
+        name='LikedCampaignModal'
+        component={LikedCampaignModal}
+        options={{
+          title: "Liked Campaign",
+        }}
+      />
+      <MatchStack.Screen
+        name='SuccessStoryModal'
+        component={SuccessStoryModal}
+        options={{
+          title: "Success Story",
+        }}
+      />
+    </MatchStack.Navigator>
   );
 };
 
@@ -131,6 +173,10 @@ export default function StackNavigator() {
                   headerShown: false,
                   presentation: "transparentModal",
                 }}
+              />
+              <AuthStack.Screen
+                name='MatchStackScreen'
+                component={MatchStackScreen}
               />
             </>
           ) : (

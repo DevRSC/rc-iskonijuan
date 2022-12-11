@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { StyleSheet, View, TouchableOpacity, Alert } from "react-native";
 import { s, scale, verticalScale } from "react-native-size-matters";
 import { Text, TextInput } from "react-native-paper";
-import LoginButton from "../components/atoms/LoginButton";
+import LoginButton from "../../components/atoms/LoginButton";
 import { useNavigation } from "@react-navigation/native";
 import { useForm } from "react-hook-form";
 import Animated, { BounceInUp } from "react-native-reanimated";
-import SigninHeader from "../components/molecules/SigninHeader";
-import CustomInput from "../components/CustomInput";
+import SigninHeader from "../../components/molecules/SigninHeader";
+import CustomInput from "../../components/CustomInput";
 import { Auth } from "aws-amplify";
 
 export default function CreateNewPassword() {

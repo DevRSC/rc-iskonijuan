@@ -1,13 +1,11 @@
 import React from "react";
-import { StyleSheet, View, Image } from "react-native";
-import { Card, Text } from "react-native-paper";
-import { scale } from "react-native-size-matters";
+import { View } from "react-native";
 import { FlashList } from "@shopify/flash-list";
 import LikedCampaignListItem from "./LikedCampaignListItem";
-
 import { Dimensions } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
-const { width, height } = Dimensions.get("window");
+const { height } = Dimensions.get("window");
 
 const Dummy_Data = [
   {
@@ -50,8 +48,15 @@ const Dummy_Data = [
 ];
 
 export default function LikedCampaign() {
+  const navigation = useNavigation();
+
+  const handlePress = () => {
+    navigation.navigate("MatchStackScreen", {
+      screen: "LikedCampaignModal",
+    });
+  };
   return (
-    <View style={{ flex: 1, backgroundColor: "#FDFCFB" }}>
+    <View style={{ flex: 1 }}>
       <View
         style={{
           height: height * 0.7,
@@ -65,12 +70,13 @@ export default function LikedCampaign() {
               name={item.name}
               image={item.image}
               description={item.description}
+              onPress={handlePress}
             />
           )}
           keyExtractor={(item) => item.id}
           estimatedItemSize={100}
           contentContainerStyle={{
-            backgroundColor: "#FFFFFF",
+            backgroundColor: "#FDFCFB",
           }}
         />
       </View>

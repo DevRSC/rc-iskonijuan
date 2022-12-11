@@ -2,7 +2,7 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { Dimensions } from "react-native";
-import { scale, verticalScale } from "react-native-size-matters";
+import { scale } from "react-native-size-matters";
 
 import Test from "./Test";
 
@@ -22,14 +22,6 @@ const LikedStackScreen = () => {
       }}
     >
       <LikedStack.Screen name='LikedStackScreen' component={LikedCampaign} />
-
-      <LikedStack.Screen
-        name='Test'
-        component={Test}
-        options={{
-          title: "Test",
-        }}
-      />
     </LikedStack.Navigator>
   );
 };
@@ -38,6 +30,7 @@ const SuccessStack = createNativeStackNavigator();
 const SuccessStackScreen = () => {
   return (
     <SuccessStack.Navigator
+      initialRouteName='SuccessStackScreen'
       screenOptions={{
         headerShown: false,
       }}
@@ -45,9 +38,6 @@ const SuccessStackScreen = () => {
       <SuccessStack.Screen
         name='SuccessStackScreen'
         component={SuccessStories}
-        options={{
-          title: "Success Stories",
-        }}
       />
     </SuccessStack.Navigator>
   );
@@ -75,7 +65,13 @@ export default function MatchTopNavigator() {
         },
       }}
     >
-      <topTab.Screen name='Liked Campaign' component={LikedStackScreen} />
+      <topTab.Screen
+        name='Liked Screen'
+        options={{
+          title: "Liked Campaigns",
+        }}
+        component={LikedStackScreen}
+      />
       <topTab.Screen name='Success Stories' component={SuccessStackScreen} />
       {/* <topTab.Screen name='Liked Campaign' component={Campaign} />
       <topTab.Screen name='Success Stories' component={Stories} /> */}

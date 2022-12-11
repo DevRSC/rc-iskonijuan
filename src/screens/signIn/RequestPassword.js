@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import { scale, verticalScale } from "react-native-size-matters";
 import { Text } from "react-native-paper";
-import LoginButton from "../components/atoms/LoginButton";
+import LoginButton from "../../components/atoms/LoginButton";
 import { useNavigation } from "@react-navigation/native";
 import { useForm } from "react-hook-form";
 import Animated, { BounceInUp } from "react-native-reanimated";
@@ -29,14 +29,14 @@ export default function RequestPassword() {
       <View style={styles.inner}>
         <View style={styles.imageContainer}>
           <Image
-            source={require("../../assets/images/logo-nobg.png")}
+            source={require("../../../assets/images/logo-nobg.png")}
             style={styles.imageIcon}
           />
         </View>
 
         <Animated.View entering={BounceInUp} style={styles.iconContainer}>
           <Image
-            source={require("../../assets/images/Frame.png")}
+            source={require("../../../assets/images/Frame.png")}
             style={{ width: scale(85), height: scale(85) }}
           />
         </Animated.View>

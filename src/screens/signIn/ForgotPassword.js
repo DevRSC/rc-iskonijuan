@@ -7,12 +7,12 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native";
-import SigninHeader from "../components/molecules/SigninHeader";
+import SigninHeader from "../../components/molecules/SigninHeader";
 import { scale, verticalScale } from "react-native-size-matters";
 import { Text } from "react-native-paper";
 import { useForm } from "react-hook-form";
-import CustomInput from "../components/CustomInput/CustomInput";
-import LoginButton from "../components/atoms/LoginButton";
+import CustomInput from "../../components/CustomInput/CustomInput";
+import LoginButton from "../../components/atoms/LoginButton";
 import { useNavigation } from "@react-navigation/native";
 import { Auth } from "aws-amplify";
 
