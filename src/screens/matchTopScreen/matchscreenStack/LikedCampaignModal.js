@@ -4,10 +4,12 @@ import React from "react";
 import { scale, verticalScale } from "react-native-size-matters";
 import LoginButton from "../../../components/atoms/LoginButton";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useNavigation } from "@react-navigation/native";
 
 const { width, height } = Dimensions.get("window");
 
 export default function LikedCampaignModal() {
+  const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -48,7 +50,7 @@ export default function LikedCampaignModal() {
                 style={styles.donateButton}
                 title='Donate'
                 onPress={() => {
-                  console.log("Donate");
+                  navigation.navigate("Donate");
                 }}
               />
               <LoginButton
