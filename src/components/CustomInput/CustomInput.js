@@ -28,6 +28,7 @@ const CustomInput = ({
           <View>
             <TextInput
               {...props}
+              keyboardType={type === "number" ? "numeric" : "default"}
               mode='outlined'
               label={placeholder}
               value={value}
