@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { View, ActivityIndicator } from "react-native";
+import Test from "./Test";
 import WelcomeScreen from "../screens/signIn/WelcomeScreen";
 import SigninScreen from "../screens/signIn/SigninScreen";
 import Profile from "../screens/bottomScreens/ProfileStackScreens/Profile";
@@ -15,13 +16,14 @@ import SignupStudent from "../screens/signUp/SignupStudent";
 import SignupOrganization from "../screens/signUp/SignupOrganization";
 import SignupContacts from "../screens/signUp/SignupContacts";
 import SignupVerify from "../screens/signUp/SignupVerify";
-import ModalScreen from "../components/molecules/ModalScreen";
 import SignupAdditionalInfo from "../screens/signUp/SignupAdditionalInfo";
-import Test from "./Test";
-import CardModal from "../components/atoms/CardModal";
 
 import LikedCampaignModal from "../screens/matchTopScreen/matchscreenStack/LikedCampaignModal";
 import SuccessStoryModal from "../screens/matchTopScreen/matchscreenStack/SuccessStoryModal";
+import CardModal from "../components/atoms/CardModal";
+import ModalScreen from "../components/molecules/ModalScreen";
+
+import Donate from "../screens/benefactor/Donate";
 
 import BottomNavigator from "./BottomNavigator";
 
@@ -66,10 +68,7 @@ const MatchStackScreen = () => {
     <MatchStack.Navigator
       screenOptions={{
         headerShadowVisible: false,
-        contentStyle: {
-          height: verticalScale(100),
-          marginTop: verticalScale(50),
-        },
+
         headerTitleStyle: {
           fontFamily: "Inter-Medium",
           fontSize: scale(20),
@@ -177,6 +176,24 @@ export default function StackNavigator() {
               <AuthStack.Screen
                 name='MatchStackScreen'
                 component={MatchStackScreen}
+              />
+
+              <AuthStack.Screen
+                name='Donate'
+                component={Donate}
+                options={{
+                  headerShown: true,
+
+                  headerShadowVisible: false,
+                  title: "Donate",
+                  headerTitleStyle: {
+                    fontFamily: "Inter-Medium",
+                    fontSize: scale(20),
+                  },
+                  headerStyle: {
+                    backgroundColor: "#FDFCFB",
+                  },
+                }}
               />
             </>
           ) : (
