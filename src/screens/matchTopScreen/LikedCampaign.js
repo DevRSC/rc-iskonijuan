@@ -51,8 +51,8 @@ export default function LikedCampaign() {
   const navigation = useNavigation();
 
   const handlePress = () => {
-    navigation.navigate("MatchStackScreen", {
-      screen: "LikedCampaignModal",
+    navigation.navigate("DonateStack", {
+      screen: "Donate",
     });
   };
   return (
