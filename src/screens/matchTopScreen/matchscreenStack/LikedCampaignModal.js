@@ -50,7 +50,7 @@ export default function LikedCampaignModal() {
                 style={styles.donateButton}
                 title='Donate'
                 onPress={() => {
-                  navigation.navigate("Donate");
+                  navigation.navigate("DonateStack");
                 }}
               />
               <LoginButton
