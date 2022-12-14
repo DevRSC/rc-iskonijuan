@@ -23,7 +23,7 @@ import SuccessStoryModal from "../screens/matchTopScreen/matchscreenStack/Succes
 import CardModal from "../components/atoms/CardModal";
 import ModalScreen from "../components/molecules/ModalScreen";
 
-import Donate from "../screens/benefactor/Donate";
+import DonateStack from "./Stack/DonateStack";
 
 import BottomNavigator from "./BottomNavigator";
 
@@ -177,24 +177,7 @@ export default function StackNavigator() {
                 name='MatchStackScreen'
                 component={MatchStackScreen}
               />
-
-              <AuthStack.Screen
-                name='Donate'
-                component={Donate}
-                options={{
-                  headerShown: true,
-
-                  headerShadowVisible: false,
-                  title: "Donate",
-                  headerTitleStyle: {
-                    fontFamily: "Inter-Medium",
-                    fontSize: scale(20),
-                  },
-                  headerStyle: {
-                    backgroundColor: "#FDFCFB",
-                  },
-                }}
-              />
+              <AuthStack.Screen name='DonateStack' component={DonateStack} />
             </>
           ) : (
             <AuthStack.Screen name='Test' component={Test} />
