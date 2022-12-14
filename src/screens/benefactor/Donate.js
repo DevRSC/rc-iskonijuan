@@ -163,8 +163,9 @@ export default function Donate() {
           style={styles.button}
           title='Pay and Confirm'
           onPress={handleSubmit(() => {
-            handleSelected(null);
-            navigation.navigate("BenefactorHome");
+            navigation.navigate("DonateStack", {
+              screen: "DonateConfirmation",
+            });
           })}
         />
       </View>
