@@ -34,11 +34,22 @@ export default function SignupBenefactor() {
 
   const pwd = watch("password");
   const onNextPressed = (data) => {
-    const { firstName, lastName, email, password, username } = data;
+    const {
+      firstName,
+      middleName,
+      lastName,
+      suffix,
+      email,
+      password,
+      username,
+    } = data;
     try {
+      console.log("data", data);
       navigation.navigate("SignUpContacts", {
         firstName,
+        middleName,
         lastName,
+        suffix,
         email,
         password,
         username,
@@ -53,12 +64,14 @@ export default function SignupBenefactor() {
     navigation.navigate("SignIn");
   };
 
+  console.log("userType", userType);
+
   const EMAIL_REGEX =
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
   return (
-    <View style={styles.container}>
-      <ScrollView keyboardShouldPersistTaps='handled'>
+    <ScrollView keyboardShouldPersistTaps='handled'>
+      <View style={styles.container}>
         <View style={styles.imageContainer}>
           <Image
             source={require("../../../assets/images/logo-nobg.png")}
@@ -69,27 +82,39 @@ export default function SignupBenefactor() {
           <View style={styles.inner}>
             <View style={styles.signinContainer}>
               <Text style={styles.signinText}>Sign Up</Text>
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
+
+              <CustomInput
+                placeholder='First Name'
+                name='firstName'
+                control={control}
+                rules={{ required: "First Name is required" }}
+                style={styles.textCredential}
+              />
+
+              <CustomInput
+                placeholder='Middle Name'
+                name='middleName'
+                control={control}
+                rules={{ required: "Middle Name is required" }}
+                style={styles.textCredential}
+              />
+
+              <CustomInput
+                placeholder='Last Name'
+                name='lastName'
+                control={control}
+                rules={{ required: "Last Name is required" }}
+                style={styles.textCredential}
+              />
+              <CustomInput
+                placeholder='Suffix'
+                name='suffix'
+                control={control}
+                rules={{
+                  required: false,
                 }}
-              >
-                <CustomInput
-                  placeholder='First Name'
-                  name='firstName'
-                  control={control}
-                  rules={{ required: "First Name is required" }}
-                  style={styles.textInput}
-                />
-                <CustomInput
-                  placeholder='Last Name'
-                  name='lastName'
-                  control={control}
-                  rules={{ required: "Last Name is required" }}
-                  style={styles.textInput}
-                />
-              </View>
+                style={styles.textCredential}
+              />
 
               <CustomInput
                 placeholder='Username'
@@ -210,8 +235,8 @@ export default function SignupBenefactor() {
             </View>
           </View>
         </TouchableWithoutFeedback>
-      </ScrollView>
-    </View>
+      </View>
+    </ScrollView>
   );
 }
 
@@ -223,7 +248,7 @@ const styles = StyleSheet.create({
   inner: {
     alignItems: "center",
     padding: 16,
-    height: 735,
+    height: 1000,
   },
   imageIcon: {
     width: scale(281),
@@ -243,7 +268,7 @@ const styles = StyleSheet.create({
     color: "#F55A5A",
     fontSize: scale(24),
     fontWeight: "700",
-    paddingBottom: verticalScale(30),
+    paddingBottom: verticalScale(15),
   },
   textInput: {
     fontSize: scale(16),
