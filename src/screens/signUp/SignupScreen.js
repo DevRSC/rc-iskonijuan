@@ -27,11 +27,11 @@ export default function SignupScreen() {
 
   const handleNavigation = (selected) => {
     if (selected === "first") {
-      navigation.navigate("SignUpBenefactor", {
+      navigation.navigate("SignUpForm", {
         userType: "Student",
       });
     } else if (selected === "second") {
-      navigation.navigate("SignUpBenefactor", {
+      navigation.navigate("SignUpForm", {
         userType: "Benefactor",
       });
     }
