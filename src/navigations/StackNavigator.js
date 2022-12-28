@@ -11,7 +11,7 @@ import RequestPassword from "../screens/signIn/RequestPassword";
 import CreateNewPassword from "../screens/signIn/CreateNewPassword";
 
 import SignupScreen from "../screens/signUp/SignupScreen";
-import SignupBenefactor from "../screens/signUp/SignupBenefactor";
+import SignupForm from "../screens/signUp/SignupForm";
 import SignupStudent from "../screens/signUp/SignupStudent";
 import SignupOrganization from "../screens/signUp/SignupOrganization";
 import SignupContacts from "../screens/signUp/SignupContacts";
@@ -22,6 +22,7 @@ import LikedCampaignModal from "../screens/matchTopScreen/matchscreenStack/Liked
 import SuccessStoryModal from "../screens/matchTopScreen/matchscreenStack/SuccessStoryModal";
 import CardModal from "../components/atoms/CardModal";
 import ModalScreen from "../components/molecules/ModalScreen";
+import ModalInstruction from "../components/molecules/ModalInstruction";
 
 import DonateStack from "./Stack/DonateStack";
 
@@ -97,22 +98,22 @@ const MatchStackScreen = () => {
   );
 };
 
-//create stack screen for user profile
+//create stack screen for logged profile
 
 export default function StackNavigator() {
-  const [user, setUser] = useState(undefined);
-  const [userType, setUserType] = useState(undefined);
+  const [logged, isLogged] = useState(null);
+  const [userType, setUserType] = useState(null);
 
   const checkUser = async () => {
     try {
       const authUser = await Auth.currentAuthenticatedUser({
         bypassCache: true,
       });
-      setUser(authUser);
+      isLogged(authUser);
       setUserType(authUser.attributes["custom:userType"]);
       console.log("userType", userType);
     } catch (e) {
-      setUser(null);
+      isLogged(null);
     }
   };
 
@@ -126,7 +127,7 @@ export default function StackNavigator() {
         case "signIn":
           return checkUser();
         case "signOut":
-          return setUser(null);
+          return isLogged(null);
       }
     });
     return () => Hub.remove("auth", authListener);
@@ -142,7 +143,7 @@ export default function StackNavigator() {
     return () => Hub.remove("auth", listener);
   }, []);
 
-  if (user === undefined) {
+  if (logged === null) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <ActivityIndicator />
@@ -157,7 +158,7 @@ export default function StackNavigator() {
         headerShown: false,
       }}
     >
-      {user ? (
+      {logged ? (
         <>
           {userType === "Benefactor" ? (
             <>
@@ -171,6 +172,13 @@ export default function StackNavigator() {
                 options={{
                   headerShown: false,
                   presentation: "transparentModal",
+                }}
+              />
+              <AuthStack.Screen
+                name='ModalInstruction'
+                component={ModalInstruction}
+                options={{
+                  headerShown: false,
                 }}
               />
               <AuthStack.Screen
@@ -200,10 +208,7 @@ export default function StackNavigator() {
           <AuthStack.Group>
             <AuthStack.Screen name='SignUp' component={SignupScreen} />
             <AuthStack.Screen name='SignUpStudent' component={SignupStudent} />
-            <AuthStack.Screen
-              name='SignUpBenefactor'
-              component={SignupBenefactor}
-            />
+            <AuthStack.Screen name='SignUpForm' component={SignupForm} />
             <AuthStack.Screen
               name='SignUpOrganization'
               component={SignupOrganization}
