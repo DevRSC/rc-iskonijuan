@@ -1,12 +1,12 @@
 type Organization @model @auth(rules: [{allow: owner}]) {
   id: ID!
   organizationMatches: [Matches] @hasMany(indexName: "byOrganization", fields: ["id"])
-  name: String!
+  name: String
   endDate: AWSDate
-  eligibilityLocation: String!
-  availability: availabilityEnum!
-  typeOfScholarship: String!
-  website: AWSURL!
+  eligibilityLocation: String
+  availability: availabilityEnum
+  typeOfScholarship: String
+  website: AWSURL
 }
 
 enum typeOfScholarshipEnum {
@@ -30,11 +30,12 @@ type Matches @model @auth(rules: [{allow: owner}]) {
 type ScholarInformation @model @auth(rules: [{allow: owner}]) {
   id: ID!
   scholarId: ID! @index(name: "byScholar")
-  studentId: ID!
-  currentGradeLevel: String!
-  cumulativeGPA: Float!
-  hsYearGraduated: AWSDate!
-  upcomingCY: String!
+  studentId: ID
+  corImage: String
+  currentGradeLevel: String
+  cumulativeGPA: Float
+  hsYearGraduated: AWSDate
+  upcomingCY: String
   statusOfScholarshipApplication: statusOfScholarshipApplicationEnum
   scholarMatches: [Matches] @hasMany(indexName: "byScholarInformation", fields: ["id"])
 }
@@ -49,19 +50,19 @@ type Campaign @model @auth(rules: [{allow: owner}]) {
   id: ID!
   campaignDonation: [Donation] @hasMany(indexName: "byCampaign", fields: ["id"])
   scholarId: ID! @index(name: "byScholar")
-  campaignName: String!
-  description: String!
-  amountGoal: Int!
-  startDate: AWSDate!
-  endDate: AWSDate!
+  campaignName: String
+  description: String
+  amountGoal: Int
+  startDate: AWSDate
+  endDate: AWSDate
 }
 
 type Donation @model @auth(rules: [{allow: owner}]) {
   id: ID!
-  campaignId: ID! @index(name: "byCampaign")
-  benefactorId: ID! @index(name: "byBenefactor")
-  donatedOn: AWSTimestamp!
-  amountDonated: Int!
+  campaignId: ID @index(name: "byCampaign")
+  benefactorId: ID @index(name: "byBenefactor")
+  donatedOn: AWSTimestamp
+  amountDonated: Int
 }
 
 type Benefactor @model @auth(rules: [{allow: owner}]) {
@@ -88,13 +89,13 @@ type Swipes @model @auth(rules: [{allow: owner}]) {
 
 type AdditionalInformation @model @auth(rules: [{allow: owner}]) {
   id: ID!
-  currentGeoLocation: String!
-  interest: [String]!
-  ethnicity: String!
-  fieldOfStudy: String!
-  typeOfScholarship: String!
-  yearlyIncome: Int!
-  employmentStatus: employmentStatusEnum!
+  currentGeoLocation: String
+  interest: [String]
+  ethnicity: String
+  fieldOfStudy: String
+  typeOfScholarship: String
+  yearlyIncome: Int
+  employmentStatus: employmentStatusEnum
 }
 
 enum employmentStatusEnum{
@@ -107,18 +108,17 @@ type User @model @auth(rules: [{allow: owner}]) {
   id: ID!
   username: String!
   email: AWSEmail!
-  password: String!
-  firstName: String!
-  middleName: String!
-  lastName: String!
-  suffix: String!
-  sex: String!
-  address: String!
-  nationality: String!
+  firstName: String
+  middleName: String
+  lastName: String
+  suffix: String
+  sex: String
+  address: String
+  nationality: String
   typeOfDisability: String
-  placeOfBirth: String!
-  birthDate: AWSDate!
-  mobileNumber: AWSPhone!
+  placeOfBirth: String
+  birthDate: AWSDate
+  mobileNumber: AWSPhone
   verified: Boolean
   userAdditionalInformation: AdditionalInformation @hasOne
   userSwipes: [Swipes] @hasMany(indexName: "byUser", fields: ["id"])

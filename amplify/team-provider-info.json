@@ -22,6 +22,16 @@
       },
       "api": {
         "iskonijuan": {}
+      },
+      "function": {
+        "cognitoUsersToDynamoDB": {
+          "deploymentBucketName": "amplify-iskonijuan-staging-53239-deployment",
+          "s3Key": "amplify-builds/cognitoUsersToDynamoDB-344a7a4e794851765651-build.zip"
+        },
+        "userConfirmSignUp": {
+          "deploymentBucketName": "amplify-iskonijuan-staging-53239-deployment",
+          "s3Key": "amplify-builds/userConfirmSignUp-557a2f327856632f6a32-build.zip"
+        }
       }
     }
   }

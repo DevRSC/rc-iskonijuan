@@ -33,5 +33,19 @@
         }
       }
     }
+  },
+  "function": {
+    "cognitoUsersToDynamoDB": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": []
+    },
+    "userConfirmSignUp": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": []
+    }
   }
 }
