@@ -2,25 +2,35 @@ import React, { useEffect, useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { View, ActivityIndicator } from "react-native";
-import WelcomeScreen from "../screens/WelcomeScreen";
-import SigninScreen from "../screens/SigninScreen";
+import Test from "./Test";
+import WelcomeScreen from "../screens/signIn/WelcomeScreen";
+import SigninScreen from "../screens/signIn/SigninScreen";
 import Profile from "../screens/bottomScreens/ProfileStackScreens/Profile";
-import ForgotPassword from "../screens/ForgotPassword";
-import RequestPassword from "../screens/RequestPassword";
-import CreateNewPassword from "../screens/CreateNewPassword";
+import ForgotPassword from "../screens/signIn/ForgotPassword";
+import RequestPassword from "../screens/signIn/RequestPassword";
+import CreateNewPassword from "../screens/signIn/CreateNewPassword";
+
 import SignupScreen from "../screens/signUp/SignupScreen";
-import SignupBenefactor from "../screens/signUp/SignupBenefactor";
+import SignupForm from "../screens/signUp/SignupForm";
 import SignupStudent from "../screens/signUp/SignupStudent";
 import SignupOrganization from "../screens/signUp/SignupOrganization";
 import SignupContacts from "../screens/signUp/SignupContacts";
 import SignupVerify from "../screens/signUp/SignupVerify";
-import ModalScreen from "../components/molecules/ModalScreen";
 import SignupAdditionalInfo from "../screens/signUp/SignupAdditionalInfo";
+
+import LikedCampaignModal from "../screens/matchTopScreen/matchscreenStack/LikedCampaignModal";
+import SuccessStoryModal from "../screens/matchTopScreen/matchscreenStack/SuccessStoryModal";
+import CardModal from "../components/atoms/CardModal";
+import ModalScreen from "../components/molecules/ModalScreen";
+import ModalInstruction from "../components/molecules/ModalInstruction";
+
+import DonateStack from "./Stack/DonateStack";
 
 import BottomNavigator from "./BottomNavigator";
 
 import { Auth, Hub } from "aws-amplify";
 import { scale, verticalScale } from "react-native-size-matters";
+
 const AuthStack = createNativeStackNavigator();
 
 const ProfileStack = createNativeStackNavigator();
@@ -30,7 +40,7 @@ const ProfileStackScreen = () => {
       screenOptions={{
         headerShadowVisible: false,
         contentStyle: {
-          marginTop: verticalScale(50),
+          // marginTop: verticalScale(50),
         },
         headerTitleStyle: {
           fontFamily: "Inter-Medium",
@@ -53,24 +63,62 @@ const ProfileStackScreen = () => {
   );
 };
 
-//create stack screen for user profile
+const MatchStack = createNativeStackNavigator();
+const MatchStackScreen = () => {
+  return (
+    <MatchStack.Navigator
+      screenOptions={{
+        headerShadowVisible: false,
+
+        headerTitleStyle: {
+          fontFamily: "Inter-Medium",
+          fontSize: scale(20),
+        },
+        headerStyle: {
+          backgroundColor: "#FDFCFB",
+        },
+        headerTitleAlign: "flex-start",
+      }}
+    >
+      <MatchStack.Screen
+        name='LikedCampaignModal'
+        component={LikedCampaignModal}
+        options={{
+          title: "Liked Campaign",
+        }}
+      />
+      <MatchStack.Screen
+        name='SuccessStoryModal'
+        component={SuccessStoryModal}
+        options={{
+          title: "Success Story",
+        }}
+      />
+    </MatchStack.Navigator>
+  );
+};
+
+//create stack screen for logged profile
 
 export default function StackNavigator() {
-  const [user, setUser] = useState(undefined);
+  const [logged, isLogged] = useState(undefined);
+  const [userType, setUserType] = useState(undefined);
 
   const checkUser = async () => {
     try {
       const authUser = await Auth.currentAuthenticatedUser({
         bypassCache: true,
       });
-      setUser(authUser);
+      isLogged(authUser);
+      setUserType(authUser.attributes["custom:userType"]);
+      console.log("userType", userType);
     } catch (e) {
-      setUser(null);
+      isLogged(null);
     }
   };
 
   useEffect(() => {
-    checkUser();
+    checkUser().catch((e) => console.log(e));
   }, []);
 
   useEffect(() => {
@@ -79,7 +127,7 @@ export default function StackNavigator() {
         case "signIn":
           return checkUser();
         case "signOut":
-          return setUser(null);
+          return isLogged(null);
       }
     });
     return () => Hub.remove("auth", authListener);
@@ -95,7 +143,7 @@ export default function StackNavigator() {
     return () => Hub.remove("auth", listener);
   }, []);
 
-  if (user === undefined) {
+  if (logged === undefined) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <ActivityIndicator />
@@ -110,12 +158,39 @@ export default function StackNavigator() {
         headerShown: false,
       }}
     >
-      {user ? (
+      {logged ? (
         <>
-          <AuthStack.Screen
-            name='BottomNavigator'
-            component={BottomNavigator}
-          />
+          {userType === "Benefactor" ? (
+            <>
+              <AuthStack.Screen
+                name='BottomNavigator'
+                component={BottomNavigator}
+              />
+              <AuthStack.Screen
+                name='CardModalScreen'
+                component={CardModal}
+                options={{
+                  headerShown: false,
+                  presentation: "transparentModal",
+                }}
+              />
+              <AuthStack.Screen
+                name='ModalInstruction'
+                component={ModalInstruction}
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <AuthStack.Screen
+                name='MatchStackScreen'
+                component={MatchStackScreen}
+              />
+              <AuthStack.Screen name='DonateStack' component={DonateStack} />
+            </>
+          ) : (
+            <AuthStack.Screen name='Test' component={Test} />
+          )}
+
           <AuthStack.Screen name='Profile' component={ProfileStackScreen} />
         </>
       ) : (
@@ -133,10 +208,7 @@ export default function StackNavigator() {
           <AuthStack.Group>
             <AuthStack.Screen name='SignUp' component={SignupScreen} />
             <AuthStack.Screen name='SignUpStudent' component={SignupStudent} />
-            <AuthStack.Screen
-              name='SignUpBenefactor'
-              component={SignupBenefactor}
-            />
+            <AuthStack.Screen name='SignUpForm' component={SignupForm} />
             <AuthStack.Screen
               name='SignUpOrganization'
               component={SignupOrganization}

@@ -26,7 +26,7 @@
       "function": {
         "cognitoUsersToDynamoDB": {
           "deploymentBucketName": "amplify-iskonijuan-staging-53239-deployment",
-          "s3Key": "amplify-builds/cognitoUsersToDynamoDB-344a7a4e794851765651-build.zip"
+          "s3Key": "amplify-builds/cognitoUsersToDynamoDB-626c3558746762353150-build.zip"
         },
         "userConfirmSignUp": {
           "deploymentBucketName": "amplify-iskonijuan-staging-53239-deployment",

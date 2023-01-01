@@ -250,6 +250,7 @@ export const getBenefactor = /* GraphQL */ `
         suffix
         sex
         address
+        postal
         nationality
         typeOfDisability
         placeOfBirth
@@ -316,6 +317,7 @@ export const listBenefactors = /* GraphQL */ `
           suffix
           sex
           address
+          postal
           nationality
           typeOfDisability
           placeOfBirth
@@ -353,6 +355,7 @@ export const getScholar = /* GraphQL */ `
         suffix
         sex
         address
+        postal
         nationality
         typeOfDisability
         placeOfBirth
@@ -438,6 +441,7 @@ export const listScholars = /* GraphQL */ `
           suffix
           sex
           address
+          postal
           nationality
           typeOfDisability
           placeOfBirth
@@ -554,6 +558,7 @@ export const getUser = /* GraphQL */ `
       suffix
       sex
       address
+      postal
       nationality
       typeOfDisability
       placeOfBirth
@@ -609,6 +614,7 @@ export const listUsers = /* GraphQL */ `
         suffix
         sex
         address
+        postal
         nationality
         typeOfDisability
         placeOfBirth

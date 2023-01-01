@@ -396,6 +396,7 @@ export const createBenefactor = /* GraphQL */ `
         suffix
         sex
         address
+        postal
         nationality
         typeOfDisability
         placeOfBirth
@@ -460,6 +461,7 @@ export const updateBenefactor = /* GraphQL */ `
         suffix
         sex
         address
+        postal
         nationality
         typeOfDisability
         placeOfBirth
@@ -524,6 +526,7 @@ export const deleteBenefactor = /* GraphQL */ `
         suffix
         sex
         address
+        postal
         nationality
         typeOfDisability
         placeOfBirth
@@ -588,6 +591,7 @@ export const createScholar = /* GraphQL */ `
         suffix
         sex
         address
+        postal
         nationality
         typeOfDisability
         placeOfBirth
@@ -671,6 +675,7 @@ export const updateScholar = /* GraphQL */ `
         suffix
         sex
         address
+        postal
         nationality
         typeOfDisability
         placeOfBirth
@@ -754,6 +759,7 @@ export const deleteScholar = /* GraphQL */ `
         suffix
         sex
         address
+        postal
         nationality
         typeOfDisability
         placeOfBirth
@@ -943,6 +949,7 @@ export const createUser = /* GraphQL */ `
       suffix
       sex
       address
+      postal
       nationality
       typeOfDisability
       placeOfBirth
@@ -996,6 +1003,7 @@ export const updateUser = /* GraphQL */ `
       suffix
       sex
       address
+      postal
       nationality
       typeOfDisability
       placeOfBirth
@@ -1049,6 +1057,7 @@ export const deleteUser = /* GraphQL */ `
       suffix
       sex
       address
+      postal
       nationality
       typeOfDisability
       placeOfBirth

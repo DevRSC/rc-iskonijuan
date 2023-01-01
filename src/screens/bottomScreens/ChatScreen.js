@@ -3,7 +3,7 @@ import { StyleSheet, TouchableOpacity, View, Dimensions } from "react-native";
 import { Text } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { scale } from "react-native-size-matters";
+import { scale, verticalScale } from "react-native-size-matters";
 
 import HeaderContainer from "../../components/molecules/HeaderContainer";
 import ChatTopNavigator from "../../navigations/ChatTopNavigator";
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FDFCFB",
   },
   searchTitle: {
-    fontSize: 23,
+    fontSize: scale(23),
     fontFamily: "Inter-Medium",
     lineHeight: 32,
     color: "#2B283A",
@@ -49,6 +49,6 @@ const styles = StyleSheet.create({
   searchButton: {
     position: "absolute",
     right: 0,
-    paddingHorizontal: 16,
+    paddingHorizontal: verticalScale(16),
   },
 });

@@ -18,6 +18,7 @@ import { Auth } from "aws-amplify";
 export default function SignupContacts() {
   const navigation = useNavigation();
   const route = useRoute();
+  const { userType } = route.params;
 
   const {
     control,
@@ -28,9 +29,18 @@ export default function SignupContacts() {
     defaultValues: {
       email: route?.params?.email,
       firstName: route?.params?.firstName,
+      middleName: route?.params?.middleName,
       lastName: route?.params?.lastName,
       password: route?.params?.password,
       username: route?.params?.username,
+      userType: route?.params?.userType,
+      sex: route?.params?.sex,
+      address: route?.params?.address,
+      postal: route?.params?.postal,
+      nationality: route?.params?.nationality,
+      typeOfDisability: route?.params?.typeOfDisability,
+      placeOfBirth: route?.params?.placeOfBirth,
+      birthDate: route?.params?.birthDate,
     },
   });
 
@@ -39,7 +49,8 @@ export default function SignupContacts() {
   //setPhoneNumber((data) => (`+63${data.phone}`))
 
   const onRegisterPressed = async (data) => {
-    const { firstName, lastName, email, password, phone, username } = data;
+    const { firstName, lastName, email, password, phone, username, userType, middleName, suffix, sex, address, postal, nationality, typeOfDisability, placeOfBirth, birthDate } =
+      data;
 
     try {
       Auth.signUp({
@@ -50,6 +61,16 @@ export default function SignupContacts() {
           given_name: firstName,
           family_name: lastName,
           phone_number: `+63${phone}`,
+          "custom:userType": userType,
+          "custom:middleName": middleName,
+          "custom:suffix": suffix,
+          "custom:sex": sex,
+          "custom:address": address,
+          "custom:postal": postal,
+          "custom:nationality": nationality,
+          "custom:typeOfDisability": typeOfDisability,
+          "custom:placeOfBirth": placeOfBirth,
+          "custom:birthDate": birthDate,
         },
       });
       navigation.navigate("SignUpVerify", { email, username });

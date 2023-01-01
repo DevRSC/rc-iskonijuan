@@ -114,10 +114,11 @@ type User @model @auth(rules: [{allow: owner}]) {
   suffix: String
   sex: String
   address: String
+  postal: String
   nationality: String
   typeOfDisability: String
   placeOfBirth: String
-  birthDate: AWSDate
+  birthDate: String
   mobileNumber: AWSPhone
   verified: Boolean
   userAdditionalInformation: AdditionalInformation @hasOne

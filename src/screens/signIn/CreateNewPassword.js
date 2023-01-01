@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { StyleSheet, View, TouchableOpacity, Alert } from "react-native";
 import { s, scale, verticalScale } from "react-native-size-matters";
 import { Text, TextInput } from "react-native-paper";
-import LoginButton from "../components/atoms/LoginButton";
+import LoginButton from "../../components/atoms/LoginButton";
 import { useNavigation } from "@react-navigation/native";
 import { useForm } from "react-hook-form";
 import Animated, { BounceInUp } from "react-native-reanimated";
-import SigninHeader from "../components/molecules/SigninHeader";
-import CustomInput from "../components/CustomInput";
-import { Auth } from 'aws-amplify'
+import SigninHeader from "../../components/molecules/SigninHeader";
+import CustomInput from "../../components/CustomInput";
+import { Auth } from "aws-amplify";
 
 export default function CreateNewPassword() {
   const navigation = useNavigation();
@@ -16,7 +16,7 @@ export default function CreateNewPassword() {
   const [showPassword, setShowPassword] = useState(false);
   const [showRPassword, setShorRPassword] = useState(false);
   const EMAIL_REGEX =
-  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
   const {
     control,
@@ -27,14 +27,14 @@ export default function CreateNewPassword() {
 
   const pwd = watch("password");
 
-  const onSubmit = async(data) => {
-    try{
-      await Auth.forgotPasswordSubmit(data.username, data.code, data.password)
+  const onSubmit = async (data) => {
+    try {
+      await Auth.forgotPasswordSubmit(data.username, data.code, data.password);
       navigation.navigate("Modal", {
-      modalMessage: "Password successfully reset",
+        modalMessage: "Password successfully reset",
       });
     } catch (e) {
-      Alert.alert('Oops', e.message)
+      Alert.alert("Oops", e.message);
     }
   };
 
@@ -43,12 +43,12 @@ export default function CreateNewPassword() {
       <View style={styles.inner}>
         <SigninHeader text='Create New Password' />
         <CustomInput
-            name='username'
-            placeholder='Username'
-            control={control}
-            style={styles.textInput}
-            rules={{ required: "Username is required" }}
-          />
+          name='username'
+          placeholder='Username'
+          control={control}
+          style={styles.textInput}
+          rules={{ required: "Username is required" }}
+        />
         <CustomInput
           placeholder='Code'
           name='code'
