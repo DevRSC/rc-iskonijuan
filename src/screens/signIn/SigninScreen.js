@@ -10,7 +10,7 @@ import SigninHeader from "../../components/molecules/SigninHeader";
 import { Auth } from "aws-amplify";
 
 export default function SigninScreen() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -28,7 +28,7 @@ export default function SigninScreen() {
     }
     setLoading(true);
     try {
-      const response = await Auth.signIn(data.email, data.password);
+      const response = await Auth.signIn(data.username, data.password);
       console.warn(response);
     } catch (e) {
       Alert.alert("Oops", e.message);
@@ -49,11 +49,11 @@ export default function SigninScreen() {
       <View style={styles.signinContainer}>
         <SigninHeader text='Sign In' />
         <CustomInput
-          name='email'
-          placeholder='Email'
+          name='username'
+          placeholder='Username'
           control={control}
           style={styles.textInput}
-          rules={{ required: "Email is required" }}
+          rules={{ required: "Username is required" }}
         />
         <CustomInput
           name='password'
