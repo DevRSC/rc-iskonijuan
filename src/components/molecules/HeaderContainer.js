@@ -7,7 +7,7 @@ export default function HeaderContainer() {
   const navigation = useNavigation();
   return (
     <View style={styles.HeaderContainer}>
-      <TouchableOpacity onPress={() => navigation.navigate("ModalInstruction")}>
+      <TouchableOpacity onPress={() => navigation.navigate("ProfileSetup")}>
         <Image
           style={styles.logoImage}
           source={require("../../../assets/images/logo-nobg.png")}
