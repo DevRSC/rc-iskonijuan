@@ -22,7 +22,7 @@ import LikedCampaignModal from "../screens/matchTopScreen/matchscreenStack/Liked
 import SuccessStoryModal from "../screens/matchTopScreen/matchscreenStack/SuccessStoryModal";
 import CardModal from "../components/atoms/CardModal";
 import ModalScreen from "../components/molecules/ModalScreen";
-import ModalInstruction from "../components/molecules/ModalInstruction";
+import ProfileSetupStack from "./Stack/ProfileSetupStack";
 
 import DonateStack from "./Stack/DonateStack";
 
@@ -118,6 +118,7 @@ export default function StackNavigator() {
   };
 
   useEffect(() => {
+    console.log("Im here!");
     checkUser().catch((e) => console.log(e));
   }, []);
 
@@ -151,6 +152,8 @@ export default function StackNavigator() {
     );
   }
 
+  // store checkUser to an object
+
   return (
     <AuthStack.Navigator
       initialRouteName='Welcome'
@@ -175,8 +178,8 @@ export default function StackNavigator() {
                 }}
               />
               <AuthStack.Screen
-                name='ModalInstruction'
-                component={ModalInstruction}
+                name='ProfileSetup'
+                component={ProfileSetupStack}
                 options={{
                   headerShown: false,
                 }}
@@ -188,7 +191,10 @@ export default function StackNavigator() {
               <AuthStack.Screen name='DonateStack' component={DonateStack} />
             </>
           ) : (
-            <AuthStack.Screen name='Test' component={Test} />
+            <AuthStack.Screen
+              name='BottomNavigator'
+              component={BottomNavigator}
+            />
           )}
 
           <AuthStack.Screen name='Profile' component={ProfileStackScreen} />
