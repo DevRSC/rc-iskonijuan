@@ -85,6 +85,60 @@ export const listMatches = /* GraphQL */ `
     }
   }
 `;
+export const matchesByScholarinformationId = /* GraphQL */ `
+  query MatchesByScholarinformationId(
+    $scholarinformationId: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelMatchesFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    matchesByScholarinformationId(
+      scholarinformationId: $scholarinformationId
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        scholarinformationId
+        organizationId
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const matchesByOrganizationId = /* GraphQL */ `
+  query MatchesByOrganizationId(
+    $organizationId: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelMatchesFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    matchesByOrganizationId(
+      organizationId: $organizationId
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        scholarinformationId
+        organizationId
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
 export const getScholarInformation = /* GraphQL */ `
   query GetScholarInformation($id: ID!) {
     getScholarInformation(id: $id) {
@@ -121,6 +175,42 @@ export const listScholarInformations = /* GraphQL */ `
     $nextToken: String
   ) {
     listScholarInformations(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        scholarId
+        studentId
+        corImage
+        currentGradeLevel
+        cumulativeGPA
+        hsYearGraduated
+        upcomingCY
+        statusOfScholarshipApplication
+        scholarMatches {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const scholarInformationsByScholarId = /* GraphQL */ `
+  query ScholarInformationsByScholarId(
+    $scholarId: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelScholarInformationFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    scholarInformationsByScholarId(
+      scholarId: $scholarId
+      sortDirection: $sortDirection
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -201,6 +291,40 @@ export const listCampaigns = /* GraphQL */ `
     }
   }
 `;
+export const campaignsByScholarId = /* GraphQL */ `
+  query CampaignsByScholarId(
+    $scholarId: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelCampaignFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    campaignsByScholarId(
+      scholarId: $scholarId
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        campaignDonation {
+          nextToken
+        }
+        scholarId
+        campaignName
+        description
+        amountGoal
+        startDate
+        endDate
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
 export const getDonation = /* GraphQL */ `
   query GetDonation($id: ID!) {
     getDonation(id: $id) {
@@ -222,6 +346,64 @@ export const listDonations = /* GraphQL */ `
     $nextToken: String
   ) {
     listDonations(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        campaignId
+        benefactorId
+        donatedOn
+        amountDonated
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const donationsByCampaignId = /* GraphQL */ `
+  query DonationsByCampaignId(
+    $campaignId: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelDonationFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    donationsByCampaignId(
+      campaignId: $campaignId
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        campaignId
+        benefactorId
+        donatedOn
+        amountDonated
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const donationsByBenefactorId = /* GraphQL */ `
+  query DonationsByBenefactorId(
+    $benefactorId: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelDonationFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    donationsByBenefactorId(
+      benefactorId: $benefactorId
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
       items {
         id
         campaignId
@@ -501,6 +683,34 @@ export const listSwipes = /* GraphQL */ `
     }
   }
 `;
+export const swipesByUserId = /* GraphQL */ `
+  query SwipesByUserId(
+    $userId: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelSwipesFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    swipesByUserId(
+      userId: $userId
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        userId
+        targetd
+        isLiked
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
 export const getAdditionalInformation = /* GraphQL */ `
   query GetAdditionalInformation($id: ID!) {
     getAdditionalInformation(id: $id) {
@@ -640,216 +850,6 @@ export const listUsers = /* GraphQL */ `
         createdAt
         updatedAt
         userUserAdditionalInformationId
-        owner
-      }
-      nextToken
-    }
-  }
-`;
-export const matchesByScholarinformationId = /* GraphQL */ `
-  query MatchesByScholarinformationId(
-    $scholarinformationId: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelMatchesFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    matchesByScholarinformationId(
-      scholarinformationId: $scholarinformationId
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        scholarinformationId
-        organizationId
-        createdAt
-        updatedAt
-        owner
-      }
-      nextToken
-    }
-  }
-`;
-export const matchesByOrganizationId = /* GraphQL */ `
-  query MatchesByOrganizationId(
-    $organizationId: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelMatchesFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    matchesByOrganizationId(
-      organizationId: $organizationId
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        scholarinformationId
-        organizationId
-        createdAt
-        updatedAt
-        owner
-      }
-      nextToken
-    }
-  }
-`;
-export const scholarInformationsByScholarId = /* GraphQL */ `
-  query ScholarInformationsByScholarId(
-    $scholarId: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelScholarInformationFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    scholarInformationsByScholarId(
-      scholarId: $scholarId
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        scholarId
-        studentId
-        corImage
-        currentGradeLevel
-        cumulativeGPA
-        hsYearGraduated
-        upcomingCY
-        statusOfScholarshipApplication
-        scholarMatches {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
-      nextToken
-    }
-  }
-`;
-export const campaignsByScholarId = /* GraphQL */ `
-  query CampaignsByScholarId(
-    $scholarId: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelCampaignFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    campaignsByScholarId(
-      scholarId: $scholarId
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        campaignDonation {
-          nextToken
-        }
-        scholarId
-        campaignName
-        description
-        amountGoal
-        startDate
-        endDate
-        createdAt
-        updatedAt
-        owner
-      }
-      nextToken
-    }
-  }
-`;
-export const donationsByCampaignId = /* GraphQL */ `
-  query DonationsByCampaignId(
-    $campaignId: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelDonationFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    donationsByCampaignId(
-      campaignId: $campaignId
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        campaignId
-        benefactorId
-        donatedOn
-        amountDonated
-        createdAt
-        updatedAt
-        owner
-      }
-      nextToken
-    }
-  }
-`;
-export const donationsByBenefactorId = /* GraphQL */ `
-  query DonationsByBenefactorId(
-    $benefactorId: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelDonationFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    donationsByBenefactorId(
-      benefactorId: $benefactorId
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        campaignId
-        benefactorId
-        donatedOn
-        amountDonated
-        createdAt
-        updatedAt
-        owner
-      }
-      nextToken
-    }
-  }
-`;
-export const swipesByUserId = /* GraphQL */ `
-  query SwipesByUserId(
-    $userId: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelSwipesFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    swipesByUserId(
-      userId: $userId
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        userId
-        targetd
-        isLiked
-        createdAt
-        updatedAt
         owner
       }
       nextToken
