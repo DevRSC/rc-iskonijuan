@@ -1,0 +1,34 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-iskonijuan-staging-53239-authRole",
+      "UnauthRoleArn": "arn:aws:iam::655457002244:role/amplify-iskonijuan-staging-53239-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::655457002244:role/amplify-iskonijuan-staging-53239-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-iskonijuan-staging-53239-deployment",
+      "UnauthRoleName": "amplify-iskonijuan-staging-53239-unauthRole",
+      "StackName": "amplify-iskonijuan-staging-53239",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:655457002244:stack/amplify-iskonijuan-staging-53239/3d760640-6fa7-11ed-9236-022b4a7f521e",
+      "AmplifyAppId": "d1ds21s1bm5hxp"
+    },
+    "categories": {
+      "auth": {
+        "iskonijuan": {
+          "userPoolId": "ap-southeast-1_AfL0orzXW",
+          "userPoolName": "iskonijuan-user",
+          "webClientId": "49d3p3lebcf3pv4n8irr8j6ev8",
+          "nativeClientId": "49d3p3lebcf3pv4n8irr8j6ev8"
+        }
+      },
+      "api": {
+        "iskonijuan": {}
+      },
+      "function": {
+        "cognitoUsersToDynamoDB": {
+          "deploymentBucketName": "amplify-iskonijuan-staging-53239-deployment",
+          "s3Key": "amplify-builds/cognitoUsersToDynamoDB-626c3558746762353150-build.zip"
+        }
+      }
+    }
+  }
+}

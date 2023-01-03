@@ -1,7 +1,9 @@
 import React from "react";
-import { StyleSheet, View, Image, FlatList } from "react-native";
+import { StyleSheet, View, Image } from "react-native";
 import { Card, Text } from "react-native-paper";
-import { scale } from "react-native-size-matters";
+import { FlashList } from "@shopify/flash-list";
+import SuccessStoriesItemList from "./SuccessStoriesItemList";
+import { useNavigation } from "@react-navigation/native";
 
 import { Dimensions } from "react-native";
 
@@ -19,7 +21,7 @@ const Dummy_Data = [
     id: 2,
     name: "Books for Kids",
     image: "https://picsum.photos/700",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
   },
   {
     id: 3,
@@ -47,38 +49,28 @@ const Dummy_Data = [
   },
 ];
 
-const renderItem = ({ item }) => (
-  <View>
-    <View>
-      <Card mode='elevated' elevation={2} style={styles.card}>
-        <Card.Content style={styles.cardContent}>
-          <Image source={{ uri: item.image }} style={styles.image} />
-          <View style={styles.cardText}>
-            <Text style={styles.title}>{item.name}</Text>
-            <Text style={styles.description} numberOfLines={3}>
-              {item.description}
-            </Text>
-          </View>
-        </Card.Content>
-      </Card>
-    </View>
-  </View>
-);
-
 export default function SuccessStories() {
+  const navigation = useNavigation();
+
+  const handlePress = () => {
+    navigation.navigate("MatchStackScreen", {
+      screen: "SuccessStoryModal",
+    });
+  };
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: "#FDFCFB" }}>
       <View
         style={{
           height: height * 0.7,
         }}
       >
-        <FlatList
+        <FlashList
           nestedScrollEnabled={true}
+          estimatedItemSize={100}
           ListHeaderComponent={
             <>
               <Text style={styles.screenTitle}>Featured Story</Text>
-              <Card mode='elevated' elevation={2} style={styles.feauredCard}>
+              <Card mode='elevated' elevation={2} style={styles.featuredCard}>
                 <Card.Content style={styles.featuredcardContent}>
                   <Image
                     source={{ uri: "https://picsum.photos/700" }}
@@ -96,7 +88,14 @@ export default function SuccessStories() {
             </>
           }
           data={Dummy_Data}
-          renderItem={renderItem}
+          renderItem={({ item }) => (
+            <SuccessStoriesItemList
+              name={item.name}
+              image={item.image}
+              description={item.description}
+              onPress={handlePress}
+            />
+          )}
           keyExtractor={(item) => item.id}
         />
       </View>
@@ -105,33 +104,9 @@ export default function SuccessStories() {
 }
 
 const styles = StyleSheet.create({
-  card: {
-    height: height * 0.2,
-    width: width - 20,
-    margin: 10,
-  },
-  cardContent: {
-    height: "100%",
-    width: width / 1.4,
-    flexDirection: "row",
-    alignItems: "flex-start",
-  },
-  cardText: {
-    marginLeft: 10,
-  },
-  image: {
-    height: "100%",
-    width: width / 3,
-    borderRadius: 10,
-    resizeMode: "cover",
-  },
   title: {
-    fontSize: scale(20),
-    fontWeight: "bold",
-  },
-  description: {
-    fontSize: scale(13),
-    flexShrink: 1,
+    fontSize: 19,
+    fontFamily: "Inter-SemiBold",
   },
   screenTitle: {
     fontSize: 19,
@@ -139,10 +114,11 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginTop: 10,
   },
-  feauredCard: {
+  featuredCard: {
     height: height * 0.3,
     width: width - 20,
     margin: 10,
+    backgroundColor: "#FFFFFF",
   },
   featuredcardContent: {
     height: 140,

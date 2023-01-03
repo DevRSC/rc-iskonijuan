@@ -1,7 +1,11 @@
 import { StyleSheet, View } from "react-native";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Text } from "react-native-paper";
-import { scale, moderateVerticalScale } from "react-native-size-matters";
+import {
+  scale,
+  moderateVerticalScale,
+  verticalScale,
+} from "react-native-size-matters";
 import { Card } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 
@@ -15,18 +19,21 @@ import Animated, { BounceIn } from "react-native-reanimated";
 export default function SignupScreen() {
   const navigation = useNavigation();
   const [selected, setSelected] = useState(null);
+  console.log("Rerendered");
 
-  const handleSelected = (selected) => {
+  const handleSelected = useCallback((selected) => {
     setSelected(selected);
-  };
+  }, []);
 
   const handleNavigation = (selected) => {
     if (selected === "first") {
-      navigation.navigate("SignUpStudent");
+      navigation.navigate("SignUpForm", {
+        userType: "Student",
+      });
     } else if (selected === "second") {
-      navigation.navigate("SignUpBenefactor");
-    } else if (selected === "third") {
-      navigation.navigate("SignUpOrganization");
+      navigation.navigate("SignUpForm", {
+        userType: "Benefactor",
+      });
     }
   };
 
@@ -86,32 +93,6 @@ export default function SignupScreen() {
             <Text style={styles.cardTitle}>Benefactor</Text>
           </Card.Content>
         </Card>
-
-        <Card
-          onPress={() => handleSelected("third")}
-          value={selected}
-          style={[
-            styles.card,
-            { backgroundColor: selected === "third" ? "#F55A5A" : "#FFFFFF" },
-          ]}
-        >
-          <View
-            style={{
-              alignItems: "center",
-              paddingTop: scale(10),
-            }}
-          >
-            <FontAwesome
-              name='group'
-              color={selected === "third" ? "#FFFFFF" : "#F55A5A"}
-              size={scale(30)}
-            />
-          </View>
-
-          <Card.Content>
-            <Text style={styles.cardTitle}>Organization</Text>
-          </Card.Content>
-        </Card>
       </Animated.View>
       <View
         style={{
@@ -136,24 +117,25 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#FDFCFB",
   },
   Title: {
     position: "absolute",
-    top: scale(149),
+    top: verticalScale(149),
     fontSize: scale(30),
     fontFamily: "Inter-Medium",
     fontWeight: "bold",
   },
   cardContainer: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-evenly",
     width: "100%",
-    padding: scale(16),
+    padding: scale(20),
   },
   card: {
-    width: scale(90),
-    height: scale(100),
-    borderRadius: scale(8),
+    width: scale(95),
+    height: verticalScale(100),
+    borderRadius: 8,
     backgroundColor: "#FDFCFB",
     elevation: 5,
     alignItems: "center",

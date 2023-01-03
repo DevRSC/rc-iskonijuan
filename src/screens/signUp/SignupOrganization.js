@@ -12,7 +12,7 @@ export default function SignupOrganization() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "red",
+    backgroundColor: "#FDFCFB",
     alignItems: "center",
     justifyContent: "center",
   },
