@@ -15,7 +15,6 @@ export const createOrganization = /* GraphQL */ `
           organizationId
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -27,7 +26,6 @@ export const createOrganization = /* GraphQL */ `
       website
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -45,7 +43,6 @@ export const updateOrganization = /* GraphQL */ `
           organizationId
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -57,7 +54,6 @@ export const updateOrganization = /* GraphQL */ `
       website
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -75,7 +71,6 @@ export const deleteOrganization = /* GraphQL */ `
           organizationId
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -87,7 +82,6 @@ export const deleteOrganization = /* GraphQL */ `
       website
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -102,7 +96,6 @@ export const createMatches = /* GraphQL */ `
       organizationId
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -117,7 +110,6 @@ export const updateMatches = /* GraphQL */ `
       organizationId
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -132,7 +124,6 @@ export const deleteMatches = /* GraphQL */ `
       organizationId
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -158,13 +149,11 @@ export const createScholarInformation = /* GraphQL */ `
           organizationId
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -190,13 +179,11 @@ export const updateScholarInformation = /* GraphQL */ `
           organizationId
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -222,13 +209,11 @@ export const deleteScholarInformation = /* GraphQL */ `
           organizationId
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -248,7 +233,6 @@ export const createCampaign = /* GraphQL */ `
           amountDonated
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -260,7 +244,6 @@ export const createCampaign = /* GraphQL */ `
       endDate
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -280,7 +263,6 @@ export const updateCampaign = /* GraphQL */ `
           amountDonated
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -292,7 +274,6 @@ export const updateCampaign = /* GraphQL */ `
       endDate
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -312,7 +293,6 @@ export const deleteCampaign = /* GraphQL */ `
           amountDonated
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -324,7 +304,6 @@ export const deleteCampaign = /* GraphQL */ `
       endDate
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -341,7 +320,6 @@ export const createDonation = /* GraphQL */ `
       amountDonated
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -358,7 +336,6 @@ export const updateDonation = /* GraphQL */ `
       amountDonated
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -375,7 +352,6 @@ export const deleteDonation = /* GraphQL */ `
       amountDonated
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -414,15 +390,21 @@ export const createBenefactor = /* GraphQL */ `
           employmentStatus
           createdAt
           updatedAt
-          owner
         }
         userSwipes {
+          nextToken
+        }
+        status
+        image
+        Messages {
+          nextToken
+        }
+        ChatRooms {
           nextToken
         }
         createdAt
         updatedAt
         userUserAdditionalInformationId
-        owner
       }
       benefactorDonation {
         items {
@@ -433,14 +415,12 @@ export const createBenefactor = /* GraphQL */ `
           amountDonated
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
       benefactorUserBenefactorId
-      owner
     }
   }
 `;
@@ -479,15 +459,21 @@ export const updateBenefactor = /* GraphQL */ `
           employmentStatus
           createdAt
           updatedAt
-          owner
         }
         userSwipes {
+          nextToken
+        }
+        status
+        image
+        Messages {
+          nextToken
+        }
+        ChatRooms {
           nextToken
         }
         createdAt
         updatedAt
         userUserAdditionalInformationId
-        owner
       }
       benefactorDonation {
         items {
@@ -498,14 +484,12 @@ export const updateBenefactor = /* GraphQL */ `
           amountDonated
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
       benefactorUserBenefactorId
-      owner
     }
   }
 `;
@@ -544,15 +528,21 @@ export const deleteBenefactor = /* GraphQL */ `
           employmentStatus
           createdAt
           updatedAt
-          owner
         }
         userSwipes {
+          nextToken
+        }
+        status
+        image
+        Messages {
+          nextToken
+        }
+        ChatRooms {
           nextToken
         }
         createdAt
         updatedAt
         userUserAdditionalInformationId
-        owner
       }
       benefactorDonation {
         items {
@@ -563,14 +553,12 @@ export const deleteBenefactor = /* GraphQL */ `
           amountDonated
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
       benefactorUserBenefactorId
-      owner
     }
   }
 `;
@@ -609,15 +597,21 @@ export const createScholar = /* GraphQL */ `
           employmentStatus
           createdAt
           updatedAt
-          owner
         }
         userSwipes {
+          nextToken
+        }
+        status
+        image
+        Messages {
+          nextToken
+        }
+        ChatRooms {
           nextToken
         }
         createdAt
         updatedAt
         userUserAdditionalInformationId
-        owner
       }
       scholarCampaign {
         items {
@@ -630,7 +624,6 @@ export const createScholar = /* GraphQL */ `
           endDate
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -647,14 +640,12 @@ export const createScholar = /* GraphQL */ `
           statusOfScholarshipApplication
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
       scholarUserScholarId
-      owner
     }
   }
 `;
@@ -693,15 +684,21 @@ export const updateScholar = /* GraphQL */ `
           employmentStatus
           createdAt
           updatedAt
-          owner
         }
         userSwipes {
+          nextToken
+        }
+        status
+        image
+        Messages {
+          nextToken
+        }
+        ChatRooms {
           nextToken
         }
         createdAt
         updatedAt
         userUserAdditionalInformationId
-        owner
       }
       scholarCampaign {
         items {
@@ -714,7 +711,6 @@ export const updateScholar = /* GraphQL */ `
           endDate
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -731,14 +727,12 @@ export const updateScholar = /* GraphQL */ `
           statusOfScholarshipApplication
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
       scholarUserScholarId
-      owner
     }
   }
 `;
@@ -777,15 +771,21 @@ export const deleteScholar = /* GraphQL */ `
           employmentStatus
           createdAt
           updatedAt
-          owner
         }
         userSwipes {
+          nextToken
+        }
+        status
+        image
+        Messages {
+          nextToken
+        }
+        ChatRooms {
           nextToken
         }
         createdAt
         updatedAt
         userUserAdditionalInformationId
-        owner
       }
       scholarCampaign {
         items {
@@ -798,7 +798,6 @@ export const deleteScholar = /* GraphQL */ `
           endDate
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -815,14 +814,12 @@ export const deleteScholar = /* GraphQL */ `
           statusOfScholarshipApplication
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
       scholarUserScholarId
-      owner
     }
   }
 `;
@@ -838,7 +835,6 @@ export const createSwipes = /* GraphQL */ `
       isLiked
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -854,7 +850,6 @@ export const updateSwipes = /* GraphQL */ `
       isLiked
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -870,7 +865,6 @@ export const deleteSwipes = /* GraphQL */ `
       isLiked
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -890,7 +884,6 @@ export const createAdditionalInformation = /* GraphQL */ `
       employmentStatus
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -910,7 +903,6 @@ export const updateAdditionalInformation = /* GraphQL */ `
       employmentStatus
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -930,7 +922,6 @@ export const deleteAdditionalInformation = /* GraphQL */ `
       employmentStatus
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -967,7 +958,6 @@ export const createUser = /* GraphQL */ `
         employmentStatus
         createdAt
         updatedAt
-        owner
       }
       userSwipes {
         items {
@@ -977,14 +967,35 @@ export const createUser = /* GraphQL */ `
           isLiked
           createdAt
           updatedAt
-          owner
+        }
+        nextToken
+      }
+      status
+      image
+      Messages {
+        items {
+          id
+          text
+          chatroomID
+          userID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      ChatRooms {
+        items {
+          id
+          userId
+          chatRoomId
+          createdAt
+          updatedAt
         }
         nextToken
       }
       createdAt
       updatedAt
       userUserAdditionalInformationId
-      owner
     }
   }
 `;
@@ -1021,7 +1032,6 @@ export const updateUser = /* GraphQL */ `
         employmentStatus
         createdAt
         updatedAt
-        owner
       }
       userSwipes {
         items {
@@ -1031,14 +1041,35 @@ export const updateUser = /* GraphQL */ `
           isLiked
           createdAt
           updatedAt
-          owner
+        }
+        nextToken
+      }
+      status
+      image
+      Messages {
+        items {
+          id
+          text
+          chatroomID
+          userID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      ChatRooms {
+        items {
+          id
+          userId
+          chatRoomId
+          createdAt
+          updatedAt
         }
         nextToken
       }
       createdAt
       updatedAt
       userUserAdditionalInformationId
-      owner
     }
   }
 `;
@@ -1075,7 +1106,6 @@ export const deleteUser = /* GraphQL */ `
         employmentStatus
         createdAt
         updatedAt
-        owner
       }
       userSwipes {
         items {
@@ -1085,14 +1115,440 @@ export const deleteUser = /* GraphQL */ `
           isLiked
           createdAt
           updatedAt
-          owner
+        }
+        nextToken
+      }
+      status
+      image
+      Messages {
+        items {
+          id
+          text
+          chatroomID
+          userID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      ChatRooms {
+        items {
+          id
+          userId
+          chatRoomId
+          createdAt
+          updatedAt
         }
         nextToken
       }
       createdAt
       updatedAt
       userUserAdditionalInformationId
-      owner
+    }
+  }
+`;
+export const createChatRoom = /* GraphQL */ `
+  mutation CreateChatRoom(
+    $input: CreateChatRoomInput!
+    $condition: ModelChatRoomConditionInput
+  ) {
+    createChatRoom(input: $input, condition: $condition) {
+      id
+      Messages {
+        items {
+          id
+          text
+          chatroomID
+          userID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      users {
+        items {
+          id
+          userId
+          chatRoomId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      LastMessage {
+        id
+        text
+        chatroomID
+        userID
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      chatRoomLastMessageId
+    }
+  }
+`;
+export const updateChatRoom = /* GraphQL */ `
+  mutation UpdateChatRoom(
+    $input: UpdateChatRoomInput!
+    $condition: ModelChatRoomConditionInput
+  ) {
+    updateChatRoom(input: $input, condition: $condition) {
+      id
+      Messages {
+        items {
+          id
+          text
+          chatroomID
+          userID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      users {
+        items {
+          id
+          userId
+          chatRoomId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      LastMessage {
+        id
+        text
+        chatroomID
+        userID
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      chatRoomLastMessageId
+    }
+  }
+`;
+export const deleteChatRoom = /* GraphQL */ `
+  mutation DeleteChatRoom(
+    $input: DeleteChatRoomInput!
+    $condition: ModelChatRoomConditionInput
+  ) {
+    deleteChatRoom(input: $input, condition: $condition) {
+      id
+      Messages {
+        items {
+          id
+          text
+          chatroomID
+          userID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      users {
+        items {
+          id
+          userId
+          chatRoomId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      LastMessage {
+        id
+        text
+        chatroomID
+        userID
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      chatRoomLastMessageId
+    }
+  }
+`;
+export const createMessage = /* GraphQL */ `
+  mutation CreateMessage(
+    $input: CreateMessageInput!
+    $condition: ModelMessageConditionInput
+  ) {
+    createMessage(input: $input, condition: $condition) {
+      id
+      text
+      chatroomID
+      userID
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateMessage = /* GraphQL */ `
+  mutation UpdateMessage(
+    $input: UpdateMessageInput!
+    $condition: ModelMessageConditionInput
+  ) {
+    updateMessage(input: $input, condition: $condition) {
+      id
+      text
+      chatroomID
+      userID
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteMessage = /* GraphQL */ `
+  mutation DeleteMessage(
+    $input: DeleteMessageInput!
+    $condition: ModelMessageConditionInput
+  ) {
+    deleteMessage(input: $input, condition: $condition) {
+      id
+      text
+      chatroomID
+      userID
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createUserChatRoom = /* GraphQL */ `
+  mutation CreateUserChatRoom(
+    $input: CreateUserChatRoomInput!
+    $condition: ModelUserChatRoomConditionInput
+  ) {
+    createUserChatRoom(input: $input, condition: $condition) {
+      id
+      userId
+      chatRoomId
+      user {
+        id
+        username
+        email
+        firstName
+        middleName
+        lastName
+        suffix
+        sex
+        address
+        postal
+        nationality
+        typeOfDisability
+        placeOfBirth
+        birthDate
+        mobileNumber
+        verified
+        userAdditionalInformation {
+          id
+          currentGeoLocation
+          interest
+          ethnicity
+          fieldOfStudy
+          typeOfScholarship
+          yearlyIncome
+          employmentStatus
+          createdAt
+          updatedAt
+        }
+        userSwipes {
+          nextToken
+        }
+        status
+        image
+        Messages {
+          nextToken
+        }
+        ChatRooms {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        userUserAdditionalInformationId
+      }
+      chatRoom {
+        id
+        Messages {
+          nextToken
+        }
+        users {
+          nextToken
+        }
+        LastMessage {
+          id
+          text
+          chatroomID
+          userID
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+        chatRoomLastMessageId
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateUserChatRoom = /* GraphQL */ `
+  mutation UpdateUserChatRoom(
+    $input: UpdateUserChatRoomInput!
+    $condition: ModelUserChatRoomConditionInput
+  ) {
+    updateUserChatRoom(input: $input, condition: $condition) {
+      id
+      userId
+      chatRoomId
+      user {
+        id
+        username
+        email
+        firstName
+        middleName
+        lastName
+        suffix
+        sex
+        address
+        postal
+        nationality
+        typeOfDisability
+        placeOfBirth
+        birthDate
+        mobileNumber
+        verified
+        userAdditionalInformation {
+          id
+          currentGeoLocation
+          interest
+          ethnicity
+          fieldOfStudy
+          typeOfScholarship
+          yearlyIncome
+          employmentStatus
+          createdAt
+          updatedAt
+        }
+        userSwipes {
+          nextToken
+        }
+        status
+        image
+        Messages {
+          nextToken
+        }
+        ChatRooms {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        userUserAdditionalInformationId
+      }
+      chatRoom {
+        id
+        Messages {
+          nextToken
+        }
+        users {
+          nextToken
+        }
+        LastMessage {
+          id
+          text
+          chatroomID
+          userID
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+        chatRoomLastMessageId
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteUserChatRoom = /* GraphQL */ `
+  mutation DeleteUserChatRoom(
+    $input: DeleteUserChatRoomInput!
+    $condition: ModelUserChatRoomConditionInput
+  ) {
+    deleteUserChatRoom(input: $input, condition: $condition) {
+      id
+      userId
+      chatRoomId
+      user {
+        id
+        username
+        email
+        firstName
+        middleName
+        lastName
+        suffix
+        sex
+        address
+        postal
+        nationality
+        typeOfDisability
+        placeOfBirth
+        birthDate
+        mobileNumber
+        verified
+        userAdditionalInformation {
+          id
+          currentGeoLocation
+          interest
+          ethnicity
+          fieldOfStudy
+          typeOfScholarship
+          yearlyIncome
+          employmentStatus
+          createdAt
+          updatedAt
+        }
+        userSwipes {
+          nextToken
+        }
+        status
+        image
+        Messages {
+          nextToken
+        }
+        ChatRooms {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        userUserAdditionalInformationId
+      }
+      chatRoom {
+        id
+        Messages {
+          nextToken
+        }
+        users {
+          nextToken
+        }
+        LastMessage {
+          id
+          text
+          chatroomID
+          userID
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+        chatRoomLastMessageId
+      }
+      createdAt
+      updatedAt
     }
   }
 `;

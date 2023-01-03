@@ -1,4 +1,4 @@
-type Organization @model @auth(rules: [{allow: owner}]) {
+type Organization @model @auth(rules: [{allow: public}]) {
   id: ID!
   organizationMatches: [Matches] @hasMany(indexName: "byOrganization", fields: ["id"])
   name: String
@@ -21,13 +21,13 @@ enum availabilityEnum {
   CLOSED
 }
 
-type Matches @model @auth(rules: [{allow: owner}]) {
+type Matches @model @auth(rules: [{allow: public}]) {
   id: ID!
   scholarinformationId: ID! @index(name: "byScholarInformation")
   organizationId: ID! @index(name: "byOrganization")
 }
 
-type ScholarInformation @model @auth(rules: [{allow: owner}]) {
+type ScholarInformation @model @auth(rules: [{allow: public}]) {
   id: ID!
   scholarId: ID! @index(name: "byScholar")
   studentId: ID
@@ -40,13 +40,13 @@ type ScholarInformation @model @auth(rules: [{allow: owner}]) {
   scholarMatches: [Matches] @hasMany(indexName: "byScholarInformation", fields: ["id"])
 }
 
-enum statusOfScholarshipApplicationEnum{
+enum statusOfScholarshipApplicationEnum {
   REJECTED
   INPROGRESS
   ACCEPTED
 }
 
-type Campaign @model @auth(rules: [{allow: owner}]) {
+type Campaign @model @auth(rules: [{allow: public}]) {
   id: ID!
   campaignDonation: [Donation] @hasMany(indexName: "byCampaign", fields: ["id"])
   scholarId: ID! @index(name: "byScholar")
@@ -57,7 +57,7 @@ type Campaign @model @auth(rules: [{allow: owner}]) {
   endDate: AWSDate
 }
 
-type Donation @model @auth(rules: [{allow: owner}]) {
+type Donation @model @auth(rules: [{allow: public}]) {
   id: ID!
   campaignId: ID @index(name: "byCampaign")
   benefactorId: ID @index(name: "byBenefactor")
@@ -65,29 +65,27 @@ type Donation @model @auth(rules: [{allow: owner}]) {
   amountDonated: Int
 }
 
-type Benefactor @model @auth(rules: [{allow: owner}]) {
+type Benefactor @model @auth(rules: [{allow: public}]) {
   id: ID!
-  #userId: ID! @index(name: "byUser")
   userBenefactor: User @hasOne
   benefactorDonation: [Donation] @hasMany(indexName: "byBenefactor", fields: ["id"])
 }
 
-type Scholar @model @auth(rules: [{allow: owner}]) {
+type Scholar @model @auth(rules: [{allow: public}]) {
   id: ID!
-  #userId: ID! @index(name: "byUser")
   userScholar: User @hasOne
   scholarCampaign: [Campaign] @hasMany(indexName: "byScholar", fields: ["id"])
   scholarScholarInformation: [ScholarInformation] @hasMany(indexName: "byScholar", fields: ["id"])
 }
 
-type Swipes @model @auth(rules: [{allow: owner}]) {
+type Swipes @model @auth(rules: [{allow: public}]) {
   id: ID!
   userId: ID! @index(name: "byUser")
   targetd: ID!
   isLiked: Boolean
 }
 
-type AdditionalInformation @model @auth(rules: [{allow: owner}]) {
+type AdditionalInformation @model @auth(rules: [{allow: public}]) {
   id: ID!
   currentGeoLocation: String
   interest: [String]
@@ -98,13 +96,13 @@ type AdditionalInformation @model @auth(rules: [{allow: owner}]) {
   employmentStatus: employmentStatusEnum
 }
 
-enum employmentStatusEnum{
+enum employmentStatusEnum {
   EMPLOYEE
   SELFEMPLOYED
   STUDENT
 }
 
-type User @model @auth(rules: [{allow: owner}]) {
+type User @model @auth(rules: [{allow: public}]) {
   id: ID!
   username: String!
   email: AWSEmail!
@@ -123,6 +121,23 @@ type User @model @auth(rules: [{allow: owner}]) {
   verified: Boolean
   userAdditionalInformation: AdditionalInformation @hasOne
   userSwipes: [Swipes] @hasMany(indexName: "byUser", fields: ["id"])
-  #userScholar: [Scholar] @hasMany(indexName: "byUser", fields: ["id"])
-  #userBenefactor: [Benefactor] @hasMany(indexName: "byUser", fields: ["id"])
+  status: String
+  image: String
+  Messages: [Message] @hasMany(indexName: "byUser", fields: ["id"])
+  ChatRooms: [ChatRoom] @manyToMany(relationName: "UserChatRoom")
 }
+
+type ChatRoom @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Messages: [Message] @hasMany(indexName: "byChatRoom", fields: ["id"])
+  users: [User] @manyToMany(relationName: "UserChatRoom")
+  LastMessage: Message @hasOne
+}
+
+type Message @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  text: String!
+  chatroomID: ID! @index(name: "byChatRoom")
+  userID: ID! @index(name: "byUser")
+}
+ 

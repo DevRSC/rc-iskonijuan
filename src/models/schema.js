@@ -1,213 +1,5 @@
 export const schema = {
     "models": {
-        "Information": {
-            "name": "Information",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "currentGradeLevel": {
-                    "name": "currentGradeLevel",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "cumulativeGPA": {
-                    "name": "cumulativeGPA",
-                    "isArray": false,
-                    "type": "Float",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "hsYearGraduate": {
-                    "name": "hsYearGraduate",
-                    "isArray": false,
-                    "type": "AWSDate",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "fieldOfStudy": {
-                    "name": "fieldOfStudy",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "yearlyIncome": {
-                    "name": "yearlyIncome",
-                    "isArray": false,
-                    "type": "Int",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "yearUpcomingCY": {
-                    "name": "yearUpcomingCY",
-                    "isArray": false,
-                    "type": "Int",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "livingSituation": {
-                    "name": "livingSituation",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "statusOfScholarshipApplication": {
-                    "name": "statusOfScholarshipApplication",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "InformationMatches": {
-                    "name": "InformationMatches",
-                    "isArray": true,
-                    "type": {
-                        "model": "Matches"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": [
-                            "informationID"
-                        ]
-                    }
-                },
-                "createdAt": {
-                    "name": "createdAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                },
-                "updatedAt": {
-                    "name": "updatedAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                }
-            },
-            "syncable": true,
-            "pluralName": "Information",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "allow": "public",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "Matches": {
-            "name": "Matches",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "organizationID": {
-                    "name": "organizationID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "informationID": {
-                    "name": "informationID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "createdAt": {
-                    "name": "createdAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                },
-                "updatedAt": {
-                    "name": "updatedAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                }
-            },
-            "syncable": true,
-            "pluralName": "Matches",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byOrganization",
-                        "fields": [
-                            "organizationID"
-                        ]
-                    }
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byInformation",
-                        "fields": [
-                            "informationID"
-                        ]
-                    }
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "allow": "public",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
         "Organization": {
             "name": "Organization",
             "fields": {
@@ -218,17 +10,26 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "organizationMatches": {
+                    "name": "organizationMatches",
+                    "isArray": true,
+                    "type": {
+                        "model": "Matches"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": [
+                            "organizationId"
+                        ]
+                    }
+                },
                 "name": {
                     "name": "name",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "startDate": {
-                    "name": "startDate",
-                    "isArray": false,
-                    "type": "AWSDate",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -249,7 +50,9 @@ export const schema = {
                 "availability": {
                     "name": "availability",
                     "isArray": false,
-                    "type": "String",
+                    "type": {
+                        "enum": "AvailabilityEnum"
+                    },
                     "isRequired": false,
                     "attributes": []
                 },
@@ -260,35 +63,12 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "grant": {
-                    "name": "grant",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "website": {
                     "name": "website",
                     "isArray": false,
-                    "type": "String",
+                    "type": "AWSURL",
                     "isRequired": false,
                     "attributes": []
-                },
-                "OrganizationMatches": {
-                    "name": "OrganizationMatches",
-                    "isArray": true,
-                    "type": {
-                        "model": "Matches"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": [
-                            "organizationID"
-                        ]
-                    }
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -332,8 +112,8 @@ export const schema = {
                 }
             ]
         },
-        "PrivateChats": {
-            "name": "PrivateChats",
+        "Matches": {
+            "name": "Matches",
             "fields": {
                 "id": {
                     "name": "id",
@@ -342,32 +122,18 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "benefactorID": {
-                    "name": "benefactorID",
+                "scholarinformationId": {
+                    "name": "scholarinformationId",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": true,
                     "attributes": []
                 },
-                "scholarID": {
-                    "name": "scholarID",
+                "organizationId": {
+                    "name": "organizationId",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": true,
-                    "attributes": []
-                },
-                "timestamp": {
-                    "name": "timestamp",
-                    "isArray": false,
-                    "type": "AWSTimestamp",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "message": {
-                    "name": "message",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
                     "attributes": []
                 },
                 "createdAt": {
@@ -388,7 +154,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "PrivateChats",
+            "pluralName": "Matches",
             "attributes": [
                 {
                     "type": "model",
@@ -397,18 +163,18 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
-                        "name": "byBenefactor",
+                        "name": "byScholarInformation",
                         "fields": [
-                            "benefactorID"
+                            "scholarinformationId"
                         ]
                     }
                 },
                 {
                     "type": "key",
                     "properties": {
-                        "name": "byScholar",
+                        "name": "byOrganization",
                         "fields": [
-                            "scholarID"
+                            "organizationId"
                         ]
                     }
                 },
@@ -430,8 +196,8 @@ export const schema = {
                 }
             ]
         },
-        "Swipes": {
-            "name": "Swipes",
+        "ScholarInformation": {
+            "name": "ScholarInformation",
             "fields": {
                 "id": {
                     "name": "id",
@@ -440,24 +206,196 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "benefactorID": {
-                    "name": "benefactorID",
+                "scholarId": {
+                    "name": "scholarId",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": true,
                     "attributes": []
                 },
-                "scholarID": {
-                    "name": "scholarID",
+                "studentId": {
+                    "name": "studentId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "corImage": {
+                    "name": "corImage",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "currentGradeLevel": {
+                    "name": "currentGradeLevel",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "cumulativeGPA": {
+                    "name": "cumulativeGPA",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "hsYearGraduated": {
+                    "name": "hsYearGraduated",
+                    "isArray": false,
+                    "type": "AWSDate",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "upcomingCY": {
+                    "name": "upcomingCY",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "statusOfScholarshipApplication": {
+                    "name": "statusOfScholarshipApplication",
+                    "isArray": false,
+                    "type": {
+                        "enum": "StatusOfScholarshipApplicationEnum"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "scholarMatches": {
+                    "name": "scholarMatches",
+                    "isArray": true,
+                    "type": {
+                        "model": "Matches"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": [
+                            "scholarinformationId"
+                        ]
+                    }
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "ScholarInformations",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byScholar",
+                        "fields": [
+                            "scholarId"
+                        ]
+                    }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "Campaign": {
+            "name": "Campaign",
+            "fields": {
+                "id": {
+                    "name": "id",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": true,
                     "attributes": []
                 },
-                "isLiked": {
-                    "name": "isLiked",
+                "campaignDonation": {
+                    "name": "campaignDonation",
+                    "isArray": true,
+                    "type": {
+                        "model": "Donation"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": [
+                            "campaignId"
+                        ]
+                    }
+                },
+                "scholarId": {
+                    "name": "scholarId",
                     "isArray": false,
-                    "type": "Boolean",
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "campaignName": {
+                    "name": "campaignName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "description": {
+                    "name": "description",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "amountGoal": {
+                    "name": "amountGoal",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "startDate": {
+                    "name": "startDate",
+                    "isArray": false,
+                    "type": "AWSDate",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "endDate": {
+                    "name": "endDate",
+                    "isArray": false,
+                    "type": "AWSDate",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -479,7 +417,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Swipes",
+            "pluralName": "Campaigns",
             "attributes": [
                 {
                     "type": "model",
@@ -488,18 +426,107 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
-                        "name": "byBenefactor",
+                        "name": "byScholar",
                         "fields": [
-                            "benefactorID"
+                            "scholarId"
+                        ]
+                    }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "Donation": {
+            "name": "Donation",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "campaignId": {
+                    "name": "campaignId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "benefactorId": {
+                    "name": "benefactorId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "donatedOn": {
+                    "name": "donatedOn",
+                    "isArray": false,
+                    "type": "AWSTimestamp",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "amountDonated": {
+                    "name": "amountDonated",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "Donations",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byCampaign",
+                        "fields": [
+                            "campaignId"
                         ]
                     }
                 },
                 {
                     "type": "key",
                     "properties": {
-                        "name": "byScholar",
+                        "name": "byBenefactor",
                         "fields": [
-                            "scholarID"
+                            "benefactorId"
                         ]
                     }
                 },
@@ -531,18 +558,111 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "email": {
-                    "name": "email",
+                "userBenefactor": {
+                    "name": "userBenefactor",
                     "isArray": false,
-                    "type": "AWSEmail",
+                    "type": {
+                        "model": "User"
+                    },
                     "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "HAS_ONE",
+                        "associatedWith": [
+                            "id"
+                        ],
+                        "targetNames": [
+                            "benefactorUserBenefactorId"
+                        ]
+                    }
+                },
+                "benefactorDonation": {
+                    "name": "benefactorDonation",
+                    "isArray": true,
+                    "type": {
+                        "model": "Donation"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": [
+                            "benefactorId"
+                        ]
+                    }
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "benefactorUserBenefactorId": {
+                    "name": "benefactorUserBenefactorId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "Benefactors",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "User": {
+            "name": "User",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
                     "attributes": []
                 },
                 "username": {
                     "name": "username",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": false,
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "email": {
+                    "name": "email",
+                    "isArray": false,
+                    "type": "AWSEmail",
+                    "isRequired": true,
                     "attributes": []
                 },
                 "firstName": {
@@ -587,8 +707,22 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "postal": {
+                    "name": "postal",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "nationality": {
                     "name": "nationality",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "typeOfDisability": {
+                    "name": "typeOfDisability",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -604,7 +738,7 @@ export const schema = {
                 "birthDate": {
                     "name": "birthDate",
                     "isArray": false,
-                    "type": "AWSDate",
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -615,38 +749,33 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "sourceIncome": {
-                    "name": "sourceIncome",
-                    "isArray": false,
-                    "type": "Int",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "BenefactorDonation": {
-                    "name": "BenefactorDonation",
-                    "isArray": true,
-                    "type": {
-                        "model": "Donation"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": [
-                            "benefactorID"
-                        ]
-                    }
-                },
-                "Verified": {
-                    "name": "Verified",
+                "verified": {
+                    "name": "verified",
                     "isArray": false,
                     "type": "Boolean",
                     "isRequired": false,
                     "attributes": []
                 },
-                "BenefactorSwipes": {
-                    "name": "BenefactorSwipes",
+                "userAdditionalInformation": {
+                    "name": "userAdditionalInformation",
+                    "isArray": false,
+                    "type": {
+                        "model": "AdditionalInformation"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "HAS_ONE",
+                        "associatedWith": [
+                            "id"
+                        ],
+                        "targetNames": [
+                            "userUserAdditionalInformationId"
+                        ]
+                    }
+                },
+                "userSwipes": {
+                    "name": "userSwipes",
                     "isArray": true,
                     "type": {
                         "model": "Swipes"
@@ -657,15 +786,29 @@ export const schema = {
                     "association": {
                         "connectionType": "HAS_MANY",
                         "associatedWith": [
-                            "benefactorID"
+                            "userId"
                         ]
                     }
                 },
-                "BenefactorPrivateChats": {
-                    "name": "BenefactorPrivateChats",
+                "status": {
+                    "name": "status",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "image": {
+                    "name": "image",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "Messages": {
+                    "name": "Messages",
                     "isArray": true,
                     "type": {
-                        "model": "PrivateChats"
+                        "model": "Message"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -673,7 +816,23 @@ export const schema = {
                     "association": {
                         "connectionType": "HAS_MANY",
                         "associatedWith": [
-                            "benefactorID"
+                            "userID"
+                        ]
+                    }
+                },
+                "ChatRooms": {
+                    "name": "ChatRooms",
+                    "isArray": true,
+                    "type": {
+                        "model": "UserChatRoom"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": [
+                            "user"
                         ]
                     }
                 },
@@ -692,10 +851,17 @@ export const schema = {
                     "isRequired": false,
                     "attributes": [],
                     "isReadOnly": true
+                },
+                "userUserAdditionalInformationId": {
+                    "name": "userUserAdditionalInformationId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
-            "pluralName": "Benefactors",
+            "pluralName": "Users",
             "attributes": [
                 {
                     "type": "model",
@@ -719,8 +885,8 @@ export const schema = {
                 }
             ]
         },
-        "Donation": {
-            "name": "Donation",
+        "AdditionalInformation": {
+            "name": "AdditionalInformation",
             "fields": {
                 "id": {
                     "name": "id",
@@ -729,161 +895,57 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "campaignID": {
-                    "name": "campaignID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "benefactorID": {
-                    "name": "benefactorID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "donatedAt": {
-                    "name": "donatedAt",
+                "currentGeoLocation": {
+                    "name": "currentGeoLocation",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "amountDonated": {
-                    "name": "amountDonated",
-                    "isArray": false,
+                "interest": {
+                    "name": "interest",
+                    "isArray": true,
                     "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "createdAt": {
-                    "name": "createdAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
                     "isRequired": false,
                     "attributes": [],
-                    "isReadOnly": true
+                    "isArrayNullable": true
                 },
-                "updatedAt": {
-                    "name": "updatedAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                }
-            },
-            "syncable": true,
-            "pluralName": "Donations",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byCampaign",
-                        "fields": [
-                            "campaignID"
-                        ]
-                    }
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byBenefactor",
-                        "fields": [
-                            "benefactorID"
-                        ]
-                    }
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "allow": "public",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "Campaign": {
-            "name": "Campaign",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "scholarID": {
-                    "name": "scholarID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "campaignName": {
-                    "name": "campaignName",
+                "ethnicity": {
+                    "name": "ethnicity",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "description": {
-                    "name": "description",
+                "fieldOfStudy": {
+                    "name": "fieldOfStudy",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "amountGoal": {
-                    "name": "amountGoal",
+                "typeOfScholarship": {
+                    "name": "typeOfScholarship",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "yearlyIncome": {
+                    "name": "yearlyIncome",
                     "isArray": false,
                     "type": "Int",
                     "isRequired": false,
                     "attributes": []
                 },
-                "startDate": {
-                    "name": "startDate",
+                "employmentStatus": {
+                    "name": "employmentStatus",
                     "isArray": false,
-                    "type": "AWSDate",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "endDate": {
-                    "name": "endDate",
-                    "isArray": false,
-                    "type": "AWSDate",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "CampaignDonations": {
-                    "name": "CampaignDonations",
-                    "isArray": true,
                     "type": {
-                        "model": "Donation"
+                        "enum": "EmploymentStatusEnum"
                     },
                     "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": [
-                            "campaignID"
-                        ]
-                    }
+                    "attributes": []
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -903,7 +965,80 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Campaigns",
+            "pluralName": "AdditionalInformations",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "Swipes": {
+            "name": "Swipes",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "userId": {
+                    "name": "userId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "targetd": {
+                    "name": "targetd",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "isLiked": {
+                    "name": "isLiked",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "Swipes",
             "attributes": [
                 {
                     "type": "model",
@@ -912,11 +1047,211 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
-                        "name": "byScholar",
+                        "name": "byUser",
                         "fields": [
-                            "scholarID"
+                            "userId"
                         ]
                     }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "Message": {
+            "name": "Message",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "text": {
+                    "name": "text",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "chatroomID": {
+                    "name": "chatroomID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "userID": {
+                    "name": "userID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "Messages",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byChatRoom",
+                        "fields": [
+                            "chatroomID"
+                        ]
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byUser",
+                        "fields": [
+                            "userID"
+                        ]
+                    }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "ChatRoom": {
+            "name": "ChatRoom",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "Messages": {
+                    "name": "Messages",
+                    "isArray": true,
+                    "type": {
+                        "model": "Message"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": [
+                            "chatroomID"
+                        ]
+                    }
+                },
+                "users": {
+                    "name": "users",
+                    "isArray": true,
+                    "type": {
+                        "model": "UserChatRoom"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": [
+                            "chatRoom"
+                        ]
+                    }
+                },
+                "LastMessage": {
+                    "name": "LastMessage",
+                    "isArray": false,
+                    "type": {
+                        "model": "Message"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "HAS_ONE",
+                        "associatedWith": [
+                            "id"
+                        ],
+                        "targetNames": [
+                            "chatRoomLastMessageId"
+                        ]
+                    }
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "chatRoomLastMessageId": {
+                    "name": "chatRoomLastMessageId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "ChatRooms",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
                 },
                 {
                     "type": "auth",
@@ -946,109 +1281,11 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "email": {
-                    "name": "email",
-                    "isArray": false,
-                    "type": "AWSEmail",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "username": {
-                    "name": "username",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "firstName": {
-                    "name": "firstName",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "middlename": {
-                    "name": "middlename",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "lastName": {
-                    "name": "lastName",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "suffix": {
-                    "name": "suffix",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "sex": {
-                    "name": "sex",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "address": {
-                    "name": "address",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "nationality": {
-                    "name": "nationality",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "placeOfBirth": {
-                    "name": "placeOfBirth",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "birthDate": {
-                    "name": "birthDate",
-                    "isArray": false,
-                    "type": "AWSDate",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "mobileNumber": {
-                    "name": "mobileNumber",
-                    "isArray": false,
-                    "type": "AWSPhone",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "password": {
-                    "name": "password",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "verified": {
-                    "name": "verified",
-                    "isArray": false,
-                    "type": "Boolean",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "ScholarInformation": {
-                    "name": "ScholarInformation",
+                "userScholar": {
+                    "name": "userScholar",
                     "isArray": false,
                     "type": {
-                        "model": "Information"
+                        "model": "User"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -1058,15 +1295,15 @@ export const schema = {
                             "id"
                         ],
                         "targetNames": [
-                            "scholarScholarInformationId"
+                            "scholarUserScholarId"
                         ]
                     }
                 },
-                "ScholarSwipes": {
-                    "name": "ScholarSwipes",
+                "scholarCampaign": {
+                    "name": "scholarCampaign",
                     "isArray": true,
                     "type": {
-                        "model": "Swipes"
+                        "model": "Campaign"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -1074,15 +1311,15 @@ export const schema = {
                     "association": {
                         "connectionType": "HAS_MANY",
                         "associatedWith": [
-                            "scholarID"
+                            "scholarId"
                         ]
                     }
                 },
-                "ScholarPrivateChats": {
-                    "name": "ScholarPrivateChats",
+                "scholarScholarInformation": {
+                    "name": "scholarScholarInformation",
                     "isArray": true,
                     "type": {
-                        "model": "PrivateChats"
+                        "model": "ScholarInformation"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -1090,25 +1327,7 @@ export const schema = {
                     "association": {
                         "connectionType": "HAS_MANY",
                         "associatedWith": [
-                            "scholarID"
-                        ]
-                    }
-                },
-                "Information": {
-                    "name": "Information",
-                    "isArray": false,
-                    "type": {
-                        "model": "Information"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "HAS_ONE",
-                        "associatedWith": [
-                            "id"
-                        ],
-                        "targetNames": [
-                            "scholarInformationId"
+                            "scholarId"
                         ]
                     }
                 },
@@ -1128,15 +1347,8 @@ export const schema = {
                     "attributes": [],
                     "isReadOnly": true
                 },
-                "scholarScholarInformationId": {
-                    "name": "scholarScholarInformationId",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "scholarInformationId": {
-                    "name": "scholarInformationId",
+                "scholarUserScholarId": {
+                    "name": "scholarUserScholarId",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": false,
@@ -1167,10 +1379,141 @@ export const schema = {
                     }
                 }
             ]
+        },
+        "UserChatRoom": {
+            "name": "UserChatRoom",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "userId": {
+                    "name": "userId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "chatRoomId": {
+                    "name": "chatRoomId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "user": {
+                    "name": "user",
+                    "isArray": false,
+                    "type": {
+                        "model": "User"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetNames": [
+                            "userId"
+                        ]
+                    }
+                },
+                "chatRoom": {
+                    "name": "chatRoom",
+                    "isArray": false,
+                    "type": {
+                        "model": "ChatRoom"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetNames": [
+                            "chatRoomId"
+                        ]
+                    }
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "UserChatRooms",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byUser",
+                        "fields": [
+                            "userId"
+                        ]
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byChatRoom",
+                        "fields": [
+                            "chatRoomId"
+                        ]
+                    }
+                }
+            ]
         }
     },
-    "enums": {},
+    "enums": {
+        "AvailabilityEnum": {
+            "name": "AvailabilityEnum",
+            "values": [
+                "OPEN",
+                "CLOSED"
+            ]
+        },
+        "TypeOfScholarshipEnum": {
+            "name": "TypeOfScholarshipEnum",
+            "values": [
+                "MERITBASED",
+                "NEEDSBASED",
+                "CONTEXTBASED",
+                "SKILLSBASED"
+            ]
+        },
+        "StatusOfScholarshipApplicationEnum": {
+            "name": "StatusOfScholarshipApplicationEnum",
+            "values": [
+                "REJECTED",
+                "INPROGRESS",
+                "ACCEPTED"
+            ]
+        },
+        "EmploymentStatusEnum": {
+            "name": "EmploymentStatusEnum",
+            "values": [
+                "EMPLOYEE",
+                "SELFEMPLOYED",
+                "STUDENT"
+            ]
+        }
+    },
     "nonModels": {},
     "codegenVersion": "3.3.2",
-    "version": "af815dc0cb0a4095c42c8c5b9be0117f"
+    "version": "6c0db544c3bf7d1dfd699e13980c6b63"
 };

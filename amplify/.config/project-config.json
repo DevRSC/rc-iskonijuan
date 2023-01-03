@@ -2,7 +2,7 @@
   "providers": [
     "awscloudformation"
   ],
-  "projectName": "iskonijuan",
+  "projectName": "iskonijuanv2",
   "version": "3.1",
   "frontend": "javascript",
   "javascript": {

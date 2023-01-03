@@ -12,7 +12,6 @@ export const getOrganization = /* GraphQL */ `
           organizationId
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -24,7 +23,6 @@ export const getOrganization = /* GraphQL */ `
       website
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -48,7 +46,6 @@ export const listOrganizations = /* GraphQL */ `
         website
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }
@@ -62,7 +59,6 @@ export const getMatches = /* GraphQL */ `
       organizationId
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -79,7 +75,6 @@ export const listMatches = /* GraphQL */ `
         organizationId
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }
@@ -106,7 +101,6 @@ export const matchesByScholarinformationId = /* GraphQL */ `
         organizationId
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }
@@ -133,7 +127,6 @@ export const matchesByOrganizationId = /* GraphQL */ `
         organizationId
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }
@@ -158,13 +151,11 @@ export const getScholarInformation = /* GraphQL */ `
           organizationId
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -194,7 +185,6 @@ export const listScholarInformations = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }
@@ -230,7 +220,6 @@ export const scholarInformationsByScholarId = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }
@@ -249,7 +238,6 @@ export const getCampaign = /* GraphQL */ `
           amountDonated
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -261,7 +249,6 @@ export const getCampaign = /* GraphQL */ `
       endDate
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -285,7 +272,6 @@ export const listCampaigns = /* GraphQL */ `
         endDate
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }
@@ -319,7 +305,6 @@ export const campaignsByScholarId = /* GraphQL */ `
         endDate
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }
@@ -335,7 +320,6 @@ export const getDonation = /* GraphQL */ `
       amountDonated
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -354,7 +338,6 @@ export const listDonations = /* GraphQL */ `
         amountDonated
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }
@@ -383,7 +366,6 @@ export const donationsByCampaignId = /* GraphQL */ `
         amountDonated
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }
@@ -412,7 +394,6 @@ export const donationsByBenefactorId = /* GraphQL */ `
         amountDonated
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }
@@ -450,15 +431,21 @@ export const getBenefactor = /* GraphQL */ `
           employmentStatus
           createdAt
           updatedAt
-          owner
         }
         userSwipes {
+          nextToken
+        }
+        status
+        image
+        Messages {
+          nextToken
+        }
+        ChatRooms {
           nextToken
         }
         createdAt
         updatedAt
         userUserAdditionalInformationId
-        owner
       }
       benefactorDonation {
         items {
@@ -469,14 +456,12 @@ export const getBenefactor = /* GraphQL */ `
           amountDonated
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
       benefactorUserBenefactorId
-      owner
     }
   }
 `;
@@ -506,10 +491,11 @@ export const listBenefactors = /* GraphQL */ `
           birthDate
           mobileNumber
           verified
+          status
+          image
           createdAt
           updatedAt
           userUserAdditionalInformationId
-          owner
         }
         benefactorDonation {
           nextToken
@@ -517,7 +503,6 @@ export const listBenefactors = /* GraphQL */ `
         createdAt
         updatedAt
         benefactorUserBenefactorId
-        owner
       }
       nextToken
     }
@@ -555,15 +540,21 @@ export const getScholar = /* GraphQL */ `
           employmentStatus
           createdAt
           updatedAt
-          owner
         }
         userSwipes {
+          nextToken
+        }
+        status
+        image
+        Messages {
+          nextToken
+        }
+        ChatRooms {
           nextToken
         }
         createdAt
         updatedAt
         userUserAdditionalInformationId
-        owner
       }
       scholarCampaign {
         items {
@@ -576,7 +567,6 @@ export const getScholar = /* GraphQL */ `
           endDate
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -593,14 +583,12 @@ export const getScholar = /* GraphQL */ `
           statusOfScholarshipApplication
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
       scholarUserScholarId
-      owner
     }
   }
 `;
@@ -630,10 +618,11 @@ export const listScholars = /* GraphQL */ `
           birthDate
           mobileNumber
           verified
+          status
+          image
           createdAt
           updatedAt
           userUserAdditionalInformationId
-          owner
         }
         scholarCampaign {
           nextToken
@@ -644,7 +633,6 @@ export const listScholars = /* GraphQL */ `
         createdAt
         updatedAt
         scholarUserScholarId
-        owner
       }
       nextToken
     }
@@ -659,7 +647,6 @@ export const getSwipes = /* GraphQL */ `
       isLiked
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -677,7 +664,6 @@ export const listSwipes = /* GraphQL */ `
         isLiked
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }
@@ -705,7 +691,6 @@ export const swipesByUserId = /* GraphQL */ `
         isLiked
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }
@@ -724,7 +709,6 @@ export const getAdditionalInformation = /* GraphQL */ `
       employmentStatus
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -750,7 +734,6 @@ export const listAdditionalInformations = /* GraphQL */ `
         employmentStatus
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }
@@ -786,7 +769,6 @@ export const getUser = /* GraphQL */ `
         employmentStatus
         createdAt
         updatedAt
-        owner
       }
       userSwipes {
         items {
@@ -796,14 +778,35 @@ export const getUser = /* GraphQL */ `
           isLiked
           createdAt
           updatedAt
-          owner
+        }
+        nextToken
+      }
+      status
+      image
+      Messages {
+        items {
+          id
+          text
+          chatroomID
+          userID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      ChatRooms {
+        items {
+          id
+          userId
+          chatRoomId
+          createdAt
+          updatedAt
         }
         nextToken
       }
       createdAt
       updatedAt
       userUserAdditionalInformationId
-      owner
     }
   }
 `;
@@ -842,15 +845,408 @@ export const listUsers = /* GraphQL */ `
           employmentStatus
           createdAt
           updatedAt
-          owner
         }
         userSwipes {
+          nextToken
+        }
+        status
+        image
+        Messages {
+          nextToken
+        }
+        ChatRooms {
           nextToken
         }
         createdAt
         updatedAt
         userUserAdditionalInformationId
-        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const getChatRoom = /* GraphQL */ `
+  query GetChatRoom($id: ID!) {
+    getChatRoom(id: $id) {
+      id
+      Messages {
+        items {
+          id
+          text
+          chatroomID
+          userID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      users {
+        items {
+          id
+          userId
+          chatRoomId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      LastMessage {
+        id
+        text
+        chatroomID
+        userID
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      chatRoomLastMessageId
+    }
+  }
+`;
+export const listChatRooms = /* GraphQL */ `
+  query ListChatRooms(
+    $filter: ModelChatRoomFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listChatRooms(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        Messages {
+          nextToken
+        }
+        users {
+          nextToken
+        }
+        LastMessage {
+          id
+          text
+          chatroomID
+          userID
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+        chatRoomLastMessageId
+      }
+      nextToken
+    }
+  }
+`;
+export const getMessage = /* GraphQL */ `
+  query GetMessage($id: ID!) {
+    getMessage(id: $id) {
+      id
+      text
+      chatroomID
+      userID
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listMessages = /* GraphQL */ `
+  query ListMessages(
+    $filter: ModelMessageFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listMessages(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        text
+        chatroomID
+        userID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const messagesByChatroomID = /* GraphQL */ `
+  query MessagesByChatroomID(
+    $chatroomID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelMessageFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    messagesByChatroomID(
+      chatroomID: $chatroomID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        text
+        chatroomID
+        userID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const messagesByUserID = /* GraphQL */ `
+  query MessagesByUserID(
+    $userID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelMessageFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    messagesByUserID(
+      userID: $userID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        text
+        chatroomID
+        userID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getUserChatRoom = /* GraphQL */ `
+  query GetUserChatRoom($id: ID!) {
+    getUserChatRoom(id: $id) {
+      id
+      userId
+      chatRoomId
+      user {
+        id
+        username
+        email
+        firstName
+        middleName
+        lastName
+        suffix
+        sex
+        address
+        postal
+        nationality
+        typeOfDisability
+        placeOfBirth
+        birthDate
+        mobileNumber
+        verified
+        userAdditionalInformation {
+          id
+          currentGeoLocation
+          interest
+          ethnicity
+          fieldOfStudy
+          typeOfScholarship
+          yearlyIncome
+          employmentStatus
+          createdAt
+          updatedAt
+        }
+        userSwipes {
+          nextToken
+        }
+        status
+        image
+        Messages {
+          nextToken
+        }
+        ChatRooms {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        userUserAdditionalInformationId
+      }
+      chatRoom {
+        id
+        Messages {
+          nextToken
+        }
+        users {
+          nextToken
+        }
+        LastMessage {
+          id
+          text
+          chatroomID
+          userID
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+        chatRoomLastMessageId
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listUserChatRooms = /* GraphQL */ `
+  query ListUserChatRooms(
+    $filter: ModelUserChatRoomFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listUserChatRooms(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        userId
+        chatRoomId
+        user {
+          id
+          username
+          email
+          firstName
+          middleName
+          lastName
+          suffix
+          sex
+          address
+          postal
+          nationality
+          typeOfDisability
+          placeOfBirth
+          birthDate
+          mobileNumber
+          verified
+          status
+          image
+          createdAt
+          updatedAt
+          userUserAdditionalInformationId
+        }
+        chatRoom {
+          id
+          createdAt
+          updatedAt
+          chatRoomLastMessageId
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const userChatRoomsByUserId = /* GraphQL */ `
+  query UserChatRoomsByUserId(
+    $userId: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelUserChatRoomFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    userChatRoomsByUserId(
+      userId: $userId
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        userId
+        chatRoomId
+        user {
+          id
+          username
+          email
+          firstName
+          middleName
+          lastName
+          suffix
+          sex
+          address
+          postal
+          nationality
+          typeOfDisability
+          placeOfBirth
+          birthDate
+          mobileNumber
+          verified
+          status
+          image
+          createdAt
+          updatedAt
+          userUserAdditionalInformationId
+        }
+        chatRoom {
+          id
+          createdAt
+          updatedAt
+          chatRoomLastMessageId
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const userChatRoomsByChatRoomId = /* GraphQL */ `
+  query UserChatRoomsByChatRoomId(
+    $chatRoomId: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelUserChatRoomFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    userChatRoomsByChatRoomId(
+      chatRoomId: $chatRoomId
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        userId
+        chatRoomId
+        user {
+          id
+          username
+          email
+          firstName
+          middleName
+          lastName
+          suffix
+          sex
+          address
+          postal
+          nationality
+          typeOfDisability
+          placeOfBirth
+          birthDate
+          mobileNumber
+          verified
+          status
+          image
+          createdAt
+          updatedAt
+          userUserAdditionalInformationId
+        }
+        chatRoom {
+          id
+          createdAt
+          updatedAt
+          chatRoomLastMessageId
+        }
+        createdAt
+        updatedAt
       }
       nextToken
     }

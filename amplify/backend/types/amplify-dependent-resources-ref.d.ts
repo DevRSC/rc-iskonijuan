@@ -1,17 +1,18 @@
 export type AmplifyDependentResourcesAttributes = {
     "api": {
-        "iskonijuan": {
+        "iskonijuanv2": {
             "GraphQLAPIKeyOutput": "string",
             "GraphQLAPIIdOutput": "string",
             "GraphQLAPIEndpointOutput": "string"
         }
     },
     "function": {
-        "cognitoUsersToDynamoDB": {
+        "cognitoToDynamoDB": {
             "Name": "string",
             "Arn": "string",
             "Region": "string",
-            "LambdaExecutionRole": "string"
+            "LambdaExecutionRole": "string",
+            "LambdaExecutionRoleArn": "string"
         }
     }
 }

@@ -4,9 +4,8 @@
 export const onCreateOrganization = /* GraphQL */ `
   subscription OnCreateOrganization(
     $filter: ModelSubscriptionOrganizationFilterInput
-    $owner: String
   ) {
-    onCreateOrganization(filter: $filter, owner: $owner) {
+    onCreateOrganization(filter: $filter) {
       id
       organizationMatches {
         items {
@@ -15,7 +14,6 @@ export const onCreateOrganization = /* GraphQL */ `
           organizationId
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -27,16 +25,14 @@ export const onCreateOrganization = /* GraphQL */ `
       website
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onUpdateOrganization = /* GraphQL */ `
   subscription OnUpdateOrganization(
     $filter: ModelSubscriptionOrganizationFilterInput
-    $owner: String
   ) {
-    onUpdateOrganization(filter: $filter, owner: $owner) {
+    onUpdateOrganization(filter: $filter) {
       id
       organizationMatches {
         items {
@@ -45,7 +41,6 @@ export const onUpdateOrganization = /* GraphQL */ `
           organizationId
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -57,16 +52,14 @@ export const onUpdateOrganization = /* GraphQL */ `
       website
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onDeleteOrganization = /* GraphQL */ `
   subscription OnDeleteOrganization(
     $filter: ModelSubscriptionOrganizationFilterInput
-    $owner: String
   ) {
-    onDeleteOrganization(filter: $filter, owner: $owner) {
+    onDeleteOrganization(filter: $filter) {
       id
       organizationMatches {
         items {
@@ -75,7 +68,6 @@ export const onDeleteOrganization = /* GraphQL */ `
           organizationId
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -87,61 +79,47 @@ export const onDeleteOrganization = /* GraphQL */ `
       website
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onCreateMatches = /* GraphQL */ `
-  subscription OnCreateMatches(
-    $filter: ModelSubscriptionMatchesFilterInput
-    $owner: String
-  ) {
-    onCreateMatches(filter: $filter, owner: $owner) {
+  subscription OnCreateMatches($filter: ModelSubscriptionMatchesFilterInput) {
+    onCreateMatches(filter: $filter) {
       id
       scholarinformationId
       organizationId
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onUpdateMatches = /* GraphQL */ `
-  subscription OnUpdateMatches(
-    $filter: ModelSubscriptionMatchesFilterInput
-    $owner: String
-  ) {
-    onUpdateMatches(filter: $filter, owner: $owner) {
+  subscription OnUpdateMatches($filter: ModelSubscriptionMatchesFilterInput) {
+    onUpdateMatches(filter: $filter) {
       id
       scholarinformationId
       organizationId
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onDeleteMatches = /* GraphQL */ `
-  subscription OnDeleteMatches(
-    $filter: ModelSubscriptionMatchesFilterInput
-    $owner: String
-  ) {
-    onDeleteMatches(filter: $filter, owner: $owner) {
+  subscription OnDeleteMatches($filter: ModelSubscriptionMatchesFilterInput) {
+    onDeleteMatches(filter: $filter) {
       id
       scholarinformationId
       organizationId
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onCreateScholarInformation = /* GraphQL */ `
   subscription OnCreateScholarInformation(
     $filter: ModelSubscriptionScholarInformationFilterInput
-    $owner: String
   ) {
-    onCreateScholarInformation(filter: $filter, owner: $owner) {
+    onCreateScholarInformation(filter: $filter) {
       id
       scholarId
       studentId
@@ -158,22 +136,19 @@ export const onCreateScholarInformation = /* GraphQL */ `
           organizationId
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onUpdateScholarInformation = /* GraphQL */ `
   subscription OnUpdateScholarInformation(
     $filter: ModelSubscriptionScholarInformationFilterInput
-    $owner: String
   ) {
-    onUpdateScholarInformation(filter: $filter, owner: $owner) {
+    onUpdateScholarInformation(filter: $filter) {
       id
       scholarId
       studentId
@@ -190,22 +165,19 @@ export const onUpdateScholarInformation = /* GraphQL */ `
           organizationId
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onDeleteScholarInformation = /* GraphQL */ `
   subscription OnDeleteScholarInformation(
     $filter: ModelSubscriptionScholarInformationFilterInput
-    $owner: String
   ) {
-    onDeleteScholarInformation(filter: $filter, owner: $owner) {
+    onDeleteScholarInformation(filter: $filter) {
       id
       scholarId
       studentId
@@ -222,22 +194,17 @@ export const onDeleteScholarInformation = /* GraphQL */ `
           organizationId
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onCreateCampaign = /* GraphQL */ `
-  subscription OnCreateCampaign(
-    $filter: ModelSubscriptionCampaignFilterInput
-    $owner: String
-  ) {
-    onCreateCampaign(filter: $filter, owner: $owner) {
+  subscription OnCreateCampaign($filter: ModelSubscriptionCampaignFilterInput) {
+    onCreateCampaign(filter: $filter) {
       id
       campaignDonation {
         items {
@@ -248,7 +215,6 @@ export const onCreateCampaign = /* GraphQL */ `
           amountDonated
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -260,16 +226,12 @@ export const onCreateCampaign = /* GraphQL */ `
       endDate
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onUpdateCampaign = /* GraphQL */ `
-  subscription OnUpdateCampaign(
-    $filter: ModelSubscriptionCampaignFilterInput
-    $owner: String
-  ) {
-    onUpdateCampaign(filter: $filter, owner: $owner) {
+  subscription OnUpdateCampaign($filter: ModelSubscriptionCampaignFilterInput) {
+    onUpdateCampaign(filter: $filter) {
       id
       campaignDonation {
         items {
@@ -280,7 +242,6 @@ export const onUpdateCampaign = /* GraphQL */ `
           amountDonated
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -292,16 +253,12 @@ export const onUpdateCampaign = /* GraphQL */ `
       endDate
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onDeleteCampaign = /* GraphQL */ `
-  subscription OnDeleteCampaign(
-    $filter: ModelSubscriptionCampaignFilterInput
-    $owner: String
-  ) {
-    onDeleteCampaign(filter: $filter, owner: $owner) {
+  subscription OnDeleteCampaign($filter: ModelSubscriptionCampaignFilterInput) {
+    onDeleteCampaign(filter: $filter) {
       id
       campaignDonation {
         items {
@@ -312,7 +269,6 @@ export const onDeleteCampaign = /* GraphQL */ `
           amountDonated
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -324,16 +280,12 @@ export const onDeleteCampaign = /* GraphQL */ `
       endDate
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onCreateDonation = /* GraphQL */ `
-  subscription OnCreateDonation(
-    $filter: ModelSubscriptionDonationFilterInput
-    $owner: String
-  ) {
-    onCreateDonation(filter: $filter, owner: $owner) {
+  subscription OnCreateDonation($filter: ModelSubscriptionDonationFilterInput) {
+    onCreateDonation(filter: $filter) {
       id
       campaignId
       benefactorId
@@ -341,16 +293,12 @@ export const onCreateDonation = /* GraphQL */ `
       amountDonated
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onUpdateDonation = /* GraphQL */ `
-  subscription OnUpdateDonation(
-    $filter: ModelSubscriptionDonationFilterInput
-    $owner: String
-  ) {
-    onUpdateDonation(filter: $filter, owner: $owner) {
+  subscription OnUpdateDonation($filter: ModelSubscriptionDonationFilterInput) {
+    onUpdateDonation(filter: $filter) {
       id
       campaignId
       benefactorId
@@ -358,16 +306,12 @@ export const onUpdateDonation = /* GraphQL */ `
       amountDonated
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onDeleteDonation = /* GraphQL */ `
-  subscription OnDeleteDonation(
-    $filter: ModelSubscriptionDonationFilterInput
-    $owner: String
-  ) {
-    onDeleteDonation(filter: $filter, owner: $owner) {
+  subscription OnDeleteDonation($filter: ModelSubscriptionDonationFilterInput) {
+    onDeleteDonation(filter: $filter) {
       id
       campaignId
       benefactorId
@@ -375,16 +319,14 @@ export const onDeleteDonation = /* GraphQL */ `
       amountDonated
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onCreateBenefactor = /* GraphQL */ `
   subscription OnCreateBenefactor(
     $filter: ModelSubscriptionBenefactorFilterInput
-    $owner: String
   ) {
-    onCreateBenefactor(filter: $filter, owner: $owner) {
+    onCreateBenefactor(filter: $filter) {
       id
       userBenefactor {
         id
@@ -414,15 +356,21 @@ export const onCreateBenefactor = /* GraphQL */ `
           employmentStatus
           createdAt
           updatedAt
-          owner
         }
         userSwipes {
+          nextToken
+        }
+        status
+        image
+        Messages {
+          nextToken
+        }
+        ChatRooms {
           nextToken
         }
         createdAt
         updatedAt
         userUserAdditionalInformationId
-        owner
       }
       benefactorDonation {
         items {
@@ -433,23 +381,20 @@ export const onCreateBenefactor = /* GraphQL */ `
           amountDonated
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
       benefactorUserBenefactorId
-      owner
     }
   }
 `;
 export const onUpdateBenefactor = /* GraphQL */ `
   subscription OnUpdateBenefactor(
     $filter: ModelSubscriptionBenefactorFilterInput
-    $owner: String
   ) {
-    onUpdateBenefactor(filter: $filter, owner: $owner) {
+    onUpdateBenefactor(filter: $filter) {
       id
       userBenefactor {
         id
@@ -479,15 +424,21 @@ export const onUpdateBenefactor = /* GraphQL */ `
           employmentStatus
           createdAt
           updatedAt
-          owner
         }
         userSwipes {
+          nextToken
+        }
+        status
+        image
+        Messages {
+          nextToken
+        }
+        ChatRooms {
           nextToken
         }
         createdAt
         updatedAt
         userUserAdditionalInformationId
-        owner
       }
       benefactorDonation {
         items {
@@ -498,23 +449,20 @@ export const onUpdateBenefactor = /* GraphQL */ `
           amountDonated
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
       benefactorUserBenefactorId
-      owner
     }
   }
 `;
 export const onDeleteBenefactor = /* GraphQL */ `
   subscription OnDeleteBenefactor(
     $filter: ModelSubscriptionBenefactorFilterInput
-    $owner: String
   ) {
-    onDeleteBenefactor(filter: $filter, owner: $owner) {
+    onDeleteBenefactor(filter: $filter) {
       id
       userBenefactor {
         id
@@ -544,15 +492,21 @@ export const onDeleteBenefactor = /* GraphQL */ `
           employmentStatus
           createdAt
           updatedAt
-          owner
         }
         userSwipes {
+          nextToken
+        }
+        status
+        image
+        Messages {
+          nextToken
+        }
+        ChatRooms {
           nextToken
         }
         createdAt
         updatedAt
         userUserAdditionalInformationId
-        owner
       }
       benefactorDonation {
         items {
@@ -563,23 +517,18 @@ export const onDeleteBenefactor = /* GraphQL */ `
           amountDonated
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
       benefactorUserBenefactorId
-      owner
     }
   }
 `;
 export const onCreateScholar = /* GraphQL */ `
-  subscription OnCreateScholar(
-    $filter: ModelSubscriptionScholarFilterInput
-    $owner: String
-  ) {
-    onCreateScholar(filter: $filter, owner: $owner) {
+  subscription OnCreateScholar($filter: ModelSubscriptionScholarFilterInput) {
+    onCreateScholar(filter: $filter) {
       id
       userScholar {
         id
@@ -609,15 +558,21 @@ export const onCreateScholar = /* GraphQL */ `
           employmentStatus
           createdAt
           updatedAt
-          owner
         }
         userSwipes {
+          nextToken
+        }
+        status
+        image
+        Messages {
+          nextToken
+        }
+        ChatRooms {
           nextToken
         }
         createdAt
         updatedAt
         userUserAdditionalInformationId
-        owner
       }
       scholarCampaign {
         items {
@@ -630,7 +585,6 @@ export const onCreateScholar = /* GraphQL */ `
           endDate
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -647,23 +601,18 @@ export const onCreateScholar = /* GraphQL */ `
           statusOfScholarshipApplication
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
       scholarUserScholarId
-      owner
     }
   }
 `;
 export const onUpdateScholar = /* GraphQL */ `
-  subscription OnUpdateScholar(
-    $filter: ModelSubscriptionScholarFilterInput
-    $owner: String
-  ) {
-    onUpdateScholar(filter: $filter, owner: $owner) {
+  subscription OnUpdateScholar($filter: ModelSubscriptionScholarFilterInput) {
+    onUpdateScholar(filter: $filter) {
       id
       userScholar {
         id
@@ -693,15 +642,21 @@ export const onUpdateScholar = /* GraphQL */ `
           employmentStatus
           createdAt
           updatedAt
-          owner
         }
         userSwipes {
+          nextToken
+        }
+        status
+        image
+        Messages {
+          nextToken
+        }
+        ChatRooms {
           nextToken
         }
         createdAt
         updatedAt
         userUserAdditionalInformationId
-        owner
       }
       scholarCampaign {
         items {
@@ -714,7 +669,6 @@ export const onUpdateScholar = /* GraphQL */ `
           endDate
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -731,23 +685,18 @@ export const onUpdateScholar = /* GraphQL */ `
           statusOfScholarshipApplication
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
       scholarUserScholarId
-      owner
     }
   }
 `;
 export const onDeleteScholar = /* GraphQL */ `
-  subscription OnDeleteScholar(
-    $filter: ModelSubscriptionScholarFilterInput
-    $owner: String
-  ) {
-    onDeleteScholar(filter: $filter, owner: $owner) {
+  subscription OnDeleteScholar($filter: ModelSubscriptionScholarFilterInput) {
+    onDeleteScholar(filter: $filter) {
       id
       userScholar {
         id
@@ -777,15 +726,21 @@ export const onDeleteScholar = /* GraphQL */ `
           employmentStatus
           createdAt
           updatedAt
-          owner
         }
         userSwipes {
+          nextToken
+        }
+        status
+        image
+        Messages {
+          nextToken
+        }
+        ChatRooms {
           nextToken
         }
         createdAt
         updatedAt
         userUserAdditionalInformationId
-        owner
       }
       scholarCampaign {
         items {
@@ -798,7 +753,6 @@ export const onDeleteScholar = /* GraphQL */ `
           endDate
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -815,71 +769,56 @@ export const onDeleteScholar = /* GraphQL */ `
           statusOfScholarshipApplication
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
       scholarUserScholarId
-      owner
     }
   }
 `;
 export const onCreateSwipes = /* GraphQL */ `
-  subscription OnCreateSwipes(
-    $filter: ModelSubscriptionSwipesFilterInput
-    $owner: String
-  ) {
-    onCreateSwipes(filter: $filter, owner: $owner) {
+  subscription OnCreateSwipes($filter: ModelSubscriptionSwipesFilterInput) {
+    onCreateSwipes(filter: $filter) {
       id
       userId
       targetd
       isLiked
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onUpdateSwipes = /* GraphQL */ `
-  subscription OnUpdateSwipes(
-    $filter: ModelSubscriptionSwipesFilterInput
-    $owner: String
-  ) {
-    onUpdateSwipes(filter: $filter, owner: $owner) {
+  subscription OnUpdateSwipes($filter: ModelSubscriptionSwipesFilterInput) {
+    onUpdateSwipes(filter: $filter) {
       id
       userId
       targetd
       isLiked
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onDeleteSwipes = /* GraphQL */ `
-  subscription OnDeleteSwipes(
-    $filter: ModelSubscriptionSwipesFilterInput
-    $owner: String
-  ) {
-    onDeleteSwipes(filter: $filter, owner: $owner) {
+  subscription OnDeleteSwipes($filter: ModelSubscriptionSwipesFilterInput) {
+    onDeleteSwipes(filter: $filter) {
       id
       userId
       targetd
       isLiked
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onCreateAdditionalInformation = /* GraphQL */ `
   subscription OnCreateAdditionalInformation(
     $filter: ModelSubscriptionAdditionalInformationFilterInput
-    $owner: String
   ) {
-    onCreateAdditionalInformation(filter: $filter, owner: $owner) {
+    onCreateAdditionalInformation(filter: $filter) {
       id
       currentGeoLocation
       interest
@@ -890,16 +829,14 @@ export const onCreateAdditionalInformation = /* GraphQL */ `
       employmentStatus
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onUpdateAdditionalInformation = /* GraphQL */ `
   subscription OnUpdateAdditionalInformation(
     $filter: ModelSubscriptionAdditionalInformationFilterInput
-    $owner: String
   ) {
-    onUpdateAdditionalInformation(filter: $filter, owner: $owner) {
+    onUpdateAdditionalInformation(filter: $filter) {
       id
       currentGeoLocation
       interest
@@ -910,16 +847,14 @@ export const onUpdateAdditionalInformation = /* GraphQL */ `
       employmentStatus
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onDeleteAdditionalInformation = /* GraphQL */ `
   subscription OnDeleteAdditionalInformation(
     $filter: ModelSubscriptionAdditionalInformationFilterInput
-    $owner: String
   ) {
-    onDeleteAdditionalInformation(filter: $filter, owner: $owner) {
+    onDeleteAdditionalInformation(filter: $filter) {
       id
       currentGeoLocation
       interest
@@ -930,16 +865,12 @@ export const onDeleteAdditionalInformation = /* GraphQL */ `
       employmentStatus
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onCreateUser = /* GraphQL */ `
-  subscription OnCreateUser(
-    $filter: ModelSubscriptionUserFilterInput
-    $owner: String
-  ) {
-    onCreateUser(filter: $filter, owner: $owner) {
+  subscription OnCreateUser($filter: ModelSubscriptionUserFilterInput) {
+    onCreateUser(filter: $filter) {
       id
       username
       email
@@ -967,7 +898,6 @@ export const onCreateUser = /* GraphQL */ `
         employmentStatus
         createdAt
         updatedAt
-        owner
       }
       userSwipes {
         items {
@@ -977,23 +907,41 @@ export const onCreateUser = /* GraphQL */ `
           isLiked
           createdAt
           updatedAt
-          owner
+        }
+        nextToken
+      }
+      status
+      image
+      Messages {
+        items {
+          id
+          text
+          chatroomID
+          userID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      ChatRooms {
+        items {
+          id
+          userId
+          chatRoomId
+          createdAt
+          updatedAt
         }
         nextToken
       }
       createdAt
       updatedAt
       userUserAdditionalInformationId
-      owner
     }
   }
 `;
 export const onUpdateUser = /* GraphQL */ `
-  subscription OnUpdateUser(
-    $filter: ModelSubscriptionUserFilterInput
-    $owner: String
-  ) {
-    onUpdateUser(filter: $filter, owner: $owner) {
+  subscription OnUpdateUser($filter: ModelSubscriptionUserFilterInput) {
+    onUpdateUser(filter: $filter) {
       id
       username
       email
@@ -1021,7 +969,6 @@ export const onUpdateUser = /* GraphQL */ `
         employmentStatus
         createdAt
         updatedAt
-        owner
       }
       userSwipes {
         items {
@@ -1031,23 +978,41 @@ export const onUpdateUser = /* GraphQL */ `
           isLiked
           createdAt
           updatedAt
-          owner
+        }
+        nextToken
+      }
+      status
+      image
+      Messages {
+        items {
+          id
+          text
+          chatroomID
+          userID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      ChatRooms {
+        items {
+          id
+          userId
+          chatRoomId
+          createdAt
+          updatedAt
         }
         nextToken
       }
       createdAt
       updatedAt
       userUserAdditionalInformationId
-      owner
     }
   }
 `;
 export const onDeleteUser = /* GraphQL */ `
-  subscription OnDeleteUser(
-    $filter: ModelSubscriptionUserFilterInput
-    $owner: String
-  ) {
-    onDeleteUser(filter: $filter, owner: $owner) {
+  subscription OnDeleteUser($filter: ModelSubscriptionUserFilterInput) {
+    onDeleteUser(filter: $filter) {
       id
       username
       email
@@ -1075,7 +1040,6 @@ export const onDeleteUser = /* GraphQL */ `
         employmentStatus
         createdAt
         updatedAt
-        owner
       }
       userSwipes {
         items {
@@ -1085,14 +1049,419 @@ export const onDeleteUser = /* GraphQL */ `
           isLiked
           createdAt
           updatedAt
-          owner
+        }
+        nextToken
+      }
+      status
+      image
+      Messages {
+        items {
+          id
+          text
+          chatroomID
+          userID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      ChatRooms {
+        items {
+          id
+          userId
+          chatRoomId
+          createdAt
+          updatedAt
         }
         nextToken
       }
       createdAt
       updatedAt
       userUserAdditionalInformationId
-      owner
+    }
+  }
+`;
+export const onCreateChatRoom = /* GraphQL */ `
+  subscription OnCreateChatRoom($filter: ModelSubscriptionChatRoomFilterInput) {
+    onCreateChatRoom(filter: $filter) {
+      id
+      Messages {
+        items {
+          id
+          text
+          chatroomID
+          userID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      users {
+        items {
+          id
+          userId
+          chatRoomId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      LastMessage {
+        id
+        text
+        chatroomID
+        userID
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      chatRoomLastMessageId
+    }
+  }
+`;
+export const onUpdateChatRoom = /* GraphQL */ `
+  subscription OnUpdateChatRoom($filter: ModelSubscriptionChatRoomFilterInput) {
+    onUpdateChatRoom(filter: $filter) {
+      id
+      Messages {
+        items {
+          id
+          text
+          chatroomID
+          userID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      users {
+        items {
+          id
+          userId
+          chatRoomId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      LastMessage {
+        id
+        text
+        chatroomID
+        userID
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      chatRoomLastMessageId
+    }
+  }
+`;
+export const onDeleteChatRoom = /* GraphQL */ `
+  subscription OnDeleteChatRoom($filter: ModelSubscriptionChatRoomFilterInput) {
+    onDeleteChatRoom(filter: $filter) {
+      id
+      Messages {
+        items {
+          id
+          text
+          chatroomID
+          userID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      users {
+        items {
+          id
+          userId
+          chatRoomId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      LastMessage {
+        id
+        text
+        chatroomID
+        userID
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      chatRoomLastMessageId
+    }
+  }
+`;
+export const onCreateMessage = /* GraphQL */ `
+  subscription OnCreateMessage($filter: ModelSubscriptionMessageFilterInput) {
+    onCreateMessage(filter: $filter) {
+      id
+      text
+      chatroomID
+      userID
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateMessage = /* GraphQL */ `
+  subscription OnUpdateMessage($filter: ModelSubscriptionMessageFilterInput) {
+    onUpdateMessage(filter: $filter) {
+      id
+      text
+      chatroomID
+      userID
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteMessage = /* GraphQL */ `
+  subscription OnDeleteMessage($filter: ModelSubscriptionMessageFilterInput) {
+    onDeleteMessage(filter: $filter) {
+      id
+      text
+      chatroomID
+      userID
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateUserChatRoom = /* GraphQL */ `
+  subscription OnCreateUserChatRoom(
+    $filter: ModelSubscriptionUserChatRoomFilterInput
+  ) {
+    onCreateUserChatRoom(filter: $filter) {
+      id
+      userId
+      chatRoomId
+      user {
+        id
+        username
+        email
+        firstName
+        middleName
+        lastName
+        suffix
+        sex
+        address
+        postal
+        nationality
+        typeOfDisability
+        placeOfBirth
+        birthDate
+        mobileNumber
+        verified
+        userAdditionalInformation {
+          id
+          currentGeoLocation
+          interest
+          ethnicity
+          fieldOfStudy
+          typeOfScholarship
+          yearlyIncome
+          employmentStatus
+          createdAt
+          updatedAt
+        }
+        userSwipes {
+          nextToken
+        }
+        status
+        image
+        Messages {
+          nextToken
+        }
+        ChatRooms {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        userUserAdditionalInformationId
+      }
+      chatRoom {
+        id
+        Messages {
+          nextToken
+        }
+        users {
+          nextToken
+        }
+        LastMessage {
+          id
+          text
+          chatroomID
+          userID
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+        chatRoomLastMessageId
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateUserChatRoom = /* GraphQL */ `
+  subscription OnUpdateUserChatRoom(
+    $filter: ModelSubscriptionUserChatRoomFilterInput
+  ) {
+    onUpdateUserChatRoom(filter: $filter) {
+      id
+      userId
+      chatRoomId
+      user {
+        id
+        username
+        email
+        firstName
+        middleName
+        lastName
+        suffix
+        sex
+        address
+        postal
+        nationality
+        typeOfDisability
+        placeOfBirth
+        birthDate
+        mobileNumber
+        verified
+        userAdditionalInformation {
+          id
+          currentGeoLocation
+          interest
+          ethnicity
+          fieldOfStudy
+          typeOfScholarship
+          yearlyIncome
+          employmentStatus
+          createdAt
+          updatedAt
+        }
+        userSwipes {
+          nextToken
+        }
+        status
+        image
+        Messages {
+          nextToken
+        }
+        ChatRooms {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        userUserAdditionalInformationId
+      }
+      chatRoom {
+        id
+        Messages {
+          nextToken
+        }
+        users {
+          nextToken
+        }
+        LastMessage {
+          id
+          text
+          chatroomID
+          userID
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+        chatRoomLastMessageId
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteUserChatRoom = /* GraphQL */ `
+  subscription OnDeleteUserChatRoom(
+    $filter: ModelSubscriptionUserChatRoomFilterInput
+  ) {
+    onDeleteUserChatRoom(filter: $filter) {
+      id
+      userId
+      chatRoomId
+      user {
+        id
+        username
+        email
+        firstName
+        middleName
+        lastName
+        suffix
+        sex
+        address
+        postal
+        nationality
+        typeOfDisability
+        placeOfBirth
+        birthDate
+        mobileNumber
+        verified
+        userAdditionalInformation {
+          id
+          currentGeoLocation
+          interest
+          ethnicity
+          fieldOfStudy
+          typeOfScholarship
+          yearlyIncome
+          employmentStatus
+          createdAt
+          updatedAt
+        }
+        userSwipes {
+          nextToken
+        }
+        status
+        image
+        Messages {
+          nextToken
+        }
+        ChatRooms {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        userUserAdditionalInformationId
+      }
+      chatRoom {
+        id
+        Messages {
+          nextToken
+        }
+        users {
+          nextToken
+        }
+        LastMessage {
+          id
+          text
+          chatroomID
+          userID
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+        chatRoomLastMessageId
+      }
+      createdAt
+      updatedAt
     }
   }
 `;

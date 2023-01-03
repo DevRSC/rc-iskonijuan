@@ -1,6 +1,30 @@
 {
+  "api": {
+    "iskonijuanv2": {
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 30,
+              "apiKeyExpirationDate": "2023-02-02T20:24:21.115Z",
+              "description": "api key description"
+            }
+          },
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AWS_IAM"
+            }
+          ]
+        }
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync"
+    }
+  },
   "auth": {
-    "iskonijuan": {
+    "iskonijuanv2": {
       "service": "Cognito",
       "serviceType": "imported",
       "providerPlugin": "awscloudformation",
@@ -8,49 +32,61 @@
       "customAuth": false
     }
   },
-  "api": {
-    "iskonijuan": {
-      "service": "AppSync",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [
-        {
-          "category": "auth",
-          "resourceName": "iskonijuan",
-          "attributes": [
-            "UserPoolId"
-          ]
-        }
-      ],
-      "output": {
-        "authConfig": {
-          "additionalAuthenticationProviders": [
-            {
-              "authenticationType": "AWS_IAM"
-            },
-            {
-              "authenticationType": "API_KEY",
-              "apiKeyConfig": {
-                "apiKeyExpirationDays": 30,
-                "description": "api key description"
-              }
-            }
-          ],
-          "defaultAuthentication": {
-            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-            "userPoolConfig": {
-              "userPoolId": "authiskonijuan"
-            }
-          }
-        }
-      }
-    }
-  },
   "function": {
-    "cognitoUsersToDynamoDB": {
+    "cognitoToDynamoDB": {
       "build": true,
       "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": []
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_auth_iskonijuanv2_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "iskonijuanv2"
+        }
+      ]
+    },
+    "AMPLIFY_auth_iskonijuanv2_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "iskonijuanv2"
+        }
+      ]
+    },
+    "AMPLIFY_auth_iskonijuanv2_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "iskonijuanv2"
+        }
+      ]
+    },
+    "AMPLIFY_auth_iskonijuanv2_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "iskonijuanv2"
+        }
+      ]
+    },
+    "AMPLIFY_function_cognitoToDynamoDB_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "cognitoToDynamoDB"
+        }
+      ]
+    },
+    "AMPLIFY_function_cognitoToDynamoDB_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "cognitoToDynamoDB"
+        }
+      ]
     }
   }
 }

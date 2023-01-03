@@ -7,10 +7,12 @@ import { scale, verticalScale } from "react-native-size-matters";
 
 import HeaderContainer from "../../components/molecules/HeaderContainer";
 import ChatTopNavigator from "../../navigations/ChatTopNavigator";
+import { useNavigation } from "@react-navigation/native";
 
 const { width } = Dimensions.get("window");
 
 export default function ChatScreen() {
+  const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
       <HeaderContainer />
@@ -18,7 +20,7 @@ export default function ChatScreen() {
       <View style={styles.searchContainer}>
         <Text style={styles.searchTitle}>Messages</Text>
 
-        <TouchableOpacity style={styles.searchButton}>
+        <TouchableOpacity onPress={() => navigation.navigate("Contacts")} style={styles.searchButton}>
           <Ionicons name='search' size={26} color='#F55A5A' />
         </TouchableOpacity>
       </View>

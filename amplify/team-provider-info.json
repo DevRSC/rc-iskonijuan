@@ -1,19 +1,19 @@
 {
   "staging": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-iskonijuan-staging-53239-authRole",
-      "UnauthRoleArn": "arn:aws:iam::655457002244:role/amplify-iskonijuan-staging-53239-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::655457002244:role/amplify-iskonijuan-staging-53239-authRole",
+      "AuthRoleName": "amplify-iskonijuanv2-staging-170923-authRole",
+      "UnauthRoleArn": "arn:aws:iam::655457002244:role/amplify-iskonijuanv2-staging-170923-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::655457002244:role/amplify-iskonijuanv2-staging-170923-authRole",
       "Region": "ap-southeast-1",
-      "DeploymentBucketName": "amplify-iskonijuan-staging-53239-deployment",
-      "UnauthRoleName": "amplify-iskonijuan-staging-53239-unauthRole",
-      "StackName": "amplify-iskonijuan-staging-53239",
-      "StackId": "arn:aws:cloudformation:ap-southeast-1:655457002244:stack/amplify-iskonijuan-staging-53239/3d760640-6fa7-11ed-9236-022b4a7f521e",
-      "AmplifyAppId": "d1ds21s1bm5hxp"
+      "DeploymentBucketName": "amplify-iskonijuanv2-staging-170923-deployment",
+      "UnauthRoleName": "amplify-iskonijuanv2-staging-170923-unauthRole",
+      "StackName": "amplify-iskonijuanv2-staging-170923",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:655457002244:stack/amplify-iskonijuanv2-staging-170923/5ee3ef10-8b89-11ed-bce3-0688d3a737ee",
+      "AmplifyAppId": "dwy7h8rm5pxb2"
     },
     "categories": {
       "auth": {
-        "iskonijuan": {
+        "iskonijuanv2": {
           "userPoolId": "ap-southeast-1_AfL0orzXW",
           "userPoolName": "iskonijuan-user",
           "webClientId": "49d3p3lebcf3pv4n8irr8j6ev8",
@@ -21,12 +21,12 @@
         }
       },
       "api": {
-        "iskonijuan": {}
+        "iskonijuanv2": {}
       },
       "function": {
-        "cognitoUsersToDynamoDB": {
-          "deploymentBucketName": "amplify-iskonijuan-staging-53239-deployment",
-          "s3Key": "amplify-builds/cognitoUsersToDynamoDB-626c3558746762353150-build.zip"
+        "cognitoToDynamoDB": {
+          "deploymentBucketName": "amplify-iskonijuanv2-staging-170923-deployment",
+          "s3Key": "amplify-builds/cognitoToDynamoDB-3957367a4d544d2b434f-build.zip"
         }
       }
     }

@@ -47,12 +47,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "cognitoUsersToDynamoDB",
+            "cognitoToDynamoDB",
             {
               "Fn::Join": [
                 "",
                 [
-                  "cognitoUsersToDynamoDB",
+                  "cognitoToDynamoDB",
                   "-",
                   {
                     "Ref": "env"
@@ -89,12 +89,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "iskonijuanLambdaRole8a1288e3",
+            "iskonijuanv2LambdaRole4dd04c4d",
             {
               "Fn::Join": [
                 "",
                 [
-                  "iskonijuanLambdaRole8a1288e3",
+                  "iskonijuanv2LambdaRole4dd04c4d",
                   "-",
                   {
                     "Ref": "env"
@@ -188,6 +188,14 @@
     "LambdaExecutionRole": {
       "Value": {
         "Ref": "LambdaExecutionRole"
+      }
+    },
+    "LambdaExecutionRoleArn": {
+      "Value": {
+        "Fn::GetAtt": [
+          "LambdaExecutionRole",
+          "Arn"
+        ]
       }
     }
   }

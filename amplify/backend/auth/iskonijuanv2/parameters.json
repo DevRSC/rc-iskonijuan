@@ -1,6 +1,6 @@
 {
   "authSelections": "userPoolOnly",
-  "resourceName": "iskonijuan",
+  "resourceName": "iskonijuanv2",
   "serviceType": "imported",
   "region": "ap-southeast-1",
   "aliasAttributes": [

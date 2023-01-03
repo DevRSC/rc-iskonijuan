@@ -23,6 +23,8 @@ exports.handler = async (event, context) => {
                 'mobileNumber': {S: event.request.userAttributes.phone_number},
                 'createdAt': {S: date.toISOString()},
                 'updatedAt': {S: date.toISOString()},
+                'status': {S: 'null'},
+                'image': {S: 'null'},
             },
             TableName: process.env.USERTABLE
         }

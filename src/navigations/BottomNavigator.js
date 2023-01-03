@@ -7,7 +7,7 @@ import MatchScreen from "../screens/bottomScreens/MatchScreen";
 import NotificationScreen from "../screens/bottomScreens/NotificationScreen";
 import { verticalScale } from "react-native-size-matters";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
+//import ChatsScreen from "../screens/ChatsScreen";
 //Profile Navigation Flow
 
 //Create HomeStackNavigator
@@ -62,9 +62,10 @@ export default function BottomNavigator() {
     >
       <Tab.Screen key={0} name='Home' component={HomeStackScreen} />
 
-      <Tab.Screen key={1} name='Chat' component={ChatScreen} />
 
-      <Tab.Screen key={2} name='Match' component={MatchScreen} />
+      <Tab.Screen key={1} name='Chat' component={ChatScreen}/>
+
+      <Tab.Screen key={2} name='Match' component={MatchScreen}/>
 
       <Tab.Screen
         key={3}
