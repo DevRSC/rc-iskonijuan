@@ -4,7 +4,7 @@ import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { API, graphqlOperation, Auth } from 'aws-amplify';
-import { createMessage } from '../../graphql/mutations';
+import { createMessage, updateChatRoom } from '../../graphql/mutations';
 
 const InputBox = ({ chatroom }) => {
   const [text, setText] = useState("");
@@ -28,7 +28,7 @@ const InputBox = ({ chatroom }) => {
     await API.graphql(
       graphqlOperation(updateChatRoom, {
         input: {
-          
+          _version: chatroom._version,
           chatRoomLastMessageId: newMessageData.data.createMessage.id,
           id: chatroom.id,
         },

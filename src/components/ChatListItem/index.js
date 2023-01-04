@@ -26,7 +26,7 @@ const ChatListItem = ({ chat }) => {
   return (
     <Pressable
       onPress={() =>
-        navigation.navigate("Chat", { id: chat.id, name: user?.firstName })
+        navigation.navigate("ChatScreen", { id: chat.id, name: user?.firstName })
       }
       style={styles.container}
     >
@@ -41,7 +41,6 @@ const ChatListItem = ({ chat }) => {
             {dayjs(chat.LastMessage?.createdAt).fromNow(true)}
           </Text>
         </View>
-
         <Text numberOfLines={2} style={styles.subTitle}>
           {chat.LastMessage?.text}
         </Text>

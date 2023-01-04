@@ -37,7 +37,7 @@ const ChatScreen = () => {
     return <ActivityIndicator />;
   }
 
-  console.log(chatRoom.Messages.items);
+  //console.log(chatRoom.Messages.items);
 
   return (
     <KeyboardAvoidingView

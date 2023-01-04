@@ -32,7 +32,7 @@ export default function ChatTopNavigator() {
         },
       }}
     >
-      <topTab.Screen name='Chats' component={ChatsScreen} />
+      <topTab.Screen name='Chats' component={ChatsScreen} options={{headerShown: true}}/>
       <topTab.Screen name='Calls' component={Calls} />
     </topTab.Navigator>
   );
