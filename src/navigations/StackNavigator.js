@@ -26,7 +26,7 @@ import ModalInstruction from "../components/molecules/ModalInstruction";
 
 import DonateStack from "./Stack/DonateStack";
 import ChatScreen from "../screens/ChatScreen";
-import ChatsScreen from "../screens/ChatsScreen";
+import ChatsScreen from "../screens/ChatsScreen/ChatsScreen";
 import BottomNavigator from "./BottomNavigator";
 
 import { Auth, Hub } from "aws-amplify";

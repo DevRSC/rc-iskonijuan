@@ -4,7 +4,7 @@ import { Dimensions } from "react-native";
 
 //import Chats from "../screens/chatTopScreen/Chats";
 import Calls from "../screens/chatTopScreen/Calls";
-import ChatsScreen from "../screens/ChatsScreen";
+import ChatsScreen from "../screens/ChatsScreen/ChatsScreen";
 
 const topTab = createMaterialTopTabNavigator();
 
