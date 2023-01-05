@@ -1,6 +1,6 @@
 projects:
-  iskonijuan:
-    schemaPath: src/graphql/schema.json
+  iskonijuanv2:
+    schemaPath: amplify/backend/api/iskonijuanv2/build/schema.graphql
     includes:
       - src/graphql/**/*.js
     excludes:
@@ -10,6 +10,9 @@ projects:
         codeGenTarget: javascript
         generatedFileName: ''
         docsFilePath: src/graphql
+        region: ap-southeast-1
+        apiId: null
+        maxDepth: 3
 extensions:
   amplify:
     version: 3

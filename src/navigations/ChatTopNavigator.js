@@ -2,8 +2,9 @@ import React from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { Dimensions } from "react-native";
 
-import Chats from "../screens/chatTopScreen/Chats";
+//import Chats from "../screens/chatTopScreen/Chats";
 import Calls from "../screens/chatTopScreen/Calls";
+import ChatsScreen from "../screens/ChatsScreen/ChatsScreen";
 
 const topTab = createMaterialTopTabNavigator();
 
@@ -12,7 +13,7 @@ const { width } = Dimensions.get("window");
 export default function ChatTopNavigator() {
   return (
     <topTab.Navigator
-      initialRouteName='Chats'
+      initialRouteName='ChatsScreen'
       initialLayout={width}
       screenOptions={{
         tabBarLabelStyle: {
@@ -31,7 +32,7 @@ export default function ChatTopNavigator() {
         },
       }}
     >
-      <topTab.Screen name='Chats' component={Chats} />
+      <topTab.Screen name='Chats' component={ChatsScreen} options={{headerShown: true}}/>
       <topTab.Screen name='Calls' component={Calls} />
     </topTab.Navigator>
   );

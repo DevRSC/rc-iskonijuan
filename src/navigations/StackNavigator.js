@@ -25,11 +25,13 @@ import ModalScreen from "../components/molecules/ModalScreen";
 import ProfileSetupStack from "./Stack/ProfileSetupStack";
 
 import DonateStack from "./Stack/DonateStack";
-
+import ChatScreen from "../screens/ChatScreen";
+import ChatsScreen from "../screens/ChatsScreen/ChatsScreen";
 import BottomNavigator from "./BottomNavigator";
 
 import { Auth, Hub } from "aws-amplify";
 import { scale, verticalScale } from "react-native-size-matters";
+import ContactsScreen from "../screens/ContactsScreen";
 
 const AuthStack = createNativeStackNavigator();
 
@@ -189,6 +191,9 @@ export default function StackNavigator() {
                 component={MatchStackScreen}
               />
               <AuthStack.Screen name='DonateStack' component={DonateStack} />
+              <AuthStack.Screen name="ChatScreen" component={ChatScreen} options={{headerShown: true}}/>
+              <AuthStack.Screen name="Chat" component={ChatsScreen}/>
+              <AuthStack.Screen name="Contacts" component={ContactsScreen} options={{headerShown: true}}/>
             </>
           ) : (
             <AuthStack.Screen
