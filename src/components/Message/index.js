@@ -24,13 +24,24 @@ const Message = ({ message }) => {
       style={[
         styles.container,
         {
-          backgroundColor: isMe ? "#DCF8C5" : "white",
+          backgroundColor: isMe ? "#F55A5A" : "white",
           alignSelf: isMe ? "flex-end" : "flex-start",
         },
       ]}
     >
-      <Text>{message.text}</Text>
-      <Text style={styles.time}>{dayjs(message.createdAt).fromNow(true)}</Text>
+      <Text style={[
+        {
+          color: isMe ? "#FFFFFF" : "#2B283A",
+        },
+        ]}>
+          {message.text}
+      </Text>
+      <Text style={[styles.time,
+      {
+          color: isMe ? "#FFFFFF" : "#FAF9F6",
+      },
+      ]}>
+        {dayjs(message.createdAt).fromNow(true)}</Text>
     </View>
   );
 };
@@ -54,9 +65,11 @@ const styles = StyleSheet.create({
     elevation: 1,
   },
   time: {
-    color: 'gray',
     alignSelf: 'flex-end',
   },
+  text: {
+    color:  "#FFFFFF",
+  }
 });
 
 export default Message;

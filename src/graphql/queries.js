@@ -786,10 +786,10 @@ export const getUser = /* GraphQL */ `
       Messages {
         items {
           id
+          createdAt
           text
           chatroomID
           userID
-          createdAt
           updatedAt
         }
         nextToken
@@ -869,13 +869,15 @@ export const getChatRoom = /* GraphQL */ `
   query GetChatRoom($id: ID!) {
     getChatRoom(id: $id) {
       id
+      name
+      image
       Messages {
         items {
           id
+          createdAt
           text
           chatroomID
           userID
-          createdAt
           updatedAt
         }
         nextToken
@@ -892,10 +894,10 @@ export const getChatRoom = /* GraphQL */ `
       }
       LastMessage {
         id
+        createdAt
         text
         chatroomID
         userID
-        createdAt
         updatedAt
       }
       createdAt
@@ -913,6 +915,8 @@ export const listChatRooms = /* GraphQL */ `
     listChatRooms(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        name
+        image
         Messages {
           nextToken
         }
@@ -921,10 +925,10 @@ export const listChatRooms = /* GraphQL */ `
         }
         LastMessage {
           id
+          createdAt
           text
           chatroomID
           userID
-          createdAt
           updatedAt
         }
         createdAt
@@ -939,10 +943,10 @@ export const getMessage = /* GraphQL */ `
   query GetMessage($id: ID!) {
     getMessage(id: $id) {
       id
+      createdAt
       text
       chatroomID
       userID
-      createdAt
       updatedAt
     }
   }
@@ -956,26 +960,28 @@ export const listMessages = /* GraphQL */ `
     listMessages(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        createdAt
         text
         chatroomID
         userID
-        createdAt
         updatedAt
       }
       nextToken
     }
   }
 `;
-export const messagesByChatroomID = /* GraphQL */ `
-  query MessagesByChatroomID(
+export const listMessagesByChatRoom = /* GraphQL */ `
+  query ListMessagesByChatRoom(
     $chatroomID: ID!
+    $createdAt: ModelStringKeyConditionInput
     $sortDirection: ModelSortDirection
     $filter: ModelMessageFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    messagesByChatroomID(
+    listMessagesByChatRoom(
       chatroomID: $chatroomID
+      createdAt: $createdAt
       sortDirection: $sortDirection
       filter: $filter
       limit: $limit
@@ -983,10 +989,10 @@ export const messagesByChatroomID = /* GraphQL */ `
     ) {
       items {
         id
+        createdAt
         text
         chatroomID
         userID
-        createdAt
         updatedAt
       }
       nextToken
@@ -1010,10 +1016,10 @@ export const messagesByUserID = /* GraphQL */ `
     ) {
       items {
         id
+        createdAt
         text
         chatroomID
         userID
-        createdAt
         updatedAt
       }
       nextToken
@@ -1072,6 +1078,8 @@ export const getUserChatRoom = /* GraphQL */ `
       }
       chatRoom {
         id
+        name
+        image
         Messages {
           nextToken
         }
@@ -1080,10 +1088,10 @@ export const getUserChatRoom = /* GraphQL */ `
         }
         LastMessage {
           id
+          createdAt
           text
           chatroomID
           userID
-          createdAt
           updatedAt
         }
         createdAt
@@ -1131,6 +1139,8 @@ export const listUserChatRooms = /* GraphQL */ `
         }
         chatRoom {
           id
+          name
+          image
           createdAt
           updatedAt
           chatRoomLastMessageId
@@ -1186,6 +1196,8 @@ export const userChatRoomsByUserId = /* GraphQL */ `
         }
         chatRoom {
           id
+          name
+          image
           createdAt
           updatedAt
           chatRoomLastMessageId
@@ -1241,6 +1253,8 @@ export const userChatRoomsByChatRoomId = /* GraphQL */ `
         }
         chatRoom {
           id
+          name
+          image
           createdAt
           updatedAt
           chatRoomLastMessageId

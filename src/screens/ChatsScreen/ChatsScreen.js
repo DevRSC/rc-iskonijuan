@@ -10,16 +10,22 @@ const ChatsScreen = () => {
 
   useEffect(() => {
     const fetchChatRooms = async () => {
-      const authUser = await Auth.currentAuthenticatedUser();
+      const authUser = await Auth.currentAuthenticatedUser()
 
       const response = await API.graphql(
         graphqlOperation(listChatRooms, { id: authUser.attributes.sub })
       );
-      console.log(response.data.getUser.ChatRooms.items);
-      setChatRooms(response.data.getUser.ChatRooms.items);
+
+      const rooms = response.data.getUser.ChatRooms.items;
+      const sortedRooms = rooms.sort(
+        (room1, room2) =>
+          new Date(room2.chatRoom.updatedAt) - new Date(room1.chatRoom.updatedAt)
+      );
+
+      setChatRooms(sortedRooms);
     };
 
-    fetchChatRooms();
+    fetchChatRooms()
   }, []);
 
   return (

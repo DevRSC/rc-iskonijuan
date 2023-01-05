@@ -13,21 +13,36 @@ import React from 'react';
 import bg from "../../assets/images/BG.png";
 import messages from "../../assets/data/messages.json";
 import { API, graphqlOperation } from "aws-amplify";
-import { getChatRoom } from "../graphql/queries";
+import { getChatRoom, listMessagesByChatRoom } from "../graphql/queries";
 
 const ChatScreen = () => {
   const [chatRoom, setChatRoom] = useState(null);
-
+  const [messages, setMessages] = useState([]);
   const route = useRoute();
   const navigation = useNavigation();
 
   const chatroomID = route.params.id;
-
+  // fetch Chat Room
   useEffect(() => {
     API.graphql(graphqlOperation(getChatRoom, { id: chatroomID })).then(
-      (result) => setChatRoom(result.data?.getChatRoom)
+      (result) => {
+        setChatRoom(result.data?.getChatRoom);
+      }
     );
-  }, []);
+  }, [chatroomID]);
+
+  // fetch Messages
+
+  useEffect(() => {
+    API.graphql(
+      graphqlOperation(listMessagesByChatRoom, {
+        chatroomID,
+        sortDirection: "DESC",
+      })
+    ).then((result) => {
+      setMessages(result.data?.listMessagesByChatRoom?.items);
+    });
+  }, [chatroomID])
 
   useEffect(() => {
     navigation.setOptions({ title: route.params.name });
@@ -37,17 +52,15 @@ const ChatScreen = () => {
     return <ActivityIndicator />;
   }
 
-  //console.log(chatRoom.Messages.items);
-
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      keyboardVerticalOffset={Platform.OS === "ios" ? 60 : 90}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 60 :90}
       style={styles.bg}
     >
       <ImageBackground source={bg} style={styles.bg}>
         <FlatList
-          data={chatRoom.Messages.items}
+          data={messages}
           renderItem={({ item }) => <Message message={item} />}
           style={styles.list}
           inverted
