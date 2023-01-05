@@ -62,16 +62,21 @@ export default function ProfilePicture() {
             Add Profile Picture
           </Text>
         </View>
+      </View>
+      <View style={styles.footer}>
         <View
           style={{
-            marginTop: verticalScale(56),
             alignItems: "flex-end",
-            width: "100%",
+            paddingHorizontal: scale(16),
           }}
         >
           <LoginButton
             title='Next'
-            onPress={() => navigation.navigate("ProfileLocation")}
+            onPress={() =>
+              navigation.navigate("ProfileLocation", {
+                image: image,
+              })
+            }
             style={styles.button}
           />
         </View>
@@ -99,5 +104,10 @@ const styles = StyleSheet.create({
   },
   button: {
     borderRadius: 8,
+  },
+  footer: {
+    flex: 1,
+    justifyContent: "flex-end",
+    marginBottom: 36,
   },
 });
