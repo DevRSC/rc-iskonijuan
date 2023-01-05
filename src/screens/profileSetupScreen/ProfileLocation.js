@@ -1,5 +1,5 @@
 import { StyleSheet, View } from "react-native";
-import { Text } from "react-native-paper";
+import { Avatar, Text } from "react-native-paper";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
@@ -8,12 +8,16 @@ import * as Location from "expo-location";
 
 import ProfileSetupHeader from "../../components/molecules/ProfileSetupHeader";
 import LoginButton from "../../components/atoms/LoginButton";
+import { useRoute } from "@react-navigation/native";
 
 export default function ProfileLocation() {
   const navigation = useNavigation();
   const [sendLocation, setSendLocation] = useState(false);
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
+
+  const route = useRoute();
+  const { image } = route.params;
 
   useEffect(() => {
     (async () => {
@@ -37,9 +41,7 @@ export default function ProfileLocation() {
   } else if (location) {
     text = JSON.stringify(location);
   }
-  //get latitude and longitude from text variable
-  console.log(location?.coords.latitude);
-  console.log(location?.coords.longitude);
+  //store latitude and longitude value in an array to be passed to the next screen
 
   return (
     <SafeAreaView style={styles.container}>
@@ -52,31 +54,36 @@ export default function ProfileLocation() {
         <Text style={{ fontSize: 16, color: "red", marginTop: 16 }}>
           {text}
         </Text>
-        <View style={{ alignItems: "center", width: "100%", marginTop: 16 }}>
-          <LoginButton
-            title='Use Current Location'
-            onPress={() => setSendLocation(true)}
-          />
-        </View>
       </View>
-
       <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          paddingHorizontal: scale(16),
-        }}
+        style={{ flex: 1, justifyContent: "flex-end", paddingHorizontal: 16 }}
       >
         <LoginButton
-          title='Go Back'
-          onPress={() => navigation.goBack()}
-          style={styles.button}
+          title='Use Current Location'
+          onPress={() => setSendLocation(true)}
+          style={{ borderRadius: 8 }}
         />
-        <LoginButton
-          title='Next'
-          onPress={() => navigation.navigate("ProfileInterest")}
-          style={styles.button}
-        />
+      </View>
+
+      <View style={styles.footer}>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            paddingHorizontal: scale(16),
+          }}
+        >
+          <LoginButton
+            title='Go Back'
+            onPress={() => navigation.goBack()}
+            style={styles.button}
+          />
+          <LoginButton
+            title='Next'
+            onPress={() => navigation.navigate("ProfileInterest")}
+            style={styles.button}
+          />
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -87,11 +94,16 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   inner: {
+    flex: 1,
     padding: 16,
     alignItems: "flex-start",
   },
   button: {
-    marginTop: verticalScale(224),
-    borderRadius: 10,
+    borderRadius: 8,
+  },
+  footer: {
+    flex: 1,
+    justifyContent: "flex-end",
+    marginBottom: verticalScale(36),
   },
 });
