@@ -1,5 +1,5 @@
 {
-  "authSelections": "userPoolOnly",
+  "authSelections": "identityPoolAndUserPool",
   "resourceName": "iskonijuanv2",
   "serviceType": "imported",
   "region": "ap-southeast-1",

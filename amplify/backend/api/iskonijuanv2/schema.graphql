@@ -143,5 +143,6 @@ type Message @model @auth(rules: [{allow: public}]) {
   text: String!
   chatroomID: ID! @index(name: "byChatRoom", sortKeyFields: ["createdAt"], queryField: "listMessagesByChatRoom")
   userID: ID! @index(name: "byUser")
+  images: [String]
 }
   

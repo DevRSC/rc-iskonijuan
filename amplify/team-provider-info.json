@@ -12,14 +12,6 @@
       "AmplifyAppId": "dwy7h8rm5pxb2"
     },
     "categories": {
-      "auth": {
-        "iskonijuanv2": {
-          "userPoolId": "ap-southeast-1_AfL0orzXW",
-          "userPoolName": "iskonijuan-user",
-          "webClientId": "49d3p3lebcf3pv4n8irr8j6ev8",
-          "nativeClientId": "49d3p3lebcf3pv4n8irr8j6ev8"
-        }
-      },
       "api": {
         "iskonijuanv2": {}
       },
@@ -27,6 +19,21 @@
         "cognitoToDynamoDB": {
           "deploymentBucketName": "amplify-iskonijuanv2-staging-170923-deployment",
           "s3Key": "amplify-builds/cognitoToDynamoDB-3957367a4d544d2b434f-build.zip"
+        }
+      },
+      "auth": {
+        "iskonijuanv2": {
+          "userPoolId": "ap-southeast-1_AfL0orzXW",
+          "userPoolName": "iskonijuan-user",
+          "webClientId": "49d3p3lebcf3pv4n8irr8j6ev8",
+          "nativeClientId": "49d3p3lebcf3pv4n8irr8j6ev8",
+          "identityPoolId": "ap-southeast-1:85697f95-05d9-4d88-94bb-7b7369b59173",
+          "identityPoolName": "iskonijuan-user",
+          "allowUnauthenticatedIdentities": false,
+          "authRoleArn": "arn:aws:iam::655457002244:role/Cognito_iskonijuanuserAuth_Role",
+          "authRoleName": "Cognito_iskonijuanuserAuth_Role",
+          "unauthRoleArn": "arn:aws:iam::655457002244:role/Cognito_iskonijuanuserUnauth_Role",
+          "unauthRoleName": "Cognito_iskonijuanuserUnauth_Role"
         }
       }
     }

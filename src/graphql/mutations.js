@@ -979,6 +979,7 @@ export const createUser = /* GraphQL */ `
           text
           chatroomID
           userID
+          images
           updatedAt
         }
         nextToken
@@ -1053,6 +1054,7 @@ export const updateUser = /* GraphQL */ `
           text
           chatroomID
           userID
+          images
           updatedAt
         }
         nextToken
@@ -1127,6 +1129,7 @@ export const deleteUser = /* GraphQL */ `
           text
           chatroomID
           userID
+          images
           updatedAt
         }
         nextToken
@@ -1163,6 +1166,7 @@ export const createChatRoom = /* GraphQL */ `
           text
           chatroomID
           userID
+          images
           updatedAt
         }
         nextToken
@@ -1183,8 +1187,10 @@ export const createChatRoom = /* GraphQL */ `
         text
         chatroomID
         userID
+        images
         updatedAt
       }
+      _version
       createdAt
       updatedAt
       chatRoomLastMessageId
@@ -1207,6 +1213,7 @@ export const updateChatRoom = /* GraphQL */ `
           text
           chatroomID
           userID
+          images
           updatedAt
         }
         nextToken
@@ -1227,8 +1234,10 @@ export const updateChatRoom = /* GraphQL */ `
         text
         chatroomID
         userID
+        images
         updatedAt
       }
+      _version
       createdAt
       updatedAt
       chatRoomLastMessageId
@@ -1251,6 +1260,7 @@ export const deleteChatRoom = /* GraphQL */ `
           text
           chatroomID
           userID
+          images
           updatedAt
         }
         nextToken
@@ -1271,8 +1281,10 @@ export const deleteChatRoom = /* GraphQL */ `
         text
         chatroomID
         userID
+        images
         updatedAt
       }
+      _version
       createdAt
       updatedAt
       chatRoomLastMessageId
@@ -1290,6 +1302,7 @@ export const createMessage = /* GraphQL */ `
       text
       chatroomID
       userID
+      images
       updatedAt
     }
   }
@@ -1305,6 +1318,7 @@ export const updateMessage = /* GraphQL */ `
       text
       chatroomID
       userID
+      images
       updatedAt
     }
   }
@@ -1320,6 +1334,7 @@ export const deleteMessage = /* GraphQL */ `
       text
       chatroomID
       userID
+      images
       updatedAt
     }
   }
@@ -1393,8 +1408,10 @@ export const createUserChatRoom = /* GraphQL */ `
           text
           chatroomID
           userID
+          images
           updatedAt
         }
+        _version
         createdAt
         updatedAt
         chatRoomLastMessageId
@@ -1473,8 +1490,10 @@ export const updateUserChatRoom = /* GraphQL */ `
           text
           chatroomID
           userID
+          images
           updatedAt
         }
+        _version
         createdAt
         updatedAt
         chatRoomLastMessageId
@@ -1553,8 +1572,10 @@ export const deleteUserChatRoom = /* GraphQL */ `
           text
           chatroomID
           userID
+          images
           updatedAt
         }
+        _version
         createdAt
         updatedAt
         chatRoomLastMessageId

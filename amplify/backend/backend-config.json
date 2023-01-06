@@ -39,7 +39,63 @@
     }
   },
   "parameters": {
+    "AMPLIFY_auth_iskonijuanv2_allowUnauthenticatedIdentities": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "iskonijuanv2"
+        }
+      ]
+    },
+    "AMPLIFY_auth_iskonijuanv2_authRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "iskonijuanv2"
+        }
+      ]
+    },
+    "AMPLIFY_auth_iskonijuanv2_authRoleName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "iskonijuanv2"
+        }
+      ]
+    },
+    "AMPLIFY_auth_iskonijuanv2_identityPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "iskonijuanv2"
+        }
+      ]
+    },
+    "AMPLIFY_auth_iskonijuanv2_identityPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "iskonijuanv2"
+        }
+      ]
+    },
     "AMPLIFY_auth_iskonijuanv2_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "iskonijuanv2"
+        }
+      ]
+    },
+    "AMPLIFY_auth_iskonijuanv2_unauthRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "iskonijuanv2"
+        }
+      ]
+    },
+    "AMPLIFY_auth_iskonijuanv2_unauthRoleName": {
       "usedBy": [
         {
           "category": "auth",
@@ -86,6 +142,13 @@
           "resourceName": "cognitoToDynamoDB"
         }
       ]
+    }
+  },
+  "storage": {
+    "s3iskonijuanv2storage27777ce0": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3"
     }
   }
 }

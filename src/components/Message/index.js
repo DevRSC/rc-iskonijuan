@@ -1,9 +1,10 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.extend(relativeTime);
 import { Auth } from 'aws-amplify';
+import { S3Image } from 'aws-amplify-react-native';
 
 const Message = ({ message }) => {
   const [isMe, setIsMe] = useState(false);
@@ -29,6 +30,9 @@ const Message = ({ message }) => {
         },
       ]}
     >
+      {message.images?.length > 0 && (
+        <S3Image imgKey={message.images[0]} style={styles.image} />
+      )}
       <Text style={[
         {
           color: isMe ? "#FFFFFF" : "#2B283A",
@@ -69,7 +73,14 @@ const styles = StyleSheet.create({
   },
   text: {
     color:  "#FFFFFF",
-  }
+  },
+  image: {
+    width: 200,
+    height: 100,
+    borderColor: "white",
+    borderWidth: 2,
+    borderRadius: 5,
+  },
 });
 
 export default Message;

@@ -14,5 +14,11 @@ export type AmplifyDependentResourcesAttributes = {
             "LambdaExecutionRole": "string",
             "LambdaExecutionRoleArn": "string"
         }
+    },
+    "storage": {
+        "s3iskonijuanv2storage27777ce0": {
+            "BucketName": "string",
+            "Region": "string"
+        }
     }
 }

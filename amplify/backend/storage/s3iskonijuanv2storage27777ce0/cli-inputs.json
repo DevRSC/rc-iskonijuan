@@ -1,0 +1,12 @@
+{
+  "resourceName": "s3iskonijuanv2storage27777ce0",
+  "bucketName": "iskonijuanv2-storage-27777ce0",
+  "policyUUID": "c9d30a8a",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ]
+}
