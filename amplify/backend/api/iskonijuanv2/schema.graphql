@@ -1,0 +1,147 @@
+type Organization @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  organizationMatches: [Matches] @hasMany(indexName: "byOrganization", fields: ["id"])
+  name: String
+  endDate: AWSDate
+  eligibilityLocation: String
+  availability: availabilityEnum
+  typeOfScholarship: String
+  website: AWSURL
+}
+
+enum typeOfScholarshipEnum {
+  MERITBASED
+  NEEDSBASED
+  CONTEXTBASED
+  SKILLSBASED
+}
+
+enum availabilityEnum {
+  OPEN
+  CLOSED
+}
+
+type Matches @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  scholarinformationId: ID! @index(name: "byScholarInformation")
+  organizationId: ID! @index(name: "byOrganization")
+}
+
+type ScholarInformation @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  scholarId: ID! @index(name: "byScholar")
+  studentId: ID
+  corImage: String
+  currentGradeLevel: String
+  cumulativeGPA: Float
+  hsYearGraduated: AWSDate
+  upcomingCY: String
+  statusOfScholarshipApplication: statusOfScholarshipApplicationEnum
+  scholarMatches: [Matches] @hasMany(indexName: "byScholarInformation", fields: ["id"])
+}
+
+enum statusOfScholarshipApplicationEnum {
+  REJECTED
+  INPROGRESS
+  ACCEPTED
+}
+
+type Campaign @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  campaignDonation: [Donation] @hasMany(indexName: "byCampaign", fields: ["id"])
+  scholarId: ID! @index(name: "byScholar")
+  campaignName: String
+  description: String
+  amountGoal: Int
+  startDate: AWSDate
+  endDate: AWSDate
+}
+
+type Donation @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  campaignId: ID @index(name: "byCampaign")
+  benefactorId: ID @index(name: "byBenefactor")
+  donatedOn: AWSTimestamp
+  amountDonated: Int
+}
+
+type Benefactor @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  userBenefactor: User @hasOne
+  benefactorDonation: [Donation] @hasMany(indexName: "byBenefactor", fields: ["id"])
+}
+
+type Scholar @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  userScholar: User @hasOne
+  scholarCampaign: [Campaign] @hasMany(indexName: "byScholar", fields: ["id"])
+  scholarScholarInformation: [ScholarInformation] @hasMany(indexName: "byScholar", fields: ["id"])
+}
+
+type Swipes @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  userId: ID! @index(name: "byUser")
+  targetd: ID!
+  isLiked: Boolean
+}
+
+type AdditionalInformation @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  currentGeoLocation: String
+  interest: [String]
+  ethnicity: String
+  fieldOfStudy: String
+  typeOfScholarship: String
+  yearlyIncome: Int
+  employmentStatus: employmentStatusEnum
+}
+
+enum employmentStatusEnum {
+  EMPLOYEE
+  SELFEMPLOYED
+  STUDENT
+}
+
+type User @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  username: String!
+  email: AWSEmail!
+  firstName: String
+  middleName: String
+  lastName: String
+  suffix: String
+  sex: String
+  address: String
+  postal: String
+  nationality: String
+  typeOfDisability: String
+  placeOfBirth: String
+  birthDate: String
+  mobileNumber: AWSPhone
+  verified: Boolean
+  userAdditionalInformation: AdditionalInformation @hasOne
+  userSwipes: [Swipes] @hasMany(indexName: "byUser", fields: ["id"])
+  status: String
+  image: String
+  Messages: [Message] @hasMany(indexName: "byUser", fields: ["id"])
+  ChatRooms: [ChatRoom] @manyToMany(relationName: "UserChatRoom")
+}
+
+type ChatRoom @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  image: String
+  Messages: [Message] @hasMany(indexName: "byChatRoom", fields: ["id"])
+  users: [User] @manyToMany(relationName: "UserChatRoom")
+  LastMessage: Message @hasOne
+  _version: Int
+}
+
+type Message @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  createdAt: AWSDateTime!
+  text: String!
+  chatroomID: ID! @index(name: "byChatRoom", sortKeyFields: ["createdAt"], queryField: "listMessagesByChatRoom")
+  userID: ID! @index(name: "byUser")
+}
+     

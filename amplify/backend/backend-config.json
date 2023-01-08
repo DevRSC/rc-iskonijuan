@@ -1,0 +1,91 @@
+{
+  "api": {
+    "iskonijuanv2": {
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AWS_IAM"
+            }
+          ],
+          "defaultAuthentication": {
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 30,
+              "description": "api key description"
+            },
+            "authenticationType": "API_KEY"
+          }
+        }
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync"
+    }
+  },
+  "auth": {
+    "iskonijuanv2": {
+      "service": "Cognito",
+      "serviceType": "imported",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  },
+  "function": {
+    "cognitoToDynamoDB": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_auth_iskonijuanv2_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "iskonijuanv2"
+        }
+      ]
+    },
+    "AMPLIFY_auth_iskonijuanv2_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "iskonijuanv2"
+        }
+      ]
+    },
+    "AMPLIFY_auth_iskonijuanv2_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "iskonijuanv2"
+        }
+      ]
+    },
+    "AMPLIFY_auth_iskonijuanv2_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "iskonijuanv2"
+        }
+      ]
+    },
+    "AMPLIFY_function_cognitoToDynamoDB_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "cognitoToDynamoDB"
+        }
+      ]
+    },
+    "AMPLIFY_function_cognitoToDynamoDB_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "cognitoToDynamoDB"
+        }
+      ]
+    }
+  }
+}
